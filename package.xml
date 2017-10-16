@@ -17,7 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-03-20</date>
+ <date>2017-10-17</date>
  <version>
   <release>2.10.4</release>
   <api>2.10.0</api>
@@ -43,7 +43,6 @@
        <file name="mime.types.horde" role="doc" />
        <file name="README" role="doc" />
       </dir> <!-- /doc/Horde/Mime/mime_mapping -->
-      <file name="COPYING" role="doc" />
       <file name="UPGRADING" role="doc" />
      </dir> <!-- /doc/Horde/Mime -->
     </dir> <!-- /doc/Horde -->
@@ -428,6 +427,7 @@
      </dir> <!-- /test/Horde/Mime -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
+   <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -544,39 +544,34 @@
  </dependencies>
  <phprelease>
   <filelist>
-   <install as="COPYING" name="doc/Horde/Mime/COPYING" />
-   <install as="UPGRADING" name="doc/Horde/Mime/UPGRADING" />
    <install as="mime_mapping/convert.php" name="doc/Horde/Mime/mime_mapping/convert.php" />
    <install as="mime_mapping/Makefile" name="doc/Horde/Mime/mime_mapping/Makefile" />
    <install as="mime_mapping/mime.globs" name="doc/Horde/Mime/mime_mapping/mime.globs" />
    <install as="mime_mapping/mime.types" name="doc/Horde/Mime/mime_mapping/mime.types" />
    <install as="mime_mapping/mime.types.horde" name="doc/Horde/Mime/mime_mapping/mime.types.horde" />
    <install as="mime_mapping/README" name="doc/Horde/Mime/mime_mapping/README" />
+   <install as="UPGRADING" name="doc/Horde/Mime/UPGRADING" />
    <install as="Horde/Mime.php" name="lib/Horde/Mime.php" />
-   <install as="Horde/Mime/Exception.php" name="lib/Horde/Mime/Exception.php" />
-   <install as="Horde/Mime/Headers.php" name="lib/Horde/Mime/Headers.php" />
-   <install as="Horde/Mime/Id.php" name="lib/Horde/Mime/Id.php" />
-   <install as="Horde/Mime/Magic.php" name="lib/Horde/Mime/Magic.php" />
-   <install as="Horde/Mime/Mail.php" name="lib/Horde/Mime/Mail.php" />
-   <install as="Horde/Mime/Mdn.php" name="lib/Horde/Mime/Mdn.php" />
-   <install as="Horde/Mime/mime.mapping.php" name="lib/Horde/Mime/mime.mapping.php" />
-   <install as="Horde/Mime/Part.php" name="lib/Horde/Mime/Part.php" />
-   <install as="Horde/Mime/QuotedPrintable.php" name="lib/Horde/Mime/QuotedPrintable.php" />
-   <install as="Horde/Mime/Related.php" name="lib/Horde/Mime/Related.php" />
-   <install as="Horde/Mime/Translation.php" name="lib/Horde/Mime/Translation.php" />
-   <install as="Horde/Mime/Uudecode.php" name="lib/Horde/Mime/Uudecode.php" />
    <install as="Horde/Mime/ContentParam/Decode.php" name="lib/Horde/Mime/ContentParam/Decode.php" />
+   <install as="Horde/Mime/Exception.php" name="lib/Horde/Mime/Exception.php" />
    <install as="Horde/Mime/Filter/Encoding.php" name="lib/Horde/Mime/Filter/Encoding.php" />
+   <install as="Horde/Mime/Headers.php" name="lib/Horde/Mime/Headers.php" />
    <install as="Horde/Mime/Headers/Addresses.php" name="lib/Horde/Mime/Headers/Addresses.php" />
    <install as="Horde/Mime/Headers/AddressesMulti.php" name="lib/Horde/Mime/Headers/AddressesMulti.php" />
    <install as="Horde/Mime/Headers/ContentDescription.php" name="lib/Horde/Mime/Headers/ContentDescription.php" />
    <install as="Horde/Mime/Headers/ContentId.php" name="lib/Horde/Mime/Headers/ContentId.php" />
    <install as="Horde/Mime/Headers/ContentLanguage.php" name="lib/Horde/Mime/Headers/ContentLanguage.php" />
    <install as="Horde/Mime/Headers/ContentParam.php" name="lib/Horde/Mime/Headers/ContentParam.php" />
+   <install as="Horde/Mime/Headers/ContentParam/ContentDisposition.php" name="lib/Horde/Mime/Headers/ContentParam/ContentDisposition.php" />
+   <install as="Horde/Mime/Headers/ContentParam/ContentType.php" name="lib/Horde/Mime/Headers/ContentParam/ContentType.php" />
    <install as="Horde/Mime/Headers/ContentTransferEncoding.php" name="lib/Horde/Mime/Headers/ContentTransferEncoding.php" />
    <install as="Horde/Mime/Headers/Date.php" name="lib/Horde/Mime/Headers/Date.php" />
    <install as="Horde/Mime/Headers/Deprecated.php" name="lib/Horde/Mime/Headers/Deprecated.php" />
    <install as="Horde/Mime/Headers/Element.php" name="lib/Horde/Mime/Headers/Element.php" />
+   <install as="Horde/Mime/Headers/Element/Address.php" name="lib/Horde/Mime/Headers/Element/Address.php" />
+   <install as="Horde/Mime/Headers/Element/Multiple.php" name="lib/Horde/Mime/Headers/Element/Multiple.php" />
+   <install as="Horde/Mime/Headers/Element/Single.php" name="lib/Horde/Mime/Headers/Element/Single.php" />
+   <install as="Horde/Mime/Headers/Extension/Mime.php" name="lib/Horde/Mime/Headers/Extension/Mime.php" />
    <install as="Horde/Mime/Headers/Identification.php" name="lib/Horde/Mime/Headers/Identification.php" />
    <install as="Horde/Mime/Headers/MessageId.php" name="lib/Horde/Mime/Headers/MessageId.php" />
    <install as="Horde/Mime/Headers/Mime.php" name="lib/Horde/Mime/Headers/Mime.php" />
@@ -584,15 +579,19 @@
    <install as="Horde/Mime/Headers/Received.php" name="lib/Horde/Mime/Headers/Received.php" />
    <install as="Horde/Mime/Headers/Subject.php" name="lib/Horde/Mime/Headers/Subject.php" />
    <install as="Horde/Mime/Headers/UserAgent.php" name="lib/Horde/Mime/Headers/UserAgent.php" />
-   <install as="Horde/Mime/Headers/ContentParam/ContentDisposition.php" name="lib/Horde/Mime/Headers/ContentParam/ContentDisposition.php" />
-   <install as="Horde/Mime/Headers/ContentParam/ContentType.php" name="lib/Horde/Mime/Headers/ContentParam/ContentType.php" />
-   <install as="Horde/Mime/Headers/Element/Address.php" name="lib/Horde/Mime/Headers/Element/Address.php" />
-   <install as="Horde/Mime/Headers/Element/Multiple.php" name="lib/Horde/Mime/Headers/Element/Multiple.php" />
-   <install as="Horde/Mime/Headers/Element/Single.php" name="lib/Horde/Mime/Headers/Element/Single.php" />
-   <install as="Horde/Mime/Headers/Extension/Mime.php" name="lib/Horde/Mime/Headers/Extension/Mime.php" />
+   <install as="Horde/Mime/Id.php" name="lib/Horde/Mime/Id.php" />
+   <install as="Horde/Mime/Magic.php" name="lib/Horde/Mime/Magic.php" />
+   <install as="Horde/Mime/Mail.php" name="lib/Horde/Mime/Mail.php" />
+   <install as="Horde/Mime/Mdn.php" name="lib/Horde/Mime/Mdn.php" />
+   <install as="Horde/Mime/mime.mapping.php" name="lib/Horde/Mime/mime.mapping.php" />
+   <install as="Horde/Mime/Part.php" name="lib/Horde/Mime/Part.php" />
    <install as="Horde/Mime/Part/Iterator.php" name="lib/Horde/Mime/Part/Iterator.php" />
    <install as="Horde/Mime/Part/Upgrade/V1.php" name="lib/Horde/Mime/Part/Upgrade/V1.php" />
-   <install as="locale/Horde_Mime.pot" name="locale/Horde_Mime.pot" />
+   <install as="Horde/Mime/QuotedPrintable.php" name="lib/Horde/Mime/QuotedPrintable.php" />
+   <install as="Horde/Mime/Related.php" name="lib/Horde/Mime/Related.php" />
+   <install as="Horde/Mime/Translation.php" name="lib/Horde/Mime/Translation.php" />
+   <install as="Horde/Mime/Uudecode.php" name="lib/Horde/Mime/Uudecode.php" />
+   <install as="LICENSE" name="LICENSE" />
    <install as="locale/ar/LC_MESSAGES/Horde_Mime.mo" name="locale/ar/LC_MESSAGES/Horde_Mime.mo" />
    <install as="locale/ar/LC_MESSAGES/Horde_Mime.po" name="locale/ar/LC_MESSAGES/Horde_Mime.po" />
    <install as="locale/bg/LC_MESSAGES/Horde_Mime.mo" name="locale/bg/LC_MESSAGES/Horde_Mime.mo" />
@@ -625,6 +624,7 @@
    <install as="locale/gl/LC_MESSAGES/Horde_Mime.po" name="locale/gl/LC_MESSAGES/Horde_Mime.po" />
    <install as="locale/he/LC_MESSAGES/Horde_Mime.mo" name="locale/he/LC_MESSAGES/Horde_Mime.mo" />
    <install as="locale/he/LC_MESSAGES/Horde_Mime.po" name="locale/he/LC_MESSAGES/Horde_Mime.po" />
+   <install as="locale/Horde_Mime.pot" name="locale/Horde_Mime.pot" />
    <install as="locale/hr/LC_MESSAGES/Horde_Mime.mo" name="locale/hr/LC_MESSAGES/Horde_Mime.mo" />
    <install as="locale/hr/LC_MESSAGES/Horde_Mime.po" name="locale/hr/LC_MESSAGES/Horde_Mime.po" />
    <install as="locale/hu/LC_MESSAGES/Horde_Mime.mo" name="locale/hu/LC_MESSAGES/Horde_Mime.mo" />
@@ -679,18 +679,8 @@
    <install as="locale/zh_TW/LC_MESSAGES/Horde_Mime.po" name="locale/zh_TW/LC_MESSAGES/Horde_Mime.po" />
    <install as="Horde/Mime/AllTests.php" name="test/Horde/Mime/AllTests.php" />
    <install as="Horde/Mime/bootstrap.php" name="test/Horde/Mime/bootstrap.php" />
-   <install as="Horde/Mime/ContentParamTest.php" name="test/Horde/Mime/ContentParamTest.php" />
-   <install as="Horde/Mime/HeadersTest.php" name="test/Horde/Mime/HeadersTest.php" />
-   <install as="Horde/Mime/MagicTest.php" name="test/Horde/Mime/MagicTest.php" />
-   <install as="Horde/Mime/MailTest.php" name="test/Horde/Mime/MailTest.php" />
-   <install as="Horde/Mime/MdnTest.php" name="test/Horde/Mime/MdnTest.php" />
-   <install as="Horde/Mime/MimeIdTest.php" name="test/Horde/Mime/MimeIdTest.php" />
-   <install as="Horde/Mime/MimeTest.php" name="test/Horde/Mime/MimeTest.php" />
-   <install as="Horde/Mime/PartTest.php" name="test/Horde/Mime/PartTest.php" />
-   <install as="Horde/Mime/phpunit.xml" name="test/Horde/Mime/phpunit.xml" />
-   <install as="Horde/Mime/RelatedTest.php" name="test/Horde/Mime/RelatedTest.php" />
-   <install as="Horde/Mime/UudecodeTest.php" name="test/Horde/Mime/UudecodeTest.php" />
    <install as="Horde/Mime/ContentParam/DecodeTest.php" name="test/Horde/Mime/ContentParam/DecodeTest.php" />
+   <install as="Horde/Mime/ContentParamTest.php" name="test/Horde/Mime/ContentParamTest.php" />
    <install as="Horde/Mime/Filter/EncodingTest.php" name="test/Horde/Mime/Filter/EncodingTest.php" />
    <install as="Horde/Mime/fixtures/attachment.bin" name="test/Horde/Mime/fixtures/attachment.bin" />
    <install as="Horde/Mime/fixtures/blank_subject.txt" name="test/Horde/Mime/fixtures/blank_subject.txt" />
@@ -721,7 +711,17 @@
    <install as="Horde/Mime/Headers/ContentLanguageTest.php" name="test/Horde/Mime/Headers/ContentLanguageTest.php" />
    <install as="Horde/Mime/Headers/ContentTransferEncodingTest.php" name="test/Horde/Mime/Headers/ContentTransferEncodingTest.php" />
    <install as="Horde/Mime/Headers/ContentTypeTest.php" name="test/Horde/Mime/Headers/ContentTypeTest.php" />
+   <install as="Horde/Mime/HeadersTest.php" name="test/Horde/Mime/HeadersTest.php" />
+   <install as="Horde/Mime/MagicTest.php" name="test/Horde/Mime/MagicTest.php" />
+   <install as="Horde/Mime/MailTest.php" name="test/Horde/Mime/MailTest.php" />
    <install as="Horde/Mime/Mdn/NonTranslatedTest.php" name="test/Horde/Mime/Mdn/NonTranslatedTest.php" />
+   <install as="Horde/Mime/MdnTest.php" name="test/Horde/Mime/MdnTest.php" />
+   <install as="Horde/Mime/MimeIdTest.php" name="test/Horde/Mime/MimeIdTest.php" />
+   <install as="Horde/Mime/MimeTest.php" name="test/Horde/Mime/MimeTest.php" />
+   <install as="Horde/Mime/PartTest.php" name="test/Horde/Mime/PartTest.php" />
+   <install as="Horde/Mime/phpunit.xml" name="test/Horde/Mime/phpunit.xml" />
+   <install as="Horde/Mime/RelatedTest.php" name="test/Horde/Mime/RelatedTest.php" />
+   <install as="Horde/Mime/UudecodeTest.php" name="test/Horde/Mime/UudecodeTest.php" />
   </filelist>
  </phprelease>
  <changelog>
@@ -1830,7 +1830,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-03-20</date>
+   <date>2017-10-17</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
