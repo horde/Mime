@@ -43,7 +43,7 @@
        <file name="mime.types.horde" role="doc" />
        <file name="README" role="doc" />
       </dir> <!-- /doc/Horde/Mime/mime_mapping -->
-      <file name="UPGRADING" role="doc" />
+      <file name="UPGRADING.rst" role="doc" />
      </dir> <!-- /doc/Horde/Mime -->
     </dir> <!-- /doc/Horde -->
    </dir> <!-- /doc -->
@@ -550,7 +550,7 @@
    <install as="mime_mapping/mime.types" name="doc/Horde/Mime/mime_mapping/mime.types" />
    <install as="mime_mapping/mime.types.horde" name="doc/Horde/Mime/mime_mapping/mime.types.horde" />
    <install as="mime_mapping/README" name="doc/Horde/Mime/mime_mapping/README" />
-   <install as="UPGRADING" name="doc/Horde/Mime/UPGRADING" />
+   <install as="UPGRADING.rst" name="doc/Horde/Mime/UPGRADING.rst" />
    <install as="Horde/Mime.php" name="lib/Horde/Mime.php" />
    <install as="Horde/Mime/ContentParam/Decode.php" name="lib/Horde/Mime/ContentParam/Decode.php" />
    <install as="Horde/Mime/Exception.php" name="lib/Horde/Mime/Exception.php" />
