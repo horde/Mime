@@ -1,0 +1,940 @@
+---
+2.10.4:
+  api: 2.10.0
+  state:
+    release: stable
+    api: stable
+  date: 2017-10-20
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes:
+2.10.3:
+  api: 2.10.0
+  state:
+    release: stable
+    api: stable
+  date: 2017-02-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Correctly encode IP address literal in first Received: header (Bug #14574).
+2.10.2:
+  api: 2.10.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-11-09
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix regression caused by incorrect fix and test for Bug #14456 (Bug #14505).
+2.10.1:
+  api: 2.10.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-09-05
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix parsing headers containing MIME encoded email addresses (Bug #14456).
+2.10.0:
+  api: 2.10.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-07-01
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Add Horde_Mime_Part#isAttachment().
+    [mjr] Add workaround for failures due to sending broken rfc822/message attachments (Bug #14324).
+    [mjr] Catch incorrectly localized Date headers.
+2.9.5:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-05-31
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Add sanity check for malformed offset in Date header (Bug #14381).
+2.9.4:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-03-21
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Update Greek translation (Limperis Antonis <limperis@cti.gr>).
+2.9.3:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2016-02-01
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Mark PHP 7 as supported.
+2.9.2:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-09-01
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Correctly work around PHP bug 65776.
+2.9.1:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-05-21
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Correctly output MIME headers when generating multipart/digest parts (RFC 2047 [5.1.5]).
+2.9.0:
+  api: 2.9.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-04-28
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix rare errors when multiple iterations are occurring on the same set of MIME parts.
+    [jan] Fix issues with certain locales like Turkish.
+    [mms] Fix indexing MIME part when base is a multipart object.
+2.8.1:
+  api: 2.8.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-04-13
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Ignore broken headers when parsing header text.
+2.8.0:
+  api: 2.8.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-03-10
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Subpart manipulation should now be done via array access.
+    [mms] Add recurisve iteration to the Horde_Mime_Part object.
+    [mms] Work around broken line-oriented data when transfer encoding (Bug #13835).
+    [mms] Fix regression in using the deprecated Horde_Mime::generateMessageId() method (Bug #13846).
+    [mms] Add Horde_Mime_Headers_ContentId class.
+    [mms] Add Horde_Mime_Headers_ContentTransferEncoding class.
+    [mms] Added Horde_Mime_Headers_Element#isDefault().
+    [mms] Add interface to differentiate between MIME and non-MIME headers.
+    [mms] Content-Type and Content-Disposition related data is now handled internally in Horde_Mime_Part object by using Horde_Mime_Headers.
+    [mms] Added the Horde_Mime_Headers_ContentLanguage class.
+    [mms] Fix cloning of the Content-Type and Content-Disposition header objects.
+    [mms] Ensure that null bytes are filtered from MIME data that is contained in the headers.
+    [mms] Fix cloning of the Content-Type and Content-Disposition header objects.
+2.7.0:
+  api: 2.7.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-01-20
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix setting a MIME part's contents when the data is the current stream resource of that part.
+    [mms] Fix MIME encoding the Content-Description header (Bug #13814).
+    [mms] Fix setting MIME IDs when a message/rfc822 part is the base of the part object.
+2.6.1:
+  api: 2.6.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-12-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Fix Horde_Mime::quotedPrintableEncode() (Bug #13769).
+2.6.0:
+  api: 2.6.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-12-05
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix issue where long lines were not properly dealt with when binary transfer encoding was used (Bug #13709).
+    [mms] Added Horde_Mime_Filter_Encoding class.
+    [mms] MIME decoding uses windows-1252 charset by default when iso-8859-1 is identified in the MIME encoded string.
+    [mms] Move mime.mapping.php generation code from horde-support repository into doc/ directory.
+2.5.2:
+  api: 2.5.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-11-25
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Improved sanity checking when adding header data.
+2.5.1:
+  api: 2.5.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-11-23
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix Horde_Mime_Headers_Deprecated#addReceivedHeader().
+    [mms] Fix Horde_Mime_Headers_Deprecated#listHeadersExists().
+2.5.0:
+  api: 2.5.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-11-21
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Horde_Mime_Headers has been rewritten.
+    [mms] Correctly handle content parameters in a case-insensitive manner.
+    [mms] Correctly pass the 'no_body' parameter to parts embedded in a message/rfc822 part in Horde_Mime_Part#parseMessage().
+    [mms] Fix parsing a base MIME-compliant message with no Content-Type information.
+    [mms] Horde_Mime::is8bit() no longer requires the charset parameter.
+    [mms] Improved MIME encoding.
+    [mms] Deprecated Horde_Mime::quotedPrintableEncode() and move to Horde_Mime_QuotedPrintable.
+    [mms] Moved MIME ID manipulation/query methods out of Horde_Mime and into Horde_Mime_Id.
+    [mms] Use string-based ABNF-based parser for scanning MIME content parameters instead of a regular expression (Bug #13587).
+    [mms] Moved content parameter handling methods out of Horde_Mime and into Horde_Mime_ContentParam.
+    [mms] Deprecated Horde_Mime::generateMessageId() and move to Horde_Mime_Headers.
+    [mms] Deprecated Horde_Mime::uudecode() and move to new Horde_Mime_Uudecode class.
+    [mms] Add Auto-Submitted header to outgoing MDN messages.
+2.4.5:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-08-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix generation of Original-Message-ID header in MDN notification (Bug #13526).
+    [mms] Fix determination of MDN user confirmation in certain instances.
+2.4.4:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-08-02
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix fatal error in Horde_Mime_Mail#getBasePart() (Thomas Müller <thomas.mueller@tmit.eu>).
+2.4.3:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-07-09
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix determination of part size when the part contains explicit sizing information.
+2.4.2:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-06-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix returning raw data of sent email.
+2.4.1:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-05-25
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix returning stream containing raw email data.
+2.4.0:
+  api: 2.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-05-24
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Add Horde_Mime_Mail#getRaw() for returning the raw email email data.
+2.3.5:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-05-21
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Ensure return from Horde_Mime_Part#getBytes() is an integer.
+2.3.4:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-05-09
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix regression in part size calculation for parts that contain the raw contents.
+2.3.3:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-05-02
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Add Importance to list of headers that expects a single value.
+2.3.2:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-04-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Correctly set size of part when using Horde_Mime_Part::parseMessage() and the 'no_body' option.
+2.3.1:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-04-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix Horde_Mime_Part#buildMimeIds() when called on the base embedded object of a parent part (Bug #13117).
+2.3.0:
+  api: 2.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-03-10
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Horde_Mime_Headers#parseHeaders() now accepts resources and Horde_Stream objects.
+2.2.9:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2014-02-11
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fixed access to a non-visible internal method when performing actions on parts.
+2.2.8:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-11-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix parsing MIME message that contains mixed EOLs (Bug #12842).
+2.2.7:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-09-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix regression that broke quoted-printable encoding.
+2.2.6:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-09-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Work around broken PHP behavior that could cause a segfault when encoding certain strings as quoted-printable.
+2.2.5:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-08-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Remove stream filters before returning stream to calling code.
+    [mms] Support Horde_Mail_Transport_Smtphorde when sending messages.
+    [mms] Net_SMTP does not support sending via BINARYMIME.
+2.2.4:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-08-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix parsing broken multipart messages (Bug #12536).
+    [mms] Use the correct EOL string when transfer encoding content (Bug #12452).
+2.2.3:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-07-16
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Fix setting a different body if reusing a Horde_Mime_Mail object.
+2.2.2:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-06-18
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Update MIME extension mapping.
+2.2.1:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-06-05
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix Horde_Mime_Part::getRawPartText() when obtaining the first body part of a single part message.
+2.2.0:
+  api: 2.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-05-28
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Add 'no_body' parameter to Horde_Mime_Part#parseMessage().
+2.1.1:
+  api: 2.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-04-18
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix parsing wrapped header lines that contain no atom data (Bug #12189).
+2.1.0:
+  api: 2.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-04-08
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Allow a Horde_Domhtml object to be directly passed in to Horde_Mime_Related#cidReplace().
+    [mms] Content-Type parameters are case-insensitive (Bug #12161).
+    [mms] Sanity checking: ignore empty values for Content-Transfer-Encoding MIME header (Bug #12146).
+    [mms] Null characters are no longer allowed in e-mail headers as of RFC 2822.
+    [mms] More accurate/comprehensive Horde_Mime::is8bit() check (Bug #12127).
+    [mms] Only use non-ASCII in MIME parameters when absolutely necessary.
+    [mms] Need to always add charset information to MIME encoded parameters if they are not displayable in pure US-ASCII (Bug #12127).
+    [mms] Correctly quote forbidden characters in MIME parameter data (Bug #12127).
+    [mms] Round up size output in Horde_Mime_Part#getSize().
+2.0.4:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-02-11
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix regression in outputting Content-Disposition 'size' parameter if no other Content-Disposition parameter is present.
+2.0.3:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-01-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Never return decimal values from Horde_Mime_Part#getSize().
+    [mms] Added parsing limit for deeply nested MIME parts.
+2.0.2:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2013-01-04
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Fix issue where parsing multipart/alternative messages would turn the parts into attachments.
+    [jan] Update Basque translation (Ibon Igartua <ibon.igartua@ehu.es>).
+2.0.1:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-11-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Update Dutch translation (Arjen de Korte <build+horde@de-korte.org>).
+2.0.0:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-10-30
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 5.
+2.0.0beta3:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-10-12
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Add method for returning the message's base MIME part.
+    [mms] Update MIME mapping file.
+2.0.0beta2:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-08-07
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Catch/fix malformed undisclosed-recipients address headers.
+2.0.0beta1:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-07-19
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First beta release for Horde 5.
+2.0.0alpha1:
+  api: 2.0.0alpha1
+  state:
+    release: alpha
+    api: alpha
+  date: 2012-07-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First alpha release for Horde 5.
+    [mjr] Fix issue that could cause outputting of duplicate data from a parsed mulitpart mime message.
+    [mms] Added Horde_Mime_Related class.
+    [mms] Implement new 2.0 API. See UPGRADING for full details of changes.
+1.6.2:
+  api: 1.6.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-05-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Workaround broken base64 data.
+1.6.1:
+  api: 1.6.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-05-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Workaround PHP's broken convert_uudecode() function.
+1.6.0:
+  api: 1.6.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-04-10
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Work around broken messages with multiple address headers.
+    [mms] Add option to allow encoding options to be defined for Horde_Mime_Part#send() (Bug #11058).
+1.5.1:
+  api: 1.5.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-03-20
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Add MIME headers to the list of single-value headers.
+    [mms] Don't add personal part to e-mail address if it is identical to the address itself.
+1.5.0:
+  api: 1.5.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-02-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Support Horde_Mail_Rfc822_Address objects.
+    [mms] A false value for 'idn' in Horde_Mime_Address#writeAddress() now causes the domain name to be converted TO punycode, if necessary.
+1.4.1:
+  api: 1.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-01-17
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Improve compatibility with some broken text MIME parts (Bug #10925).
+1.4.0:
+  api: 1.4.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-12-13
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Allow Horde_Mime_Part::getRawPartText() to accept stream input.
+    [mms] Workaround incoming message data to Horde_Mime_Part::getRawPartText() that contains varying EOL characters (Bug #10809).
+    [mms] Fix detection of MIME boundaries at beginning of string (Bug #10809).
+    [mms] Abstract charset detection code out into Horde_Mime_Headers::sanityCheck().
+1.3.3:
+  api: 1.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-12-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Improved detection of charsets in broken (8-bit) MIME headers.
+1.3.2:
+  api: 1.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-11-30
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix for broken 8BITMIME/BINARYMIME SMTP capability detection (christof@buergi.lugs.ch, Bug #10820).
+1.3.1:
+  api: 1.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-11-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Work around broken number_format() in PHP < 5.4.0.
+1.3.0:
+  api: 1.3.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-11-08
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Make unit tests locale independent.
+    [mms] Added 'canonical' parameter to Horde_Mime_Headers#toArray() and Horde_Mime_Headers#toString() (Bug #10696).
+1.2.1:
+  api: 1.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-11-02
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Horde_Mime_Part::getRawPartText() was incorrectly returning a trailing EOL for body data.
+1.2.0:
+  api: 1.2.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-09-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Add Horde_Mime_Mail#clearParts().
+1.1.0:
+  api: 1.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-09-20
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Provide method to return approximate size of parts if it contains base64 encoded data (Request #9783).
+    [mms] Support Content-Duration MIME header (RFC 3803).
+    [mms] MIME body part can not have disposition of 'attachment' (Bug #10458).
+1.0.6:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-08-30
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix quoted-printable encoding for message parts contained in a multipart that do not share the same EOLs as the parent part (Bug #10324).
+1.0.5:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-07-27
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix generation of MDN messages.
+    [jan] Update Latvian translation.
+    [mms] Explicitly build MIME IDs when doing a findBody() search.
+1.0.4:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-07-05
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Fix accessing the MIME part content after serialization (Bug #10252).
+1.0.3:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-06-14
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix error when determining part size if contents is empty (rick@havokmon.com, Bug #10223).
+1.0.2:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-05-18
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix encoding of headers if charset passed to toArray() is empty (Bug #10054).
+1.0.1:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-04-20
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Fix unserializing Horde_Mime_Part containing data (Bug #9819).
+1.0.0:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-04-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 4.
+    [mms] Fix Horde_Mime::isChild().
+1.0.0RC3:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mms] Provide option to always use Windows-1252 when decoding ISO-8859-1 data.
+1.0.0RC2:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Second release candidate for Horde 4.
+    [mms] Improve handling of empty address groups.
+1.0.0RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First release candidate for Horde 4.
+1.0.0beta1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-16
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Simplify charset handling in Horde_Mime_Mail.
+1.0.0alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2011-03-08
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First alpha release for Horde 4.
+    Add RFC 3282 language support to Horde_Mime_Part.
+    Add workaround for Horde Bug #8747.
+    Honor the Content-Disposition 'size' parameter (RFC 2183 [2.7]).
+    Converted tests to PHPUnit.
+    Moved viewer code to horde/Mime_Viewer package.
+    Removed Webcpp and Enscript viewers. Source code highlighting is now exclusively handled by the Srchighlight driver.
+    No need to generate Content-Transfer-Encoding header if part data is 7bit.
+    Default disposition should be empty by default, not inline (RFC 2183 [2]).
+    Request #8556: Allow specifying a header charset for a part.
+    Add 'raw' render view to Horde_Mime_Viewer.
+    Horde_Mime_Part::parseMessage() correctly parses non-MIME parts.
+    Remove dependence on PEAR's Mail_mimeDecode::.
+    Added Horde_Mime::uudecode().
+    Remove support for deprecated mime_magic module.
+    Use Gnumeric to display MS Excel documents.
+    Use AbiWord to display MS Word documents (Request #8011).
+    Add support for decoding IDN (RFC 3490) names (Request #5836).
