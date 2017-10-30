@@ -1,0 +1,675 @@
+-----------
+v2.10.4-git
+-----------
+
+
+-------
+v2.10.3
+-------
+
+[jan] Correctly encode IP address literal in first Received: header (Bug
+      #14574).
+
+
+-------
+v2.10.2
+-------
+
+[mjr] Fix regression caused by incorrect fix and test for Bug #14456 (Bug
+      #14505).
+
+
+-------
+v2.10.1
+-------
+
+[mjr] Fix parsing headers containing MIME encoded email addresses (Bug #14456).
+
+
+-------
+v2.10.0
+-------
+
+[jan] Add Horde_Mime_Part#isAttachment().
+[mjr] Add workaround for failures due to sending broken rfc822/message
+      attachments (Bug #14324).
+[mjr] Catch incorrectly localized Date headers.
+
+
+------
+v2.9.5
+------
+
+[mjr] Add sanity check for malformed offset in Date header (Bug #14381).
+
+
+------
+v2.9.4
+------
+
+[jan] Update Greek translation (Limperis Antonis <limperis@cti.gr>).
+
+
+------
+v2.9.3
+------
+
+[jan] Mark PHP 7 as supported.
+
+
+------
+v2.9.2
+------
+
+[mjr] Correctly work around PHP bug 65776.
+
+
+------
+v2.9.1
+------
+
+[mms] Correctly output MIME headers when generating multipart/digest parts (RFC
+      2047 [5.1.5]).
+
+
+------
+v2.9.0
+------
+
+[mms] Fix rare errors when multiple iterations are occurring on the same set of
+      MIME parts.
+[jan] Fix issues with certain locales like Turkish.
+[mms] Fix indexing MIME part when base is a multipart object.
+
+
+------
+v2.8.1
+------
+
+[mms] Ignore broken headers when parsing header text.
+
+
+------
+v2.8.0
+------
+
+[mms] Subpart manipulation should now be done via array access.
+[mms] Add recurisve iteration to the Horde_Mime_Part object.
+[mms] Work around broken line-oriented data when transfer encoding (Bug
+      #13835).
+[mms] Fix regression in using the deprecated Horde_Mime::generateMessageId()
+      method (Bug #13846).
+[mms] Add Horde_Mime_Headers_ContentId class.
+[mms] Add Horde_Mime_Headers_ContentTransferEncoding class.
+[mms] Added Horde_Mime_Headers_Element#isDefault().
+[mms] Add interface to differentiate between MIME and non-MIME headers.
+[mms] Content-Type and Content-Disposition related data is now handled
+      internally in Horde_Mime_Part object by using Horde_Mime_Headers.
+[mms] Added the Horde_Mime_Headers_ContentLanguage class.
+[mms] Fix cloning of the Content-Type and Content-Disposition header objects.
+[mms] Ensure that null bytes are filtered from MIME data that is contained in
+      the headers.
+[mms] Fix cloning of the Content-Type and Content-Disposition header objects.
+
+
+------
+v2.7.0
+------
+
+[mms] Fix setting a MIME part's contents when the data is the current stream
+      resource of that part.
+[mms] Fix MIME encoding the Content-Description header (Bug #13814).
+[mms] Fix setting MIME IDs when a message/rfc822 part is the base of the part
+      object.
+
+
+------
+v2.6.1
+------
+
+[jan] Fix Horde_Mime::quotedPrintableEncode() (Bug #13769).
+
+
+------
+v2.6.0
+------
+
+[mjr] Fix issue where long lines were not properly dealt with when binary
+      transfer encoding was used (Bug #13709).
+[mms] Added Horde_Mime_Filter_Encoding class.
+[mms] MIME decoding uses windows-1252 charset by default when iso-8859-1 is
+      identified in the MIME encoded string.
+[mms] Move mime.mapping.php generation code from horde-support repository into
+      doc/ directory.
+
+
+------
+v2.5.2
+------
+
+[mms] Improved sanity checking when adding header data.
+
+
+------
+v2.5.1
+------
+
+[mms] Fix Horde_Mime_Headers_Deprecated#addReceivedHeader().
+[mms] Fix Horde_Mime_Headers_Deprecated#listHeadersExists().
+
+
+------
+v2.5.0
+------
+
+[mms] Horde_Mime_Headers has been rewritten.
+[mms] Correctly handle content parameters in a case-insensitive manner.
+[mms] Correctly pass the 'no_body' parameter to parts embedded in a
+      message/rfc822 part in Horde_Mime_Part#parseMessage().
+[mms] Fix parsing a base MIME-compliant message with no Content-Type
+      information.
+[mms] Horde_Mime::is8bit() no longer requires the charset parameter.
+[mms] Improved MIME encoding.
+[mms] Deprecated Horde_Mime::quotedPrintableEncode() and move to
+      Horde_Mime_QuotedPrintable.
+[mms] Moved MIME ID manipulation/query methods out of Horde_Mime and into
+      Horde_Mime_Id.
+[mms] Use string-based ABNF-based parser for scanning MIME content parameters
+      instead of a regular expression (Bug #13587).
+[mms] Moved content parameter handling methods out of Horde_Mime and into
+      Horde_Mime_ContentParam.
+[mms] Deprecated Horde_Mime::generateMessageId() and move to
+      Horde_Mime_Headers.
+[mms] Deprecated Horde_Mime::uudecode() and move to new Horde_Mime_Uudecode
+      class.
+[mms] Add Auto-Submitted header to outgoing MDN messages.
+
+
+------
+v2.4.5
+------
+
+[mms] Fix generation of Original-Message-ID header in MDN notification (Bug
+      #13526).
+[mms] Fix determination of MDN user confirmation in certain instances.
+
+
+------
+v2.4.4
+------
+
+[mms] Fix fatal error in Horde_Mime_Mail#getBasePart() (Thomas Müller
+      <thomas.mueller@tmit.eu>).
+
+
+------
+v2.4.3
+------
+
+[mms] Fix determination of part size when the part contains explicit sizing
+      information.
+
+
+------
+v2.4.2
+------
+
+[mjr] Fix returning raw data of sent email.
+
+
+------
+v2.4.1
+------
+
+[mjr] Fix returning stream containing raw email data.
+
+
+------
+v2.4.0
+------
+
+[mjr] Add Horde_Mime_Mail#getRaw() for returning the raw email email data.
+
+
+------
+v2.3.5
+------
+
+[mms] Ensure return from Horde_Mime_Part#getBytes() is an integer.
+
+
+------
+v2.3.4
+------
+
+[mms] Fix regression in part size calculation for parts that contain the raw
+      contents.
+
+
+------
+v2.3.3
+------
+
+[mms] Add Importance to list of headers that expects a single value.
+
+
+------
+v2.3.2
+------
+
+[mms] Correctly set size of part when using Horde_Mime_Part::parseMessage() and
+      the 'no_body' option.
+
+
+------
+v2.3.1
+------
+
+[mms] Fix Horde_Mime_Part#buildMimeIds() when called on the base embedded
+      object of a parent part (Bug #13117).
+
+
+------
+v2.3.0
+------
+
+[mms] Horde_Mime_Headers#parseHeaders() now accepts resources and Horde_Stream
+      objects.
+
+
+------
+v2.2.9
+------
+
+[mms] Fixed access to a non-visible internal method when performing actions on
+      parts.
+
+
+------
+v2.2.8
+------
+
+[mms] Fix parsing MIME message that contains mixed EOLs (Bug #12842).
+
+
+------
+v2.2.7
+------
+
+[mms] Fix regression that broke quoted-printable encoding.
+
+
+------
+v2.2.6
+------
+
+[mjr] Work around broken PHP behavior that could cause a segfault when encoding
+      certain strings as quoted-printable.
+
+
+------
+v2.2.5
+------
+
+[mms] Remove stream filters before returning stream to calling code.
+[mms] Support Horde_Mail_Transport_Smtphorde when sending messages.
+[mms] Net_SMTP does not support sending via BINARYMIME.
+
+
+------
+v2.2.4
+------
+
+[mms] Fix parsing broken multipart messages (Bug #12536).
+[mms] Use the correct EOL string when transfer encoding content (Bug #12452).
+
+
+------
+v2.2.3
+------
+
+[jan] Fix setting a different body if reusing a Horde_Mime_Mail object.
+
+
+------
+v2.2.2
+------
+
+[mms] Update MIME extension mapping.
+
+
+------
+v2.2.1
+------
+
+[mms] Fix Horde_Mime_Part::getRawPartText() when obtaining the first body part
+      of a single part message.
+
+
+------
+v2.2.0
+------
+
+[mms] Add 'no_body' parameter to Horde_Mime_Part#parseMessage().
+
+
+------
+v2.1.1
+------
+
+[mms] Fix parsing wrapped header lines that contain no atom data (Bug #12189).
+
+
+------
+v2.1.0
+------
+
+[mms] Allow a Horde_Domhtml object to be directly passed in to
+      Horde_Mime_Related#cidReplace().
+[mms] Content-Type parameters are case-insensitive (Bug #12161).
+[mms] Sanity checking: ignore empty values for Content-Transfer-Encoding MIME
+      header (Bug #12146).
+[mms] Null characters are no longer allowed in e-mail headers as of RFC 2822.
+[mms] More accurate/comprehensive Horde_Mime::is8bit() check (Bug #12127).
+[mms] Only use non-ASCII in MIME parameters when absolutely necessary.
+[mms] Need to always add charset information to MIME encoded parameters if they
+      are not displayable in pure US-ASCII (Bug #12127).
+[mms] Correctly quote forbidden characters in MIME parameter data (Bug #12127).
+[mms] Round up size output in Horde_Mime_Part#getSize().
+
+
+------
+v2.0.4
+------
+
+[mms] Fix regression in outputting Content-Disposition 'size' parameter if no
+      other Content-Disposition parameter is present.
+
+
+------
+v2.0.3
+------
+
+[mms] Never return decimal values from Horde_Mime_Part#getSize().
+[mms] Added parsing limit for deeply nested MIME parts.
+
+
+------
+v2.0.2
+------
+
+[mjr] Fix issue where parsing multipart/alternative messages would turn the
+      parts into attachments.
+[jan] Update Basque translation (Ibon Igartua <ibon.igartua@ehu.es>).
+
+
+------
+v2.0.1
+------
+
+[jan] Update Dutch translation (Arjen de Korte <build+horde@de-korte.org>).
+
+
+------
+v2.0.0
+------
+
+First stable release for Horde 5.
+
+
+-----------
+v2.0.0beta3
+-----------
+
+[mjr] Add method for returning the message's base MIME part.
+[mms] Update MIME mapping file.
+
+
+-----------
+v2.0.0beta2
+-----------
+
+[mms] Catch/fix malformed undisclosed-recipients address headers.
+
+
+-----------
+v2.0.0beta1
+-----------
+
+First beta release for Horde 5.
+
+
+------------
+v2.0.0alpha1
+------------
+
+First alpha release for Horde 5.
+[mjr] Fix issue that could cause outputting of duplicate data from a parsed
+      mulitpart mime message.
+[mms] Added Horde_Mime_Related class.
+[mms] Implement new 2.0 API. See UPGRADING for full details of changes.
+
+
+------
+v1.6.2
+------
+
+[mms] Workaround broken base64 data.
+
+
+------
+v1.6.1
+------
+
+[mms] Workaround PHP's broken convert_uudecode() function.
+
+
+------
+v1.6.0
+------
+
+[jan] Work around broken messages with multiple address headers.
+[mms] Add option to allow encoding options to be defined for
+      Horde_Mime_Part#send() (Bug #11058).
+
+
+------
+v1.5.1
+------
+
+[mms] Add MIME headers to the list of single-value headers.
+[mms] Don't add personal part to e-mail address if it is identical to the
+      address itself.
+
+
+------
+v1.5.0
+------
+
+[mms] Support Horde_Mail_Rfc822_Address objects.
+[mms] A false value for 'idn' in Horde_Mime_Address#writeAddress() now causes
+      the domain name to be converted TO punycode, if necessary.
+
+
+------
+v1.4.1
+------
+
+[jan] Improve compatibility with some broken text MIME parts (Bug #10925).
+
+
+------
+v1.4.0
+------
+
+[mms] Allow Horde_Mime_Part::getRawPartText() to accept stream input.
+[mms] Workaround incoming message data to Horde_Mime_Part::getRawPartText()
+      that contains varying EOL characters (Bug #10809).
+[mms] Fix detection of MIME boundaries at beginning of string (Bug #10809).
+[mms] Abstract charset detection code out into
+      Horde_Mime_Headers::sanityCheck().
+
+
+------
+v1.3.3
+------
+
+[mms] Improved detection of charsets in broken (8-bit) MIME headers.
+
+
+------
+v1.3.2
+------
+
+[mms] Fix for broken 8BITMIME/BINARYMIME SMTP capability detection
+      (christof@buergi.lugs.ch, Bug #10820).
+
+
+------
+v1.3.1
+------
+
+[mms] Work around broken number_format() in PHP < 5.4.0.
+
+
+------
+v1.3.0
+------
+
+[jan] Make unit tests locale independent.
+[mms] Added 'canonical' parameter to Horde_Mime_Headers#toArray() and
+      Horde_Mime_Headers#toString() (Bug #10696).
+
+
+------
+v1.2.1
+------
+
+[mms] Horde_Mime_Part::getRawPartText() was incorrectly returning a trailing
+      EOL for body data.
+
+
+------
+v1.2.0
+------
+
+[jan] Add Horde_Mime_Mail#clearParts().
+
+
+------
+v1.1.0
+------
+
+[mms] Provide method to return approximate size of parts if it contains base64
+      encoded data (Request #9783).
+[mms] Support Content-Duration MIME header (RFC 3803).
+[mms] MIME body part can not have disposition of 'attachment' (Bug #10458).
+
+
+------
+v1.0.6
+------
+
+[mms] Fix quoted-printable encoding for message parts contained in a multipart
+      that do not share the same EOLs as the parent part (Bug #10324).
+
+
+------
+v1.0.5
+------
+
+[mms] Fix generation of MDN messages.
+[jan] Update Latvian translation.
+[mms] Explicitly build MIME IDs when doing a findBody() search.
+
+
+------
+v1.0.4
+------
+
+[jan] Fix accessing the MIME part content after serialization (Bug #10252).
+
+
+------
+v1.0.3
+------
+
+[mms] Fix error when determining part size if contents is empty
+      (rick@havokmon.com, Bug #10223).
+
+
+------
+v1.0.2
+------
+
+[mms] Fix encoding of headers if charset passed to toArray() is empty (Bug
+      #10054).
+
+
+------
+v1.0.1
+------
+
+[mms] Fix unserializing Horde_Mime_Part containing data (Bug #9819).
+
+
+------
+v1.0.0
+------
+
+First stable release for Horde 4.
+[mms] Fix Horde_Mime::isChild().
+
+
+---------
+v1.0.0RC3
+---------
+
+[mms] Provide option to always use Windows-1252 when decoding ISO-8859-1 data.
+
+
+---------
+v1.0.0RC2
+---------
+
+Second release candidate for Horde 4.
+[mms] Improve handling of empty address groups.
+
+
+---------
+v1.0.0RC1
+---------
+
+First release candidate for Horde 4.
+
+
+-----------
+v1.0.0beta1
+-----------
+
+Simplify charset handling in Horde_Mime_Mail.
+
+
+------------
+v1.0.0alpha1
+------------
+
+First alpha release for Horde 4.
+Add RFC 3282 language support to Horde_Mime_Part.
+Add workaround for Horde Bug #8747.
+Honor the Content-Disposition 'size' parameter (RFC 2183 [2.7]).
+Converted tests to PHPUnit.
+Moved viewer code to horde/Mime_Viewer package.
+Removed Webcpp and Enscript viewers. Source code highlighting is now
+      exclusively handled by the Srchighlight driver.
+No need to generate Content-Transfer-Encoding header if part data is 7bit.
+Default disposition should be empty by default, not inline (RFC 2183 [2]).
+Request #8556: Allow specifying a header charset for a part.
+Add 'raw' render view to Horde_Mime_Viewer.
+Horde_Mime_Part::parseMessage() correctly parses non-MIME parts.
+Remove dependence on PEAR's Mail_mimeDecode::.
+Added Horde_Mime::uudecode().
+Remove support for deprecated mime_magic module.
+Use Gnumeric to display MS Excel documents.
+Use AbiWord to display MS Word documents (Request #8011).
+Add support for decoding IDN (RFC 3490) names (Request #5836).

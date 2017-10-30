@@ -17,7 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-03-20</date>
+ <date>2017-10-30</date>
  <version>
   <release>2.10.4</release>
   <api>2.10.0</api>
@@ -43,6 +43,7 @@
        <file name="mime.types.horde" role="doc" />
        <file name="README" role="doc" />
       </dir> <!-- /doc/Horde/Mime/mime_mapping -->
+      <file name="CHANGES" role="doc" />
       <file name="COPYING" role="doc" />
       <file name="UPGRADING" role="doc" />
      </dir> <!-- /doc/Horde/Mime -->
@@ -544,6 +545,7 @@
  </dependencies>
  <phprelease>
   <filelist>
+   <install as="CHANGES" name="doc/Horde/Mime/CHANGES" />
    <install as="COPYING" name="doc/Horde/Mime/COPYING" />
    <install as="UPGRADING" name="doc/Horde/Mime/UPGRADING" />
    <install as="mime_mapping/convert.php" name="doc/Horde/Mime/mime_mapping/convert.php" />
@@ -1830,7 +1832,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-03-20</date>
+   <date>2017-10-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
