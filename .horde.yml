@@ -49,5 +49,9 @@ dependencies:
       pear.horde.org/Horde_Test: ^2.1
       pear.horde.org/Horde_Text_Filter: ^2
       pear.php.net/Net_DNS2: '*'
-      pecl.php.net/idn: '*'
-      pecl.php.net/intl: '*'
+      pecl.php.net/idn:
+        version: '*'
+        providesextension: idn
+      pecl.php.net/intl:
+        version: '*'
+        providesextension: intl
