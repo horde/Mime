@@ -3,7 +3,7 @@
  <name>Horde_Mime</name>
  <channel>pear.horde.org</channel>
  <extends>Horde_MIME</extends>
- <summary>Horde MIME Library</summary>
+ <summary>MIME library</summary>
  <description>Provides methods for dealing with Multipurpose Internet Mail Extensions (MIME) features (RFC 2045/2046/2047).</description>
  <lead>
   <name>Chuck Hagenbuch</name>
@@ -17,7 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-10-27</date>
+ <date>2017-11-11</date>
  <version>
   <release>2.10.4</release>
   <api>2.10.0</api>
@@ -1830,7 +1830,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-27</date>
+   <date>2017-11-11</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
