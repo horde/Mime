@@ -423,7 +423,6 @@
       <file name="MimeIdTest.php" role="test" />
       <file name="MimeTest.php" role="test" />
       <file name="PartTest.php" role="test" />
-      <file name="phpunit.xml" role="test" />
       <file name="RelatedTest.php" role="test" />
       <file name="UudecodeTest.php" role="test" />
      </dir> <!-- /test/Horde/Mime -->
@@ -689,7 +688,6 @@
    <install as="Horde/Mime/MimeIdTest.php" name="test/Horde/Mime/MimeIdTest.php" />
    <install as="Horde/Mime/MimeTest.php" name="test/Horde/Mime/MimeTest.php" />
    <install as="Horde/Mime/PartTest.php" name="test/Horde/Mime/PartTest.php" />
-   <install as="Horde/Mime/phpunit.xml" name="test/Horde/Mime/phpunit.xml" />
    <install as="Horde/Mime/RelatedTest.php" name="test/Horde/Mime/RelatedTest.php" />
    <install as="Horde/Mime/UudecodeTest.php" name="test/Horde/Mime/UudecodeTest.php" />
    <install as="Horde/Mime/ContentParam/DecodeTest.php" name="test/Horde/Mime/ContentParam/DecodeTest.php" />
