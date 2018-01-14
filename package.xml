@@ -19,8 +19,8 @@
  </lead>
  <date>2017-11-14</date>
  <version>
-  <release>2.10.4</release>
-  <api>2.10.0</api>
+  <release>2.11.0</release>
+  <api>2.11.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -1964,8 +1964,8 @@
   </release>
   <release>
    <version>
-    <release>2.10.4</release>
-    <api>2.10.0</api>
+    <release>2.11.0</release>
+    <api>2.11.0</api>
    </version>
    <stability>
     <release>stable</release>
