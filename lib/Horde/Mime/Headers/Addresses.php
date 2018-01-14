@@ -148,11 +148,13 @@ implements Horde_Mime_Headers_Element_Address
      *              DEFAULT: UTF-8
      *   - defserver: (string) The default domain to append to mailboxes.
      *                DEFAULT: No default name.
+     *   - idn: (boolean)  Encode IDN domain names (RFC 3490) if true.
+     *           DEFAULT: true
      */
     public static function doSendEncode($alist, array $opts = array())
     {
         $out = array();
-
+        $opts = array_merge(array('idn' => true), $opts);
         foreach ($alist as $ob) {
             if (!empty($opts['defserver'])) {
                 foreach ($ob->raw_addresses as $ob2) {
@@ -164,7 +166,7 @@ implements Horde_Mime_Headers_Element_Address
 
             $out[] = $ob->writeAddress(array(
                 'encode' => empty($opts['charset']) ? null : $opts['charset'],
-                'idn' => true
+                'idn' => $opts['idn']
             ));
         }
 
