@@ -19,7 +19,7 @@
  </lead>
  <date>2018-01-14</date>
  <version>
-  <release>2.11.0</release>
+  <release>2.11.1</release>
   <api>2.11.0</api>
  </version>
  <stability>
@@ -28,7 +28,7 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
-* [mjr] Allow ignoring Idn encoding when parsing address headers.
+* 
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -1975,6 +1975,21 @@
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * [mjr] Allow ignoring Idn encoding when parsing address headers.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.11.1</release>
+    <api>2.11.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2018-01-14</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* 
    </notes>
   </release>
  </changelog>
