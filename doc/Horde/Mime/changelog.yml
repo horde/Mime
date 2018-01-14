@@ -8,7 +8,9 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes:
+  notes: |+
+    [mjr] Allow ignoring Idn encoding when parsing address headers.
+    
 2.10.3:
   api: 2.10.0
   state:
