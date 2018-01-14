@@ -1,6 +1,9 @@
------------
-v2.10.4-git
------------
+-------
+v2.10.4
+-------
+
+[mjr] Allow ignoring Idn encoding when parsing address headers.
+
 
 
 -------
