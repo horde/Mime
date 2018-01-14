@@ -4,13 +4,12 @@
   state:
     release: stable
     api: stable
-  date: 2017-10-20
+  date: 2018-01-14
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
+  notes: |
     [mjr] Allow ignoring Idn encoding when parsing address headers.
-
 2.10.3:
   api: 2.10.0
   state:

@@ -1,5 +1,5 @@
 -------
-v2.10.4
+v2.11.0
 -------
 
 [mjr] Allow ignoring Idn encoding when parsing address headers.
