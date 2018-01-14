@@ -28,7 +28,7 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
-* 
+* [mjr] Allow ignoring Idn encoding when parsing address headers.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -837,10 +837,12 @@
   <release>
    <version>
     <release>1.0.1</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-04-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -850,10 +852,12 @@
   <release>
    <version>
     <release>1.0.2</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-05-18</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -863,10 +867,12 @@
   <release>
    <version>
     <release>1.0.3</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-06-14</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -876,10 +882,12 @@
   <release>
    <version>
     <release>1.0.4</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-07-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -889,10 +897,12 @@
   <release>
    <version>
     <release>1.0.5</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-07-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -904,10 +914,12 @@
   <release>
    <version>
     <release>1.0.6</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-08-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -917,10 +929,12 @@
   <release>
    <version>
     <release>1.1.0</release>
-    <api>1.1.0</api></version>
+    <api>1.1.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-09-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -932,10 +946,12 @@
   <release>
    <version>
     <release>1.2.0</release>
-    <api>1.2.0</api></version>
+    <api>1.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-09-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -945,10 +961,12 @@
   <release>
    <version>
     <release>1.2.1</release>
-    <api>1.2.0</api></version>
+    <api>1.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-11-02</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -958,10 +976,12 @@
   <release>
    <version>
     <release>1.3.0</release>
-    <api>1.3.0</api></version>
+    <api>1.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-11-08</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -972,10 +992,12 @@
   <release>
    <version>
     <release>1.3.1</release>
-    <api>1.3.0</api></version>
+    <api>1.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-11-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -985,10 +1007,12 @@
   <release>
    <version>
     <release>1.3.2</release>
-    <api>1.3.0</api></version>
+    <api>1.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-11-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -998,10 +1022,12 @@
   <release>
    <version>
     <release>1.3.3</release>
-    <api>1.3.0</api></version>
+    <api>1.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-12-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1011,10 +1037,12 @@
   <release>
    <version>
     <release>1.4.0</release>
-    <api>1.4.0</api></version>
+    <api>1.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2011-12-13</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1027,10 +1055,12 @@
   <release>
    <version>
     <release>1.4.1</release>
-    <api>1.4.0</api></version>
+    <api>1.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-01-17</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1040,10 +1070,12 @@
   <release>
    <version>
     <release>1.5.0</release>
-    <api>1.5.0</api></version>
+    <api>1.5.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-02-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1054,10 +1086,12 @@
   <release>
    <version>
     <release>1.5.1</release>
-    <api>1.5.0</api></version>
+    <api>1.5.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-03-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1068,10 +1102,12 @@
   <release>
    <version>
     <release>1.6.0</release>
-    <api>1.6.0</api></version>
+    <api>1.6.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-04-10</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1082,10 +1118,12 @@
   <release>
    <version>
     <release>1.6.1</release>
-    <api>1.6.0</api></version>
+    <api>1.6.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-05-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1095,10 +1133,12 @@
   <release>
    <version>
     <release>1.6.2</release>
-    <api>1.6.0</api></version>
+    <api>1.6.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-05-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1106,8 +1146,6 @@
    </notes>
   </release>
   <release>
-   <date>2012-07-06</date>
-   <time>22:59:32</time>
    <version>
     <release>2.0.0alpha1</release>
     <api>2.0.0alpha1</api>
@@ -1116,6 +1154,7 @@
     <release>alpha</release>
     <api>alpha</api>
    </stability>
+   <date>2012-07-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * First alpha release for Horde 5.
@@ -1127,10 +1166,12 @@
   <release>
    <version>
     <release>2.0.0beta1</release>
-    <api>2.0.0beta1</api></version>
+    <api>2.0.0beta1</api>
+   </version>
    <stability>
     <release>beta</release>
-    <api>beta</api></stability>
+    <api>beta</api>
+   </stability>
    <date>2012-07-19</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1140,10 +1181,12 @@
   <release>
    <version>
     <release>2.0.0beta2</release>
-    <api>2.0.0beta1</api></version>
+    <api>2.0.0beta1</api>
+   </version>
    <stability>
     <release>beta</release>
-    <api>beta</api></stability>
+    <api>beta</api>
+   </stability>
    <date>2012-08-07</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1153,10 +1196,12 @@
   <release>
    <version>
     <release>2.0.0beta3</release>
-    <api>2.0.0beta1</api></version>
+    <api>2.0.0beta1</api>
+   </version>
    <stability>
     <release>beta</release>
-    <api>beta</api></stability>
+    <api>beta</api>
+   </stability>
    <date>2012-10-12</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1167,10 +1212,12 @@
   <release>
    <version>
     <release>2.0.0</release>
-    <api>2.0.0</api></version>
+    <api>2.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-10-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1180,10 +1227,12 @@
   <release>
    <version>
     <release>2.0.1</release>
-    <api>2.0.0</api></version>
+    <api>2.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2012-11-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1193,10 +1242,12 @@
   <release>
    <version>
     <release>2.0.2</release>
-    <api>2.0.0</api></version>
+    <api>2.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-01-04</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1207,10 +1258,12 @@
   <release>
    <version>
     <release>2.0.3</release>
-    <api>2.0.0</api></version>
+    <api>2.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-01-29</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1221,10 +1274,12 @@
   <release>
    <version>
     <release>2.0.4</release>
-    <api>2.0.0</api></version>
+    <api>2.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-02-11</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1234,10 +1289,12 @@
   <release>
    <version>
     <release>2.1.0</release>
-    <api>2.1.0</api></version>
+    <api>2.1.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-04-08</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1255,10 +1312,12 @@
   <release>
    <version>
     <release>2.1.1</release>
-    <api>2.1.0</api></version>
+    <api>2.1.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-04-18</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1268,10 +1327,12 @@
   <release>
    <version>
     <release>2.2.0</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-05-28</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1281,10 +1342,12 @@
   <release>
    <version>
     <release>2.2.1</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-06-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1294,10 +1357,12 @@
   <release>
    <version>
     <release>2.2.2</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-06-18</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1307,10 +1372,12 @@
   <release>
    <version>
     <release>2.2.3</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-07-16</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1320,10 +1387,12 @@
   <release>
    <version>
     <release>2.2.4</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-08-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1334,10 +1403,12 @@
   <release>
    <version>
     <release>2.2.5</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-08-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1349,10 +1420,12 @@
   <release>
    <version>
     <release>2.2.6</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-09-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1362,10 +1435,12 @@
   <release>
    <version>
     <release>2.2.7</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-09-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1375,10 +1450,12 @@
   <release>
    <version>
     <release>2.2.8</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2013-11-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1388,10 +1465,12 @@
   <release>
    <version>
     <release>2.2.9</release>
-    <api>2.2.0</api></version>
+    <api>2.2.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-02-11</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1401,10 +1480,12 @@
   <release>
    <version>
     <release>2.3.0</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-03-10</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1414,10 +1495,12 @@
   <release>
    <version>
     <release>2.3.1</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-04-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1427,10 +1510,12 @@
   <release>
    <version>
     <release>2.3.2</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-04-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1440,10 +1525,12 @@
   <release>
    <version>
     <release>2.3.3</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-05-02</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1453,10 +1540,12 @@
   <release>
    <version>
     <release>2.3.4</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-05-09</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1466,10 +1555,12 @@
   <release>
    <version>
     <release>2.3.5</release>
-    <api>2.3.0</api></version>
+    <api>2.3.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-05-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1479,10 +1570,12 @@
   <release>
    <version>
     <release>2.4.0</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-05-24</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1492,10 +1585,12 @@
   <release>
    <version>
     <release>2.4.1</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-05-25</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1505,10 +1600,12 @@
   <release>
    <version>
     <release>2.4.2</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-06-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1518,10 +1615,12 @@
   <release>
    <version>
     <release>2.4.3</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-07-09</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1531,10 +1630,12 @@
   <release>
    <version>
     <release>2.4.4</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-08-02</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1544,10 +1645,12 @@
   <release>
    <version>
     <release>2.4.5</release>
-    <api>2.4.0</api></version>
+    <api>2.4.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-08-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1558,10 +1661,12 @@
   <release>
    <version>
     <release>2.5.0</release>
-    <api>2.5.0</api></version>
+    <api>2.5.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-11-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1583,10 +1688,12 @@
   <release>
    <version>
     <release>2.5.1</release>
-    <api>2.5.0</api></version>
+    <api>2.5.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-11-23</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1597,10 +1704,12 @@
   <release>
    <version>
     <release>2.5.2</release>
-    <api>2.5.0</api></version>
+    <api>2.5.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-11-25</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1610,10 +1719,12 @@
   <release>
    <version>
     <release>2.6.0</release>
-    <api>2.6.0</api></version>
+    <api>2.6.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-12-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1626,10 +1737,12 @@
   <release>
    <version>
     <release>2.6.1</release>
-    <api>2.6.0</api></version>
+    <api>2.6.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2014-12-29</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1639,10 +1752,12 @@
   <release>
    <version>
     <release>2.7.0</release>
-    <api>2.7.0</api></version>
+    <api>2.7.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-01-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1654,10 +1769,12 @@
   <release>
    <version>
     <release>2.8.0</release>
-    <api>2.8.0</api></version>
+    <api>2.8.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-03-10</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1679,10 +1796,12 @@
   <release>
    <version>
     <release>2.8.1</release>
-    <api>2.8.0</api></version>
+    <api>2.8.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-04-13</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1692,10 +1811,12 @@
   <release>
    <version>
     <release>2.9.0</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-04-28</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1707,10 +1828,12 @@
   <release>
    <version>
     <release>2.9.1</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-05-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1720,10 +1843,12 @@
   <release>
    <version>
     <release>2.9.2</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-09-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1733,10 +1858,12 @@
   <release>
    <version>
     <release>2.9.3</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-02-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1746,10 +1873,12 @@
   <release>
    <version>
     <release>2.9.4</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-03-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1759,10 +1888,12 @@
   <release>
    <version>
     <release>2.9.5</release>
-    <api>2.9.0</api></version>
+    <api>2.9.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-05-31</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1772,10 +1903,12 @@
   <release>
    <version>
     <release>2.10.0</release>
-    <api>2.10.0</api></version>
+    <api>2.10.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-07-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1787,10 +1920,12 @@
   <release>
    <version>
     <release>2.10.1</release>
-    <api>2.10.0</api></version>
+    <api>2.10.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-09-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1800,10 +1935,12 @@
   <release>
    <version>
     <release>2.10.2</release>
-    <api>2.10.0</api></version>
+    <api>2.10.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-11-09</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1813,10 +1950,12 @@
   <release>
    <version>
     <release>2.10.3</release>
-    <api>2.10.0</api></version>
+    <api>2.10.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2017-02-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1826,14 +1965,16 @@
   <release>
    <version>
     <release>2.10.4</release>
-    <api>2.10.0</api></version>
+    <api>2.10.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
-   <date>2017-11-11</date>
+    <api>stable</api>
+   </stability>
+   <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
-* 
+* [mjr] Allow ignoring Idn encoding when parsing address headers.
    </notes>
   </release>
  </changelog>
