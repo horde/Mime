@@ -394,10 +394,10 @@ class Horde_Mime_Mail
     /**
      * Sends this message.
      *
-     * @param Mail $mailer     A Mail object.
-     * @param boolean $resend  If true, the message id and date are re-used;
-     *                         If false, they will be updated.
-     * @param boolean $flowed  Send message in flowed text format.
+     * @param Horde_Mail_Transport $mailer A Horde_Mail_Transport object.
+     * @param boolean $resend              If true, the message id and date are re-used;
+     *                                     If false, they will be updated.
+     * @param boolean $flowed              Send message in flowed text format.
      *
      * @throws Horde_Mime_Exception
      */
