@@ -488,7 +488,7 @@ class Horde_Mime_Mail
      * @param  boolean $stream  If true, return a stream resource, otherwise
      *                          a string is returned.
      *
-     * @return stream|string  The raw email data.
+     * @return resource|string  The raw email data.
      * @since 2.4.0
      */
     public function getRaw($stream = true)
