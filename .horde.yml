@@ -3,8 +3,8 @@ id: Mime
 name: Mime
 full: MIME library
 description: >-
-  A library that provides methods for dealing with Multipurpose Internet Mail Extensions (MIME)
-  features (RFC 2045/2046/2047).
+  A library that provides methods for dealing with Multipurpose Internet Mail
+  Extensions (MIME) features (RFC 2045/2046/2047).
 list: dev
 type: library
 homepage: https://www.horde.org/libraries/Horde_Mime
@@ -22,11 +22,11 @@ authors:
     active: false
     role: lead
 version:
-  release: 2.11.1
-  api: 2.11.0
+  release: 3.0.0alpha1
+  api: 3.0.0alpha1
 state:
-  release: stable
-  api: stable
+  release: alpha
+  api: alpha
 license:
   identifier: LGPL-2.1
   uri: http://www.horde.org/licenses/lgpl21
