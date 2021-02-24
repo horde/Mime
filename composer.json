@@ -48,9 +48,6 @@
     "autoload": {
         "psr-0": {
             "Horde_Mime": "lib/"
-        },
-        "psr-4": {
-            "Horde\\Mime\\": "src/"
         }
     }
 }
