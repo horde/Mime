@@ -22,30 +22,26 @@
         {
             "type": "composer",
             "url": "https://horde-satis.maintaina.com/"
-        },
-        {
-            "url": "https://pear.php.net",
-            "type": "pear"
         }
     ],
     "require": {
         "horde/horde-installer-plugin": "*",
-        "php": "^5.3 || ^7",
-        "horde/exception": "^2",
-        "horde/listheaders": "^1.2",
-        "horde/mail": "^2.5",
-        "horde/stream": "^1.3",
-        "horde/stream_filter": "^2",
-        "horde/support": "^2.1",
-        "horde/text_flowed": "^2",
-        "horde/translation": "^2.2",
-        "horde/util": "^2"
+        "php": "^7",
+        "horde/exception": "^3",
+        "horde/listheaders": "^2",
+        "horde/mail": "^3",
+        "horde/stream": "^2",
+        "horde/stream_filter": "^3",
+        "horde/support": "^3",
+        "horde/text_flowed": "^3",
+        "horde/translation": "^3",
+        "horde/util": "^3"
     },
     "suggest": {
-        "horde/nls": "^2",
-        "horde/test": "^2.1",
-        "horde/text_filter": "^2",
-        "pear-pear.php.net/Net_DNS2": "*",
+        "horde/nls": "^3",
+        "horde/test": "^3",
+        "horde/text_filter": "^3",
+        "pear/net_dns2": "*",
         "ext-idn": "*",
         "ext-intl": "*"
     },
