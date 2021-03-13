@@ -1,4 +1,5 @@
 {
+    "minimum-stability": "dev",
     "name": "horde/mime",
     "description": "MIME library",
     "type": "library",
@@ -25,20 +26,20 @@
     ],
     "require": {
         "php": "^7",
-        "horde/exception": "^3",
-        "horde/listheaders": "^2",
-        "horde/mail": "^3",
-        "horde/stream": "^2",
-        "horde/stream_filter": "^3",
-        "horde/support": "^3",
-        "horde/text_flowed": "^3",
-        "horde/translation": "^3",
-        "horde/util": "^3"
+        "horde/exception": "^3 || dev-FRAMEWORK_6_0",
+        "horde/listheaders": "^2 || dev-FRAMEWORK_6_0",
+        "horde/mail": "^3 || dev-FRAMEWORK_6_0",
+        "horde/stream": "^2 || dev-FRAMEWORK_6_0",
+        "horde/stream_filter": "^3 || dev-FRAMEWORK_6_0",
+        "horde/support": "^3 || dev-FRAMEWORK_6_0",
+        "horde/text_flowed": "^3 || dev-FRAMEWORK_6_0",
+        "horde/translation": "^3 || dev-FRAMEWORK_6_0",
+        "horde/util": "^3 || dev-FRAMEWORK_6_0"
     },
     "suggest": {
-        "horde/nls": "^3",
-        "horde/test": "^3",
-        "horde/text_filter": "^3",
+        "horde/nls": "^3 || dev-FRAMEWORK_6_0",
+        "horde/test": "^3 || dev-FRAMEWORK_6_0",
+        "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
         "pear/net_dns2": "*",
         "ext-idn": "*",
         "ext-intl": "*"
