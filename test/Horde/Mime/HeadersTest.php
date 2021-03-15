@@ -690,17 +690,17 @@ class HeadersTest extends TestCase
      */
     public function testAddHeaderOb($ob, $valid)
     {
-        //$this->expectException('InvalidArgumentException');
         $hdrs = new Horde_Mime_Headers();
-        $hdrs->addHeaderOb($ob, true);
         if (!$valid) {
-            $this->fail();
+            $this->expectException('InvalidArgumentException');
+            $hdrs->addHeaderOb($ob, true);
+        } else {
+            $hdrs->addHeaderOb($ob, true);
+            $this->assertEquals(
+                $ob,
+                $hdrs[$ob->name]
+            );
         }
-
-        $this->assertEquals(
-            $ob,
-            $hdrs[$ob->name]
-        );
     }
 
     public function addHeaderObProvider()
