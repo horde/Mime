@@ -41,6 +41,7 @@ dependencies:
       horde/stream_filter: ^3
       horde/support: ^3
       horde/text_flowed: ^3
+      horde/text_filter: ^3
       horde/translation: ^3
       horde/util: ^3
   optional:
