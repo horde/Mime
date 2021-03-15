@@ -8,6 +8,8 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+namespace Horde\Mime;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the Horde_Mime_Headers class.
@@ -20,7 +22,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
+class HeadersTest extends TestCase
 {
     public function testClone()
     {

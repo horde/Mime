@@ -8,6 +8,8 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+namespace Horde\Mime\Mdn;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the Horde_Mime_Mdn object that require translations to not occur.
@@ -20,17 +22,17 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_Mdn_NonTranslatedTest extends PHPUnit_Framework_TestCase
+class NonTranslatedTest extends TestCase
 {
     private $oldlocale;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->oldlocale = setlocale(LC_MESSAGES, 0);
         setlocale(LC_MESSAGES, 'C');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         setlocale(LC_MESSAGES, $this->oldlocale);
     }

@@ -8,6 +8,8 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+namespace Horde\Mime;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the Horde_Mime class.
@@ -20,7 +22,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_MimeTest extends PHPUnit_Framework_TestCase
+class MimeTest extends TestCase
 {
     /**
      * @dataProvider is8bitProvider
