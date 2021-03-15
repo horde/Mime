@@ -10,6 +10,7 @@
  */
 namespace Horde\Mime\ContentParam;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_ContentParam_Decode;
 
 /**
  * Tests for the Horde_Mime_ContentParam_Decode class.

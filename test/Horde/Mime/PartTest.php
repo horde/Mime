@@ -10,6 +10,8 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Headers;
+use \Horde_Mime_Part;
 
 /**
  * Tests for the Horde_Mime_Part class.
@@ -422,8 +424,7 @@ class PartTest extends TestCase
             $part1->getAllContentTypeParameters()
         );
 
-        $this->assertInternalType(
-            'resource',
+        $this->assertIsResource(
             $part1->getContents(array('stream' => true))
         );
 

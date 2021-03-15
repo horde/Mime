@@ -10,6 +10,8 @@
  */
 namespace Horde\Mime\Mdn;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Headers;
+use \Horde_Mime_Mdn;
 
 /**
  * Tests for the Horde_Mime_Mdn object that require translations to not occur.
@@ -42,10 +44,8 @@ class NonTranslatedTest extends TestCase
         $h = new Horde_Mime_Headers();
         $ob = new Horde_Mime_Mdn($h);
 
-        try {
-            $ob->generate(true, true, 'deleted', 'foo', null);
-            $this->fail('Expected Exception');
-        } catch (RuntimeException $e) {}
+        $this->expectException('RuntimeException');
+        $ob->generate(true, true, 'deleted', 'foo', null);
 
         $date = 'Tue, 18 Nov 2014 20:14:17 -0700';
         $mdn_addr = 'Aäb <foo@example.com>';

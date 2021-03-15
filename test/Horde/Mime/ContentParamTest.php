@@ -10,6 +10,7 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Headers_ContentParam;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentParam class.

@@ -10,6 +10,9 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mail_Rfc822;
+use \Horde_Mime_Headers;
+use \Horde_Mime_Mdn;
 
 /**
  * Tests for the Horde_Mime_Mdn object.

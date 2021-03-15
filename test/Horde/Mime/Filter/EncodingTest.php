@@ -11,6 +11,9 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+namespace Horde\Mime\Filter;
+use Horde_Test_Case;
+use \stdClass;
 
 /**
  * Test for the SMTP BODY filter.
@@ -23,7 +26,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_Filter_EncodingTest extends Horde_Test_Case
+class EncodingTest extends Horde_Test_Case
 {
     /**
      * @dataProvider bodyFilterProvider()

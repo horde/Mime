@@ -10,6 +10,13 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Headers;
+use \Horde_Mime_Headers_ContentParam_ContentType;
+use \Horde_Mime_Headers_ContentParam_ContentDisposition;
+use \Horde_Mail_Rfc822;
+use \Horde_Stream_Existing;
+use \Horde_Mime_Headers_Addresses;
+use \Horde_Mime_Headers_Element_Single;
 
 /**
  * Tests for the Horde_Mime_Headers class.
@@ -315,14 +322,11 @@ class HeadersTest extends TestCase
             "Content-Type: multipart/mixed\n"
         );
 
-        /* @deprecated */
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs->getValue('content-type', Horde_Mime_Headers::VALUE_BASE)
         );
 
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs['content-type']->value
         );
     }
@@ -633,8 +637,7 @@ class HeadersTest extends TestCase
         $hdrs = Horde_Mime_Headers::parseHeaders($data);
 
         /* @deprecated */
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs->getValue($header, Horde_Mime_Headers::VALUE_BASE)
         );
         $this->assertEquals(
@@ -642,8 +645,7 @@ class HeadersTest extends TestCase
             $hdrs->getValue($header)
         );
 
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs[$header]->value_single
         );
         $this->assertEquals(
@@ -688,18 +690,11 @@ class HeadersTest extends TestCase
      */
     public function testAddHeaderOb($ob, $valid)
     {
+        //$this->expectException('InvalidArgumentException');
         $hdrs = new Horde_Mime_Headers();
-
-        try {
-            $hdrs->addHeaderOb($ob, true);
-            if (!$valid) {
-                $this->fail();
-            }
-        } catch (InvalidArgumentException $e) {
-            if ($valid) {
-                $this->fail();
-            }
-            return;
+        $hdrs->addHeaderOb($ob, true);
+        if (!$valid) {
+            $this->fail();
         }
 
         $this->assertEquals(

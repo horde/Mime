@@ -10,6 +10,10 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Mail;
+use \Horde_Mail_Transport_Mock;
+use \Horde_Mime_Headers;
+use \Horde_Mime_Part;
 
 /**
  * Tests for the Horde_Mime_Mail class.
