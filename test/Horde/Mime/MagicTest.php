@@ -10,6 +10,7 @@
  */
 namespace Horde\Mime;
 use PHPUnit\Framework\TestCase;
+use \Horde_Mime_Magic;
 
 /**
  * Tests for the Horde_Mime_Magic class.
