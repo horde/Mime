@@ -4,7 +4,7 @@
     "description": "MIME library",
     "type": "library",
     "homepage": "https://www.horde.org/libraries/Horde_Mime",
-    "license": "LGPL-2.1",
+    "license": "LGPL-2.1-only",
     "authors": [
         {
             "name": "Chuck Hagenbuch",
@@ -25,7 +25,7 @@
         }
     ],
     "require": {
-        "php": "^7",
+        "php": "^7.4 || ^8",
         "horde/exception": "^3 || dev-FRAMEWORK_6_0",
         "horde/listheaders": "^2 || dev-FRAMEWORK_6_0",
         "horde/mail": "^3 || dev-FRAMEWORK_6_0",
