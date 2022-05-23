@@ -2229,6 +2229,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return ($this[$offset] !== null);
@@ -2236,6 +2237,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         $this->_reindex();
@@ -2261,6 +2263,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
+	#[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -2280,6 +2283,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         if ($part = $this[$offset]) {
@@ -2303,6 +2307,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      *
      * @return integer  Number of message parts.
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count($this->_parts);
@@ -2313,6 +2318,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return (($key = $this->key()) === null)
@@ -2323,6 +2329,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return (isset($this->_temp['iterate']) && isset($this->_parts[$this->_temp['iterate']]))
@@ -2333,6 +2340,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         ++$this->_temp['iterate'];
@@ -2341,6 +2349,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         $this->_reindex();
@@ -2351,6 +2360,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return ($this->key() !== null);
@@ -2359,6 +2369,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function hasChildren()
     {
         return (($curr = $this->current()) && count($curr));
@@ -2367,6 +2378,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
+    #[ReturnTypeWillChange]
     public function getChildren()
     {
         return $this->current();
