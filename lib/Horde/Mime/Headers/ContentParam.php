@@ -368,6 +368,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
+	#[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->_params[$offset]);
@@ -375,6 +376,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
+	#[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->_params[$offset];
@@ -382,6 +384,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
+	#[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->_params[$offset] = $this->_sanityCheck($value);
@@ -389,6 +392,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
+	#[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_params[$offset]);
