@@ -2381,6 +2381,24 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      */
     public function serialize()
     {
+        return serialize($this->__serialize());
+    }
+
+    /**
+     * Unserialization.
+     *
+     * @param string $data  Serialized data.
+     *
+     * @throws Exception
+     */
+    public function unserialize($data)
+    {
+        $data = @unserialize($data);
+        $this->__unserialize($data);
+    }
+
+    public function __serialize()
+    {
         $data = array(
             // Serialized data ID.
             self::VERSION,
@@ -2399,31 +2417,25 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             $data[] = $this->_readStream($this->_contents);
         }
 
-        return serialize($data);
+        return $data;
     }
 
     /**
-     * Unserialization.
-     *
-     * @param string $data  Serialized data.
-     *
-     * @throws Exception
+     * @param array $data
      */
-    public function unserialize($data)
+    public function __unserialize($data)
     {
-        $data = @unserialize($data);
-        if (!is_array($data) ||
-            !isset($data[0]) ||
+        if (!isset($data[0]) ||
             ($data[0] != self::VERSION)) {
             switch ($data[0]) {
-            case 1:
-                $convert = new Horde_Mime_Part_Upgrade_V1($data);
-                $data = $convert->data;
-                break;
+                case 1:
+                    $convert = new Horde_Mime_Part_Upgrade_V1($data);
+                    $data = $convert->data;
+                    break;
 
-            default:
-                $data = null;
-                break;
+                default:
+                    $data = null;
+                    break;
             }
 
             if (is_null($data)) {

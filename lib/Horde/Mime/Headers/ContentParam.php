@@ -400,11 +400,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
      */
     public function serialize()
     {
-        $vars = array_filter(get_object_vars($this));
-        if (isset($vars['_params'])) {
-            $vars['_params'] = $vars['_params']->getArrayCopy();
-        }
-        return serialize($vars);
+        return serialize($this->__serialize());
     }
 
     /**
@@ -413,15 +409,36 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
     {
         $data = unserialize($data);
 
+        $this->__unserialize($data);
+    }
+
+    /**
+     * @return array
+     */
+    public function __serialize()
+    {
+        $vars = array_filter(get_object_vars($this));
+        if (isset($vars['_params'])) {
+            $vars['_params'] = $vars['_params']->getArrayCopy();
+        }
+        return $vars;
+    }
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function __unserialize($data)
+    {
         foreach ($data as $key => $val) {
             switch ($key) {
-            case '_params':
-                $this->_params = new Horde_Support_CaseInsensitiveArray($val);
-                break;
+                case '_params':
+                    $this->_params = new Horde_Support_CaseInsensitiveArray($val);
+                    break;
 
-            default:
-                $this->$key = $val;
-                break;
+                default:
+                    $this->$key = $val;
+                    break;
             }
         }
     }
