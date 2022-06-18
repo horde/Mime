@@ -17,7 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>no</active>
  </lead>
- <date>2020-10-14</date>
+ <date>2022-06-18</date>
  <version>
   <release>2.11.2</release>
   <api>2.11.0</api>
@@ -28,7 +28,8 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
-* 
+* [mjr] Silence deprecation notices for PHP 8.1 tentative return types (PR #4).
+* |+
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -725,85 +726,6 @@
   </filelist>
  </phprelease>
  <changelog>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
   <release>
    <version>
     <release>1.0.0alpha1</release>
@@ -2084,7 +2006,8 @@
    <date>2020-10-14</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
-* 
+* [mjr] Silence deprecation notices for PHP 8.1 tentative return types (PR #4).
+* |+
    </notes>
   </release>
  </changelog>
