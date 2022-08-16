@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/mime",
     "description": "MIME library",
     "type": "library",
@@ -17,11 +16,11 @@
             "role": "lead"
         }
     ],
-    "time": "2021-03-13",
+    "time": "2022-08-16",
     "repositories": [
         {
             "type": "composer",
-            "url": "https://horde-satis.maintaina.com/"
+            "url": "https://horde-satis.maintaina.com"
         }
     ],
     "require": {
@@ -33,9 +32,11 @@
         "horde/stream_filter": "^3 || dev-FRAMEWORK_6_0",
         "horde/support": "^3 || dev-FRAMEWORK_6_0",
         "horde/text_flowed": "^3 || dev-FRAMEWORK_6_0",
+        "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
         "horde/translation": "^3 || dev-FRAMEWORK_6_0",
         "horde/util": "^3 || dev-FRAMEWORK_6_0"
     },
+    "require-dev": {},
     "suggest": {
         "horde/nls": "^3 || dev-FRAMEWORK_6_0",
         "horde/test": "^3 || dev-FRAMEWORK_6_0",
@@ -47,6 +48,16 @@
     "autoload": {
         "psr-0": {
             "Horde_Mime": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Horde\\Mime\\Test\\": "test/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "horde/horde-installer-plugin": true
         }
     }
 }
