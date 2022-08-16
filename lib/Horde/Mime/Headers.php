@@ -398,6 +398,40 @@ implements ArrayAccess, IteratorAggregate, Serializable
 
         return serialize($data);
     }
+    /**
+     * Serialization.
+     *
+     * @return array  Serialized data.
+     */
+    public function __serialize(): array
+    {
+        $data = array(
+            // Serialized data ID.
+            self::VERSION,
+            $this->_headers->getArrayCopy(),
+            // TODO: BC
+            $this->_eol
+        );
+        return $data;
+    }
+
+    /**
+     * Unserialization.
+     *
+     * @param array $data  Serialized data.
+     *
+     * @throws Horde_Mime_Exception
+     */
+    public function __unserialize(array $data): void
+    {
+        if (!isset($data[0]) || ($data[0] != self::VERSION)) {
+            throw new Horde_Mime_Exception('Cache version change');
+        }
+
+        $this->_headers = new Horde_Support_CaseInsensitiveArray($data[1]);
+        // TODO: BC
+        $this->_eol = $data[2];
+    }
 
     /**
      * Unserialization.

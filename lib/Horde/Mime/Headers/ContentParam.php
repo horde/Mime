@@ -401,6 +401,9 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
     /* Serializable methods */
 
     /**
+     * Serialize (until PHP 7.3)
+     * 
+     * @return string serialized object state
      */
     public function serialize()
     {
@@ -412,6 +415,43 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
     }
 
     /**
+     * Serialize (PHP 7.4+)
+     *
+     * @return array object state
+     */
+    public function __serialize(): array
+    {
+        $vars = array_filter(get_object_vars($this));
+        if (isset($vars['_params'])) {
+            $vars['_params'] = $vars['_params']->getArrayCopy();
+        }
+        return $vars;
+    }
+
+    /**
+     * Unserialize (PHP 7.4+)
+     * 
+     * @param array $data
+     */
+    public function __unserialize(array $data): void
+    {
+        foreach ($data as $key => $val) {
+            switch ($key) {
+            case '_params':
+                $this->_params = new Horde_Support_CaseInsensitiveArray($val);
+                break;
+
+            default:
+                $this->$key = $val;
+                break;
+            }
+        }
+    }
+
+    /**
+     * Unserialize (until PHP 7.3)
+     * 
+     * @param string $data
      */
     public function unserialize($data)
     {
