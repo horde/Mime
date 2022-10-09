@@ -4,12 +4,14 @@
   state:
     release: alpha
     api: alpha
-  date: 2022-08-16
+  date: 2022-10-09
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-    
+  notes: |
+    [rla] Fix edge cases where variables might be undefined
+    [rla] Improve PHP 8.1 compliance. Fix Unit Tests for PHPUnit 9.5 on PHP 8.1.
+    |+
 3.0.0alpha4:
   api: 3.0.0alpha1
   state:

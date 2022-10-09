@@ -17,7 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>no</active>
  </lead>
- <date>2022-08-16</date>
+ <date>2022-10-09</date>
  <version>
   <release>3.0.0alpha5</release>
   <api>3.0.0alpha1</api>
@@ -28,7 +28,9 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1-only</license>
  <notes>
-* 
+* [rla] Fix edge cases where variables might be undefined
+* [rla] Improve PHP 8.1 compliance. Fix Unit Tests for PHPUnit 9.5 on PHP 8.1.
+* |+
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -37,6 +39,7 @@
      <file name="ci.yml" role="php" />
      <file name="phpdoc.yml" role="php" />
      <file name="release.yml" role="php" />
+     <file name="update-composer-json.yml" role="php" />
      <file name="update-satis.yml" role="php" />
     </dir> <!-- /.github/workflows -->
    </dir> <!-- /.github -->
@@ -376,65 +379,73 @@
     <file name="Horde_Mime.pot" role="data" />
    </dir> <!-- /locale -->
    <dir name="test">
-    <dir name="Horde">
-     <dir name="Mime">
-      <dir name="ContentParam">
-       <file name="DecodeTest.php" role="test" />
-      </dir> <!-- /test/Horde/Mime/ContentParam -->
-      <dir name="Filter">
-       <file name="EncodingTest.php" role="test" />
-      </dir> <!-- /test/Horde/Mime/Filter -->
-      <dir name="fixtures">
-       <file name="attachment.bin" role="test" />
-       <file name="blank_subject.txt" role="test" />
-       <file name="bug12536.txt" role="test" />
-       <file name="bug12842_a.txt" role="test" />
-       <file name="bug12842_b.txt" role="test" />
-       <file name="bug13117.txt" role="test" />
-       <file name="deeply_nested.txt" role="test" />
-       <file name="flowed_msg.txt" role="test" />
-       <file name="header_trailing_ws.txt" role="test" />
-       <file name="invalid_hdr.txt" role="test" />
-       <file name="mime_part_v1.txt" role="test" />
-       <file name="multiple_to.txt" role="test" />
-       <file name="related_msg.txt" role="test" />
-       <file name="related_msg_2.txt" role="test" />
-       <file name="samplemultipart_msg.txt" role="test" />
-       <file name="sample_msg.txt" role="test" />
-       <file name="sample_msg2.txt" role="test" />
-       <file name="sample_msg3.txt" role="test" />
-       <file name="sample_msg4.txt" role="test" />
-       <file name="sample_msg_eai.txt" role="test" />
-       <file name="sample_msg_eai_2.txt" role="test" />
-       <file name="sample_msg_eai_3.txt" role="test" />
-       <file name="sample_msg_eai_4.txt" role="test" />
-       <file name="uudecode.txt" role="test" />
-      </dir> <!-- /test/Horde/Mime/fixtures -->
-      <dir name="Headers">
-       <file name="ContentDispositionTest.php" role="test" />
-       <file name="ContentIdTest.php" role="test" />
-       <file name="ContentLanguageTest.php" role="test" />
-       <file name="ContentTransferEncodingTest.php" role="test" />
-       <file name="ContentTypeTest.php" role="test" />
-      </dir> <!-- /test/Horde/Mime/Headers -->
-      <dir name="Mdn">
-       <file name="NonTranslatedTest.php" role="test" />
-      </dir> <!-- /test/Horde/Mime/Mdn -->
-      <file name="AllTests.php" role="test" />
-      <file name="bootstrap.php" role="test" />
-      <file name="ContentParamTest.php" role="test" />
-      <file name="HeadersTest.php" role="test" />
-      <file name="MagicTest.php" role="test" />
-      <file name="MailTest.php" role="test" />
-      <file name="MdnTest.php" role="test" />
-      <file name="MimeIdTest.php" role="test" />
-      <file name="MimeTest.php" role="test" />
-      <file name="PartTest.php" role="test" />
-      <file name="RelatedTest.php" role="test" />
-      <file name="UudecodeTest.php" role="test" />
-     </dir> <!-- /test/Horde/Mime -->
-    </dir> <!-- /test/Horde -->
+    <dir name="Unnamespaced">
+     <dir name="ContentParam">
+      <file name="DecodeTest.php" role="test" />
+     </dir> <!-- /test/Unnamespaced/ContentParam -->
+     <dir name="Filter">
+      <file name="EncodingTest.php" role="test" />
+     </dir> <!-- /test/Unnamespaced/Filter -->
+     <dir name="fixtures">
+      <file name="attachment.bin" role="test" />
+      <file name="blank_subject.txt" role="test" />
+      <file name="bug12536.txt" role="test" />
+      <file name="bug12842_a.txt" role="test" />
+      <file name="bug12842_b.txt" role="test" />
+      <file name="bug13117.txt" role="test" />
+      <file name="deeply_nested.txt" role="test" />
+      <file name="flowed_msg.txt" role="test" />
+      <file name="header_trailing_ws.txt" role="test" />
+      <file name="invalid_hdr.txt" role="test" />
+      <file name="mime_part_v1.txt" role="test" />
+      <file name="multiple_to.txt" role="test" />
+      <file name="related_msg.txt" role="test" />
+      <file name="related_msg_2.txt" role="test" />
+      <file name="samplemultipart_msg.txt" role="test" />
+      <file name="sample_msg.txt" role="test" />
+      <file name="sample_msg2.txt" role="test" />
+      <file name="sample_msg3.txt" role="test" />
+      <file name="sample_msg4.txt" role="test" />
+      <file name="sample_msg_eai.txt" role="test" />
+      <file name="sample_msg_eai_2.txt" role="test" />
+      <file name="sample_msg_eai_3.txt" role="test" />
+      <file name="sample_msg_eai_4.txt" role="test" />
+      <file name="uudecode.txt" role="test" />
+     </dir> <!-- /test/Unnamespaced/fixtures -->
+     <dir name="Headers">
+      <file name="ContentDispositionTest.php" role="test" />
+      <file name="ContentIdTest.php" role="test" />
+      <file name="ContentLanguageTest.php" role="test" />
+      <file name="ContentTransferEncodingTest.php" role="test" />
+      <file name="ContentTypeTest.php" role="test" />
+     </dir> <!-- /test/Unnamespaced/Headers -->
+     <dir name="Mdn">
+      <file name="NonTranslatedTest.php" role="test" />
+     </dir> <!-- /test/Unnamespaced/Mdn -->
+     <file name="ContentParamTest.php" role="test" />
+     <file name="HeadersTest.php" role="test" />
+     <file name="MagicTest.php" role="test" />
+     <file name="MailTest.php" role="test" />
+     <file name="MdnTest.php" role="test" />
+     <file name="MimeIdTest.php" role="test" />
+     <file name="MimeTest.php" role="test" />
+     <file name="PartTest.php" role="test" />
+     <file name="RelatedTest.php" role="test" />
+     <file name="UudecodeTest.php" role="test" />
+    </dir> <!-- /test/Unnamespaced -->
+    <file name="AllTests.php" role="test" />
+    <file name="bootstrap.php" role="test" />
    </dir> <!-- /test -->
+   <dir name="var">
+    <dir name="config">
+     <dir name="horde">
+      <dir name="registry.d">
+       <file name="00-horde.php" role="php" />
+      </dir> <!-- /var/config/horde/registry.d -->
+     </dir> <!-- /var/config/horde -->
+    </dir> <!-- /var/config -->
+   </dir> <!-- /var -->
+   <file name=".php-cs-fixer.dist.php" role="php" />
    <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
@@ -449,21 +460,26 @@
     <min>1.7.0</min>
    </pearinstaller>
   </required>
-  <optional>
+  <dev>
    <extension>
-    <name>idn</name>
+    <name>intl</name>
    </extension>
    <extension>
     <name>intl</name>
    </extension>
-  </optional>
+   <extension>
+    <name>intl</name>
+   </extension>
+  </dev>
  </dependencies>
  <phprelease>
   <filelist>
    <install as="workflows/ci.yml" name=".github/workflows/ci.yml" />
    <install as="workflows/phpdoc.yml" name=".github/workflows/phpdoc.yml" />
    <install as="workflows/release.yml" name=".github/workflows/release.yml" />
+   <install as="workflows/update-composer-json.yml" name=".github/workflows/update-composer-json.yml" />
    <install as="workflows/update-satis.yml" name=".github/workflows/update-satis.yml" />
+   <install as="" name=".php-cs-fixer.dist.php" />
    <install as="CHANGES" name="doc/Horde/Mime/CHANGES" />
    <install as="mime_mapping/convert.php" name="doc/Horde/Mime/mime_mapping/convert.php" />
    <install as="mime_mapping/Makefile" name="doc/Horde/Mime/mime_mapping/Makefile" />
@@ -598,137 +614,54 @@
    <install as="locale/zh_CN/LC_MESSAGES/Horde_Mime.po" name="locale/zh_CN/LC_MESSAGES/Horde_Mime.po" />
    <install as="locale/zh_TW/LC_MESSAGES/Horde_Mime.mo" name="locale/zh_TW/LC_MESSAGES/Horde_Mime.mo" />
    <install as="locale/zh_TW/LC_MESSAGES/Horde_Mime.po" name="locale/zh_TW/LC_MESSAGES/Horde_Mime.po" />
-   <install as="Horde/Mime/AllTests.php" name="test/Horde/Mime/AllTests.php" />
-   <install as="Horde/Mime/bootstrap.php" name="test/Horde/Mime/bootstrap.php" />
-   <install as="Horde/Mime/ContentParam/DecodeTest.php" name="test/Horde/Mime/ContentParam/DecodeTest.php" />
-   <install as="Horde/Mime/ContentParamTest.php" name="test/Horde/Mime/ContentParamTest.php" />
-   <install as="Horde/Mime/Filter/EncodingTest.php" name="test/Horde/Mime/Filter/EncodingTest.php" />
-   <install as="Horde/Mime/fixtures/attachment.bin" name="test/Horde/Mime/fixtures/attachment.bin" />
-   <install as="Horde/Mime/fixtures/blank_subject.txt" name="test/Horde/Mime/fixtures/blank_subject.txt" />
-   <install as="Horde/Mime/fixtures/bug12536.txt" name="test/Horde/Mime/fixtures/bug12536.txt" />
-   <install as="Horde/Mime/fixtures/bug12842_a.txt" name="test/Horde/Mime/fixtures/bug12842_a.txt" />
-   <install as="Horde/Mime/fixtures/bug12842_b.txt" name="test/Horde/Mime/fixtures/bug12842_b.txt" />
-   <install as="Horde/Mime/fixtures/bug13117.txt" name="test/Horde/Mime/fixtures/bug13117.txt" />
-   <install as="Horde/Mime/fixtures/deeply_nested.txt" name="test/Horde/Mime/fixtures/deeply_nested.txt" />
-   <install as="Horde/Mime/fixtures/flowed_msg.txt" name="test/Horde/Mime/fixtures/flowed_msg.txt" />
-   <install as="Horde/Mime/fixtures/header_trailing_ws.txt" name="test/Horde/Mime/fixtures/header_trailing_ws.txt" />
-   <install as="Horde/Mime/fixtures/invalid_hdr.txt" name="test/Horde/Mime/fixtures/invalid_hdr.txt" />
-   <install as="Horde/Mime/fixtures/mime_part_v1.txt" name="test/Horde/Mime/fixtures/mime_part_v1.txt" />
-   <install as="Horde/Mime/fixtures/multiple_to.txt" name="test/Horde/Mime/fixtures/multiple_to.txt" />
-   <install as="Horde/Mime/fixtures/related_msg.txt" name="test/Horde/Mime/fixtures/related_msg.txt" />
-   <install as="Horde/Mime/fixtures/related_msg_2.txt" name="test/Horde/Mime/fixtures/related_msg_2.txt" />
-   <install as="Horde/Mime/fixtures/samplemultipart_msg.txt" name="test/Horde/Mime/fixtures/samplemultipart_msg.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg.txt" name="test/Horde/Mime/fixtures/sample_msg.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg2.txt" name="test/Horde/Mime/fixtures/sample_msg2.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg3.txt" name="test/Horde/Mime/fixtures/sample_msg3.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg4.txt" name="test/Horde/Mime/fixtures/sample_msg4.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg_eai.txt" name="test/Horde/Mime/fixtures/sample_msg_eai.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg_eai_2.txt" name="test/Horde/Mime/fixtures/sample_msg_eai_2.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg_eai_3.txt" name="test/Horde/Mime/fixtures/sample_msg_eai_3.txt" />
-   <install as="Horde/Mime/fixtures/sample_msg_eai_4.txt" name="test/Horde/Mime/fixtures/sample_msg_eai_4.txt" />
-   <install as="Horde/Mime/fixtures/uudecode.txt" name="test/Horde/Mime/fixtures/uudecode.txt" />
-   <install as="Horde/Mime/Headers/ContentDispositionTest.php" name="test/Horde/Mime/Headers/ContentDispositionTest.php" />
-   <install as="Horde/Mime/Headers/ContentIdTest.php" name="test/Horde/Mime/Headers/ContentIdTest.php" />
-   <install as="Horde/Mime/Headers/ContentLanguageTest.php" name="test/Horde/Mime/Headers/ContentLanguageTest.php" />
-   <install as="Horde/Mime/Headers/ContentTransferEncodingTest.php" name="test/Horde/Mime/Headers/ContentTransferEncodingTest.php" />
-   <install as="Horde/Mime/Headers/ContentTypeTest.php" name="test/Horde/Mime/Headers/ContentTypeTest.php" />
-   <install as="Horde/Mime/HeadersTest.php" name="test/Horde/Mime/HeadersTest.php" />
-   <install as="Horde/Mime/MagicTest.php" name="test/Horde/Mime/MagicTest.php" />
-   <install as="Horde/Mime/MailTest.php" name="test/Horde/Mime/MailTest.php" />
-   <install as="Horde/Mime/Mdn/NonTranslatedTest.php" name="test/Horde/Mime/Mdn/NonTranslatedTest.php" />
-   <install as="Horde/Mime/MdnTest.php" name="test/Horde/Mime/MdnTest.php" />
-   <install as="Horde/Mime/MimeIdTest.php" name="test/Horde/Mime/MimeIdTest.php" />
-   <install as="Horde/Mime/MimeTest.php" name="test/Horde/Mime/MimeTest.php" />
-   <install as="Horde/Mime/PartTest.php" name="test/Horde/Mime/PartTest.php" />
-   <install as="Horde/Mime/RelatedTest.php" name="test/Horde/Mime/RelatedTest.php" />
-   <install as="Horde/Mime/UudecodeTest.php" name="test/Horde/Mime/UudecodeTest.php" />
+   <install as="AllTests.php" name="test/AllTests.php" />
+   <install as="bootstrap.php" name="test/bootstrap.php" />
+   <install as="Unnamespaced/ContentParam/DecodeTest.php" name="test/Unnamespaced/ContentParam/DecodeTest.php" />
+   <install as="Unnamespaced/ContentParamTest.php" name="test/Unnamespaced/ContentParamTest.php" />
+   <install as="Unnamespaced/Filter/EncodingTest.php" name="test/Unnamespaced/Filter/EncodingTest.php" />
+   <install as="Unnamespaced/fixtures/attachment.bin" name="test/Unnamespaced/fixtures/attachment.bin" />
+   <install as="Unnamespaced/fixtures/blank_subject.txt" name="test/Unnamespaced/fixtures/blank_subject.txt" />
+   <install as="Unnamespaced/fixtures/bug12536.txt" name="test/Unnamespaced/fixtures/bug12536.txt" />
+   <install as="Unnamespaced/fixtures/bug12842_a.txt" name="test/Unnamespaced/fixtures/bug12842_a.txt" />
+   <install as="Unnamespaced/fixtures/bug12842_b.txt" name="test/Unnamespaced/fixtures/bug12842_b.txt" />
+   <install as="Unnamespaced/fixtures/bug13117.txt" name="test/Unnamespaced/fixtures/bug13117.txt" />
+   <install as="Unnamespaced/fixtures/deeply_nested.txt" name="test/Unnamespaced/fixtures/deeply_nested.txt" />
+   <install as="Unnamespaced/fixtures/flowed_msg.txt" name="test/Unnamespaced/fixtures/flowed_msg.txt" />
+   <install as="Unnamespaced/fixtures/header_trailing_ws.txt" name="test/Unnamespaced/fixtures/header_trailing_ws.txt" />
+   <install as="Unnamespaced/fixtures/invalid_hdr.txt" name="test/Unnamespaced/fixtures/invalid_hdr.txt" />
+   <install as="Unnamespaced/fixtures/mime_part_v1.txt" name="test/Unnamespaced/fixtures/mime_part_v1.txt" />
+   <install as="Unnamespaced/fixtures/multiple_to.txt" name="test/Unnamespaced/fixtures/multiple_to.txt" />
+   <install as="Unnamespaced/fixtures/related_msg.txt" name="test/Unnamespaced/fixtures/related_msg.txt" />
+   <install as="Unnamespaced/fixtures/related_msg_2.txt" name="test/Unnamespaced/fixtures/related_msg_2.txt" />
+   <install as="Unnamespaced/fixtures/samplemultipart_msg.txt" name="test/Unnamespaced/fixtures/samplemultipart_msg.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg.txt" name="test/Unnamespaced/fixtures/sample_msg.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg2.txt" name="test/Unnamespaced/fixtures/sample_msg2.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg3.txt" name="test/Unnamespaced/fixtures/sample_msg3.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg4.txt" name="test/Unnamespaced/fixtures/sample_msg4.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg_eai.txt" name="test/Unnamespaced/fixtures/sample_msg_eai.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg_eai_2.txt" name="test/Unnamespaced/fixtures/sample_msg_eai_2.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg_eai_3.txt" name="test/Unnamespaced/fixtures/sample_msg_eai_3.txt" />
+   <install as="Unnamespaced/fixtures/sample_msg_eai_4.txt" name="test/Unnamespaced/fixtures/sample_msg_eai_4.txt" />
+   <install as="Unnamespaced/fixtures/uudecode.txt" name="test/Unnamespaced/fixtures/uudecode.txt" />
+   <install as="Unnamespaced/Headers/ContentDispositionTest.php" name="test/Unnamespaced/Headers/ContentDispositionTest.php" />
+   <install as="Unnamespaced/Headers/ContentIdTest.php" name="test/Unnamespaced/Headers/ContentIdTest.php" />
+   <install as="Unnamespaced/Headers/ContentLanguageTest.php" name="test/Unnamespaced/Headers/ContentLanguageTest.php" />
+   <install as="Unnamespaced/Headers/ContentTransferEncodingTest.php" name="test/Unnamespaced/Headers/ContentTransferEncodingTest.php" />
+   <install as="Unnamespaced/Headers/ContentTypeTest.php" name="test/Unnamespaced/Headers/ContentTypeTest.php" />
+   <install as="Unnamespaced/HeadersTest.php" name="test/Unnamespaced/HeadersTest.php" />
+   <install as="Unnamespaced/MagicTest.php" name="test/Unnamespaced/MagicTest.php" />
+   <install as="Unnamespaced/MailTest.php" name="test/Unnamespaced/MailTest.php" />
+   <install as="Unnamespaced/Mdn/NonTranslatedTest.php" name="test/Unnamespaced/Mdn/NonTranslatedTest.php" />
+   <install as="Unnamespaced/MdnTest.php" name="test/Unnamespaced/MdnTest.php" />
+   <install as="Unnamespaced/MimeIdTest.php" name="test/Unnamespaced/MimeIdTest.php" />
+   <install as="Unnamespaced/MimeTest.php" name="test/Unnamespaced/MimeTest.php" />
+   <install as="Unnamespaced/PartTest.php" name="test/Unnamespaced/PartTest.php" />
+   <install as="Unnamespaced/RelatedTest.php" name="test/Unnamespaced/RelatedTest.php" />
+   <install as="Unnamespaced/UudecodeTest.php" name="test/Unnamespaced/UudecodeTest.php" />
+   <install as="config/horde/registry.d/00-horde.php" name="var/config/horde/registry.d/00-horde.php" />
   </filelist>
  </phprelease>
  <changelog>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
   <release>
    <version>
     <release>1.0.0alpha1</release>
@@ -2082,9 +2015,11 @@
     <api>alpha</api>
    </stability>
    <date>2022-08-16</date>
-   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1-only</license>
    <notes>
-* 
+* [rla] Fix edge cases where variables might be undefined
+* [rla] Improve PHP 8.1 compliance. Fix Unit Tests for PHPUnit 9.5 on PHP 8.1.
+* |+
    </notes>
   </release>
  </changelog>

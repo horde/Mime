@@ -2,7 +2,9 @@
 v3.0.0alpha5
 ------------
 
-
+[rla] Fix edge cases where variables might be undefined
+[rla] Improve PHP 8.1 compliance. Fix Unit Tests for PHPUnit 9.5 on PHP 8.1.
+|+
 
 
 ------------
