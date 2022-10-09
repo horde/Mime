@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/mime",
     "description": "MIME library",
     "type": "library",
@@ -17,7 +16,7 @@
             "role": "lead"
         }
     ],
-    "time": "2022-08-16",
+    "time": "2022-10-09",
     "repositories": [
         {
             "type": "composer",
@@ -37,14 +36,17 @@
         "horde/translation": "^3 || dev-FRAMEWORK_6_0",
         "horde/util": "^3 || dev-FRAMEWORK_6_0"
     },
-    "require-dev": {},
-    "suggest": {
+    "require-dev": {
         "horde/nls": "^3 || dev-FRAMEWORK_6_0",
         "horde/test": "^3 || dev-FRAMEWORK_6_0",
         "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
-        "pear/net_dns2": "*",
-        "ext-idn": "*",
+        "pear/net_dns2": "^1.5.3",
         "ext-intl": "*"
+    },
+    "suggest": {
+        "horde/nls": "^3 || dev-FRAMEWORK_6_0",
+        "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
+        "pear/net_dns2": "^1.5.3"
     },
     "autoload": {
         "psr-0": {
@@ -60,5 +62,6 @@
         "allow-plugins": {
             "horde/horde-installer-plugin": true
         }
-    }
+    },
+    "minimum-stability": "dev"
 }

@@ -47,9 +47,13 @@ dependencies:
   optional:
     composer:
       horde/nls: ^3
+      horde/text_filter: ^3
+      pear/net_dns2: ^1.5.3
+  dev:
+    composer:
+      horde/nls: ^3
       horde/test: ^3
       horde/text_filter: ^3
-      pear/net_dns2: '*'
+      pear/net_dns2: ^1.5.3
     ext:
-      idn: '*'
       intl: '*'

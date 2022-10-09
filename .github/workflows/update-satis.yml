@@ -52,6 +52,7 @@ jobs:
         export WORK_DIR=/home/runner/
         export BIN_DIR="${WORK_DIR}/bin"
         composer create-project composer/satis:dev-main
+        composer global config --no-plugins allow-plugins true
         php satis/bin/satis build -vvv  maintaina-com.github.io/satis.json maintaina-com.github.io/ horde/${REPO,,}
         cd maintaina-com.github.io
         git add include/ index.html p2/ packages.json
