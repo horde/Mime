@@ -1,4 +1,5 @@
 {
+    "minimum-stability": "dev",
     "name": "horde/mime",
     "description": "MIME library",
     "type": "library",
