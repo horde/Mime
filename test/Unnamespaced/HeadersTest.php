@@ -8,7 +8,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-namespace Horde\Mime;
+namespace Horde\Mime\Test\Unnamespaced;
 use PHPUnit\Framework\TestCase;
 use \Horde_Mime_Headers;
 use \Horde_Mime_Headers_ContentParam_ContentType;

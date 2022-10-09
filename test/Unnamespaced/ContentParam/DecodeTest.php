@@ -8,7 +8,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-namespace Horde\Mime\ContentParam;
+namespace Horde\Mime\Test\Unnamespaced\ContentParam;
 use PHPUnit\Framework\TestCase;
 use \Horde_Mime_ContentParam_Decode;
 

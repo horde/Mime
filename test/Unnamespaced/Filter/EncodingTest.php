@@ -11,7 +11,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-namespace Horde\Mime\Filter;
+namespace Horde\Mime\Test\Unnamespaced\Filter;
 use Horde_Test_Case;
 use \stdClass;
 

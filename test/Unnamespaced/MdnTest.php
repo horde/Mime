@@ -8,7 +8,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-namespace Horde\Mime;
+namespace Horde\Mime\Test\Unnamespaced;
 use PHPUnit\Framework\TestCase;
 use \Horde_Mail_Rfc822;
 use \Horde_Mime_Headers;
