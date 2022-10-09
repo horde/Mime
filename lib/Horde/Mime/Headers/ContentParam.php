@@ -156,6 +156,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
         $curr = 0;
         $encode = $wrap = false;
         $out = array();
+        $lines = [];
 
         // 2 = '=', ';'
         $pre_len = strlen($name) + 2;
@@ -268,7 +269,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
      */
     public function decode($data)
     {
-        $add = $convert = array();
+        $add = $convert = $parts = array();
 
         if (is_array($data)) {
             $params = $data;
@@ -359,7 +360,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
                  * parameters explicitly added by calling code. */
                 $this[Horde_String::lower($key)] = $val;
             }
-        } elseif (is_string($data)) {
+        } elseif (is_string($data) && isset($parts[0])) {
             $this->setContentParamValue($parts[0]);
         }
     }

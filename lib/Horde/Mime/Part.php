@@ -1739,6 +1739,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      */
     protected function _writeStream($data, $options = array())
     {
+        $error = null;
         if (empty($options['fp'])) {
             $fp = fopen('php://temp/maxmemory:' . self::$memoryLimit, 'r+');
         } else {
@@ -2544,7 +2545,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      */
     public function clearContentTypeParameter($label)
     {
-        $this->setContentTypeParam($label, null);
+        $this->setContentTypeParameter($label, null);
     }
 
     /**

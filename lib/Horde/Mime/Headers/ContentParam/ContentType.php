@@ -148,7 +148,7 @@ extends Horde_Mime_Headers_ContentParam
 
     /**
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         if (!parent::offsetExists($offset)) {
             return false;
@@ -175,7 +175,7 @@ extends Horde_Mime_Headers_ContentParam
 
     /**
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         /* Store character set as lower case value. */
         if (strcasecmp($offset, 'charset') === 0) {
@@ -187,7 +187,7 @@ extends Horde_Mime_Headers_ContentParam
 
     /**
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if (($this->ptype !== 'multipart') ||
             (strcasecmp($offset, 'boundary') !== 0)) {

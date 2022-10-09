@@ -541,7 +541,7 @@ implements ArrayAccess, IteratorAggregate, Serializable
      */
     public static function __callStatic($name, $arguments)
     {
-        $d = new Horde_Mime_Headers_Deprecated();
+        $d = new Horde_Mime_Headers_Deprecated(new Horde_Mime_Headers);
         return call_user_func_array(array($d, $name), $arguments);
     }
 
