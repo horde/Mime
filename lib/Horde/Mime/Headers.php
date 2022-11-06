@@ -388,16 +388,9 @@ implements ArrayAccess, IteratorAggregate, Serializable
      */
     public function serialize()
     {
-        $data = array(
-            // Serialized data ID.
-            self::VERSION,
-            $this->_headers->getArrayCopy(),
-            // TODO: BC
-            $this->_eol
-        );
-
-        return serialize($data);
+        return serialize($this->__serialize());
     }
+
     /**
      * Serialization.
      *
@@ -405,14 +398,13 @@ implements ArrayAccess, IteratorAggregate, Serializable
      */
     public function __serialize(): array
     {
-        $data = array(
+        return array(
             // Serialized data ID.
             self::VERSION,
             $this->_headers->getArrayCopy(),
             // TODO: BC
             $this->_eol
         );
-        return $data;
     }
 
     /**
@@ -443,15 +435,10 @@ implements ArrayAccess, IteratorAggregate, Serializable
     public function unserialize($data)
     {
         $data = @unserialize($data);
-        if (!is_array($data) ||
-            !isset($data[0]) ||
-            ($data[0] != self::VERSION)) {
+        if (!is_array($data)) {
             throw new Horde_Mime_Exception('Cache version change');
         }
-
-        $this->_headers = new Horde_Support_CaseInsensitiveArray($data[1]);
-        // TODO: BC
-        $this->_eol = $data[2];
+        $this->__unserialize($data);
     }
 
     /* ArrayAccess methods. */
