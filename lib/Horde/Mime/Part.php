@@ -2160,6 +2160,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             /* Boundary needs to appear at beginning of string or right after
              * a LF. */
             if (($pos != 0) && ($text[$pos - 1] != "\n")) {
+		$pos++;
                 continue;
             }
 
