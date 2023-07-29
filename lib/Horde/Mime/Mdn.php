@@ -157,7 +157,7 @@ class Horde_Mime_Mdn
                              array $err = array())
     {
         $opts = array_merge(array(
-            'charset' => null,
+            'charset' => 'UTF-8',
             'from_addr' => null
         ), $opts);
 

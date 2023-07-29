@@ -92,7 +92,7 @@ class Horde_Mime_Mdn_NonTranslatedTest extends Horde_Test_Case
 'This message is in MIME format.
 
 --=%s
-Content-Type: text/plain; format=flowed; DelSp=Yes
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 
 The message sent on Tue, 18 Nov 2014 20:14:17 -0700 to BAR  
 <bar@example.com> with subject "Test" has been displayed.
