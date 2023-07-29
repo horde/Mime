@@ -69,7 +69,7 @@ class Horde_Mime_Mdn_NonTranslatedTest extends Horde_Test_Case
             array('error' => 'Foo')
         );
 
-        $sent = str_replace("\r\n", "\n", $mailer->sentMessages[0]);
+        $sent = json_decode(str_replace("\r\n", "\n", json_encode($mailer->sentMessages[0])), true);
 
         $this->assertEquals(
             'auto-replied',
