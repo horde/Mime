@@ -402,21 +402,27 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-    public function serialize()
+    public function __serialize()
     {
         $vars = array_filter(get_object_vars($this));
         if (isset($vars['_params'])) {
             $vars['_params'] = $vars['_params']->getArrayCopy();
         }
-        return serialize($vars);
+        return $vars;
+    }
+
+
+    /**
+     */
+    public function serialize()
+    {
+        return serialize($this->__serialize());
     }
 
     /**
      */
-    public function unserialize($data)
+    public function __unserialize($data)
     {
-        $data = unserialize($data);
-
         foreach ($data as $key => $val) {
             switch ($key) {
             case '_params':
@@ -428,6 +434,14 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
                 break;
             }
         }
+    }
+
+    /**
+     */
+    public function unserialize($data)
+    {
+        $data = unserialize($data);
+        $this->__unserialize($data);
     }
 
 }

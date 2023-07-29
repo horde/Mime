@@ -2389,9 +2389,9 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * Serialization.
      *
-     * @return string  Serialized data.
+     * @return array  Serializable data.
      */
-    public function serialize()
+    public function __serialize()
     {
         $data = array(
             // Serialized data ID.
@@ -2411,19 +2411,28 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             $data[] = $this->_readStream($this->_contents);
         }
 
-        return serialize($data);
+        return $data;
+    }
+
+    /**
+     * Serialization.
+     *
+     * @return string  Serialized data.
+     */
+    public function serialize()
+    {
+        return serialize($this->__serialize());
     }
 
     /**
      * Unserialization.
      *
-     * @param string $data  Serialized data.
+     * @param array $data  Unserializable data.
      *
      * @throws Exception
      */
-    public function unserialize($data)
+    public function __unserialize($data)
     {
-        $data = @unserialize($data);
         if (!is_array($data) ||
             !isset($data[0]) ||
             ($data[0] != self::VERSION)) {
@@ -2457,6 +2466,19 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         if (isset($data[++$key])) {
             $this->setContents($data[$key]);
         }
+    }
+
+    /**
+     * Unserialization.
+     *
+     * @param string $data  Serialized data.
+     *
+     * @throws Exception
+     */
+    public function unserialize($data)
+    {
+	$data = @unserialize($data);
+        $this->__unserialize($data);
     }
 
     /* Deprecated elements. */

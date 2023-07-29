@@ -384,9 +384,9 @@ implements ArrayAccess, IteratorAggregate, Serializable
     /**
      * Serialization.
      *
-     * @return string  Serialized data.
+     * @return array Serializable data.
      */
-    public function serialize()
+    public function __serialize()
     {
         $data = array(
             // Serialized data ID.
@@ -396,7 +396,37 @@ implements ArrayAccess, IteratorAggregate, Serializable
             $this->_eol
         );
 
-        return serialize($data);
+        return $data;
+    }
+
+    /**
+     * Serialization.
+     *
+     * @return string  Serialized data.
+     */
+    public function serialize()
+    {
+        return serialize($this->__serialize());
+    }
+
+    /**
+     * Unserialization.
+     *
+     * @param array $data  Unserializable data.
+     *
+     * @throws Exception
+     */
+    public function __unserialize($data)
+    {
+        if (!is_array($data) ||
+            !isset($data[0]) ||
+            ($data[0] != self::VERSION)) {
+            throw new Horde_Mime_Exception('Cache version change');
+        }
+
+        $this->_headers = new Horde_Support_CaseInsensitiveArray($data[1]);
+        // TODO: BC
+        $this->_eol = $data[2];
     }
 
     /**
@@ -409,15 +439,7 @@ implements ArrayAccess, IteratorAggregate, Serializable
     public function unserialize($data)
     {
         $data = @unserialize($data);
-        if (!is_array($data) ||
-            !isset($data[0]) ||
-            ($data[0] != self::VERSION)) {
-            throw new Horde_Mime_Exception('Cache version change');
-        }
-
-        $this->_headers = new Horde_Support_CaseInsensitiveArray($data[1]);
-        // TODO: BC
-        $this->_eol = $data[2];
+        $this->__unserialize($data);
     }
 
     /* ArrayAccess methods. */
