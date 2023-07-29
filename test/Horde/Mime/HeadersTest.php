@@ -20,7 +20,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_HeadersTest extends Horde_Test_Case
 {
     public function testClone()
     {
@@ -90,6 +90,7 @@ class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
 
     public function serializeProvider()
     {
+        $this->expectNotToPerformAssertions();
         return array(
             array(
                 'Subject', 'My Subject'
@@ -314,13 +315,11 @@ class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
         );
 
         /* @deprecated */
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs->getValue('content-type', Horde_Mime_Headers::VALUE_BASE)
         );
 
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs['content-type']->value
         );
     }
@@ -631,8 +630,7 @@ class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
         $hdrs = Horde_Mime_Headers::parseHeaders($data);
 
         /* @deprecated */
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs->getValue($header, Horde_Mime_Headers::VALUE_BASE)
         );
         $this->assertEquals(
@@ -640,8 +638,7 @@ class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
             $hdrs->getValue($header)
         );
 
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $hdrs[$header]->value_single
         );
         $this->assertEquals(
@@ -688,6 +685,8 @@ class Horde_Mime_HeadersTest extends PHPUnit_Framework_TestCase
     {
         $hdrs = new Horde_Mime_Headers();
 
+        // dummy assertion to silence PHPUnit and marking this test as "risky"
+        $this->assertTrue(true);
         try {
             $hdrs->addHeaderOb($ob, true);
             if (!$valid) {

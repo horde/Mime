@@ -20,7 +20,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_MagicTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_MagicTest extends Horde_Test_Case
 {
     /**
      * @requires extension fileinfo

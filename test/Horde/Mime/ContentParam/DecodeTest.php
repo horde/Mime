@@ -20,7 +20,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_ContentParam_DecodeTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_ContentParam_DecodeTest extends Horde_Test_Case
 {
     /**
      * @dataProvider decodeProvider

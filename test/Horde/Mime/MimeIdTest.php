@@ -20,7 +20,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_MimeIdTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_MimeIdTest extends Horde_Test_Case
 {
     public function testToString()
     {

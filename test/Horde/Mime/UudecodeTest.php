@@ -20,7 +20,7 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_UudecodeTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_UudecodeTest extends Horde_Test_Case
 {
     /**
      * @dataProvider uudecodeProvider

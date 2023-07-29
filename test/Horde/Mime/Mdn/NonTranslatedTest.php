@@ -20,17 +20,17 @@
  * @package    Mime
  * @subpackage UnitTests
  */
-class Horde_Mime_Mdn_NonTranslatedTest extends PHPUnit_Framework_TestCase
+class Horde_Mime_Mdn_NonTranslatedTest extends Horde_Test_Case
 {
     private $oldlocale;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->oldlocale = setlocale(LC_MESSAGES, 0);
         setlocale(LC_MESSAGES, 'C');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         setlocale(LC_MESSAGES, $this->oldlocale);
     }

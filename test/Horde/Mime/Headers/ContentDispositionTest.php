@@ -21,7 +21,7 @@
  * @subpackage UnitTests
  */
 class Horde_Mime_Headers_ContentDispositionTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     /**
      * @dataProvider parsingOfInputProvider
