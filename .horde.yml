@@ -22,7 +22,7 @@ authors:
     active: false
     role: lead
 version:
-  release: 2.11.3
+  release: 2.11.4
   api: 2.11.0
 state:
   release: stable
