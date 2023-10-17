@@ -93,8 +93,7 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
             foreach ($parts as $val) {
                 $tmp[] = $delim . $val . '?=';
             }
-
-            return trim(implode(' ', $tmp));
+            return array(Horde_Mime::encode(implode(' ', $tmp), $opts['charset']));
         }
 
         return array($this->value);
