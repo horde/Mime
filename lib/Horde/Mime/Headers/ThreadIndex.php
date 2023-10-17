@@ -4,7 +4,7 @@
  */
 class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
 {
-    public static getHandlers()
+    public static function getHandles()
     {
         return array(
             'thread-index'
