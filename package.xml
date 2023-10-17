@@ -17,11 +17,7 @@
   <email>slusarz@horde.org</email>
   <active>no</active>
  </lead>
-<<<<<<< HEAD
- <date>2022-06-18</date>
-=======
  <date>2023-10-17</date>
->>>>>>> f49f14f (Update package.xml)
  <version>
   <release>2.11.3</release>
   <api>2.11.0</api>
@@ -32,7 +28,7 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
-* 
+* [mjr] Add support for broken Outlook style thread-index headers.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -731,86 +727,6 @@
   </filelist>
  </phprelease>
  <changelog>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
   <release>
    <version>
     <release>1.0.0alpha1</release>
@@ -2072,12 +1988,10 @@
     <release>stable</release>
     <api>stable</api>
    </stability>
-<<<<<<< HEAD
    <date>2020-10-14</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * [mjr] Fix some phpdoc.
-* |+
    </notes>
   </release>
   <release>
@@ -2093,7 +2007,6 @@
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * [mjr] Silence deprecation notices for PHP 8.1 tentative return types (PR #4).
-* |+
    </notes>
   </release>
   <release>
@@ -2105,13 +2018,10 @@
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2022-06-18</date>
-=======
    <date>2023-10-17</date>
->>>>>>> f49f14f (Update package.xml)
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
-* 
+* [mjr] Add support for broken Outlook style thread-index headers.
    </notes>
   </release>
  </changelog>

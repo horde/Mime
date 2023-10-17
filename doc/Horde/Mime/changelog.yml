@@ -4,12 +4,12 @@
   state:
     release: stable
     api: stable
-  date: 2022-06-18
+  date: 2023-10-17
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-    
+  notes: |
+    [mjr] Add support for broken Outlook style thread-index headers.
 2.11.2:
   api: 2.11.0
   state:
@@ -21,7 +21,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [mjr] Silence deprecation notices for PHP 8.1 tentative return types (PR #4).
-    |+
 2.11.1:
   api: 2.11.0
   state:
@@ -32,9 +31,7 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
-    [mjr] Add support for broken Outlook style thread-index headers.
     [mjr] Fix some phpdoc.
-    |+
 2.11.0:
   api: 2.11.0
   state:
