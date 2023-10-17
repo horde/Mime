@@ -4,6 +4,8 @@
  */
 class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
 {
+    const EOL = "\r\n";
+
     public static function getHandles()
     {
         return array(
