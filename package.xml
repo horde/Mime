@@ -17,7 +17,11 @@
   <email>slusarz@horde.org</email>
   <active>no</active>
  </lead>
+<<<<<<< HEAD
  <date>2022-06-18</date>
+=======
+ <date>2023-10-17</date>
+>>>>>>> f49f14f (Update package.xml)
  <version>
   <release>2.11.3</release>
   <api>2.11.0</api>
@@ -87,6 +91,7 @@
        <file name="MimeVersion.php" role="php" />
        <file name="Received.php" role="php" />
        <file name="Subject.php" role="php" />
+       <file name="ThreadIndex.php" role="php" />
        <file name="UserAgent.php" role="php" />
       </dir> <!-- /lib/Horde/Mime/Headers -->
       <dir name="Part">
@@ -584,6 +589,7 @@
    <install as="Horde/Mime/Headers/MimeVersion.php" name="lib/Horde/Mime/Headers/MimeVersion.php" />
    <install as="Horde/Mime/Headers/Received.php" name="lib/Horde/Mime/Headers/Received.php" />
    <install as="Horde/Mime/Headers/Subject.php" name="lib/Horde/Mime/Headers/Subject.php" />
+   <install as="Horde/Mime/Headers/ThreadIndex.php" name="lib/Horde/Mime/Headers/ThreadIndex.php" />
    <install as="Horde/Mime/Headers/UserAgent.php" name="lib/Horde/Mime/Headers/UserAgent.php" />
    <install as="Horde/Mime/Headers/ContentParam/ContentDisposition.php" name="lib/Horde/Mime/Headers/ContentParam/ContentDisposition.php" />
    <install as="Horde/Mime/Headers/ContentParam/ContentType.php" name="lib/Horde/Mime/Headers/ContentParam/ContentType.php" />
@@ -2066,6 +2072,7 @@
     <release>stable</release>
     <api>stable</api>
    </stability>
+<<<<<<< HEAD
    <date>2020-10-14</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -2099,6 +2106,9 @@
     <api>stable</api>
    </stability>
    <date>2022-06-18</date>
+=======
+   <date>2023-10-17</date>
+>>>>>>> f49f14f (Update package.xml)
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
