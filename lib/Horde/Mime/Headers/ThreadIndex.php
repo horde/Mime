@@ -16,7 +16,6 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
      */
     protected function _sendEncode($opts)
     {
-
-        return array(Horde_Mime::encode($this->values, $opts['charset']));
+        return array(Horde_Mime::encode($this->value, $opts['charset']));
     }
 }
