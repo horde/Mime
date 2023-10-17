@@ -84,7 +84,8 @@ extends Horde_Mime_Headers_Element
             'importance',
             // OTHER: X-Priority
             // See: http://kb.mozillazine.org/Emulate_Microsoft_email_clients
-            'x-priority'
+            'x-priority',
+            'thread-index'
         );
     }
 

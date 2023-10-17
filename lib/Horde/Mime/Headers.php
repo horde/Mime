@@ -279,7 +279,8 @@ implements ArrayAccess, IteratorAggregate, Serializable
                 'Horde_Mime_Headers_MimeVersion',
                 'Horde_Mime_Headers_Received',
                 'Horde_Mime_Headers_Subject',
-                'Horde_Mime_Headers_UserAgent'
+                'Horde_Mime_Headers_UserAgent',
+                'Horde_Mime_Headers_ThreadIndex'
             );
 
             foreach ($search as $val) {
