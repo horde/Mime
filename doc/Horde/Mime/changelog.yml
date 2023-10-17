@@ -32,6 +32,7 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
+    [mjr] Add support for broken Outlook style thread-index headers.
     [mjr] Fix some phpdoc.
     |+
 2.11.0:
