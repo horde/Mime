@@ -9,7 +9,6 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |+
-    
 3.0.0alpha5:
   api: 3.0.0alpha1
   state:
@@ -59,11 +58,30 @@
     release: stable
     api: stable
   date: 2021-02-24
+2.11.4:
+  api: 2.11.0
+  state:
+    release: stable
+    api: stable
+  date: 2023-10-17
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [mjr] Fix some phpdoc.
+    [mjr] Fix encoding of thread-index headers.
+2.11.3:
+  api: 2.11.0
+  state:
+    release: stable
+    api: stable
+  date: 2023-10-17
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [mjr] Add support for broken Outlook style thread-index headers.
+>>>>>>> aea8074 ([mjr] Fix encoding of thread-index headers.)
 2.11.2:
   api: 2.11.0
   state:
