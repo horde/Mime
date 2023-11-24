@@ -426,6 +426,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
                 return $this->_writeStream(base64_decode(stream_get_contents($fp)));
 
             case 'quoted-printable':
+                $fp = $this->replaceEOL($fp, self::RFC_EOL);
                 try {
                     return $this->_writeStream($fp, array(
                         'error' => true,
