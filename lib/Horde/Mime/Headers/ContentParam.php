@@ -230,7 +230,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
     protected function _escapeParams($params)
     {
         foreach ($params as $k => $v) {
-            foreach (str_split($v) as $c) {
+            foreach (mb_str_split($v) as $c) {
                 if (!Horde_Mime_ContentParam_Decode::isAtextNonTspecial($c)) {
                     $params[$k] = '"' . addcslashes($v, '\\"') . '"';
                     break;
