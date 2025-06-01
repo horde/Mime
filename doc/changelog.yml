@@ -1,15 +1,17 @@
 ---
-3.0.0alpha6:
-  api: 3.0.0alpha1
+3.0.0-alpha6:
+  api: 3.0.0-alpha1
   state:
     release: alpha
     api: alpha
-  date: 2022-10-09
+  date: 2025-06-01
   license:
-    identifier: LGPL-2.1
+    identifier: LGPL-2.1-only
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha5:
+  notes: |
+    style: apply php-cs-fixer
+    fix: Make sure strlen is called on a string
+3.0.0-alpha5:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -19,10 +21,11 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
+    Original version string was 3.0.0alpha5
     [rla] Fix edge cases where variables might be undefined
     [rla] Improve PHP 8.1 compliance. Fix Unit Tests for PHPUnit 9.5 on PHP 8.1.
     |+
-3.0.0alpha4:
+3.0.0-alpha4:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -31,8 +34,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha3:
+  notes: |-
+    Original version string was 3.0.0alpha4
+    |+
+3.0.0-alpha3:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -41,8 +46,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha2:
+  notes: |-
+    Original version string was 3.0.0alpha3
+    |+
+3.0.0-alpha2:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -51,13 +58,17 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha1:
+  notes: |-
+    Original version string was 3.0.0alpha2
+    |+
+3.0.0-alpha1:
   api: 3.0.0alpha1
   state:
     release: stable
     api: stable
   date: 2021-02-24
+  notes: |
+    Original version string was 3.0.0alpha1
 2.11.4:
   api: 2.11.0
   state:
@@ -81,7 +92,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [mjr] Add support for broken Outlook style thread-index headers.
->>>>>>> aea8074 ([mjr] Fix encoding of thread-index headers.)
 2.11.2:
   api: 2.11.0
   state:
@@ -671,6 +681,58 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Update Dutch translation (Arjen de Korte <build+horde@de-korte.org>).
+2.0.0-beta3:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-10-12
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0beta3
+    [mjr] Add method for returning the message's base MIME part.
+    [mms] Update MIME mapping file.
+2.0.0-beta2:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-08-07
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0beta2
+    [mms] Catch/fix malformed undisclosed-recipients address headers.
+2.0.0-beta1:
+  api: 2.0.0beta1
+  state:
+    release: beta
+    api: beta
+  date: 2012-07-19
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0beta1
+    First beta release for Horde 5.
+2.0.0-alpha1:
+  api: 2.0.0alpha1
+  state:
+    release: alpha
+    api: alpha
+  date: 2012-07-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0alpha1
+    First alpha release for Horde 5.
+    [mjr] Fix issue that could cause outputting of duplicate data from a parsed mulitpart mime message.
+    [mms] Added Horde_Mime_Related class.
+    [mms] Implement new 2.0 API. See UPGRADING for full details of changes.
 2.0.0:
   api: 2.0.0
   state:
@@ -682,54 +744,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     First stable release for Horde 5.
-2.0.0beta3:
-  api: 2.0.0beta1
-  state:
-    release: beta
-    api: beta
-  date: 2012-10-12
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    [mjr] Add method for returning the message's base MIME part.
-    [mms] Update MIME mapping file.
-2.0.0beta2:
-  api: 2.0.0beta1
-  state:
-    release: beta
-    api: beta
-  date: 2012-08-07
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    [mms] Catch/fix malformed undisclosed-recipients address headers.
-2.0.0beta1:
-  api: 2.0.0beta1
-  state:
-    release: beta
-    api: beta
-  date: 2012-07-19
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First beta release for Horde 5.
-2.0.0alpha1:
-  api: 2.0.0alpha1
-  state:
-    release: alpha
-    api: alpha
-  date: 2012-07-06
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First alpha release for Horde 5.
-    [mjr] Fix issue that could cause outputting of duplicate data from a parsed mulitpart mime message.
-    [mms] Added Horde_Mime_Related class.
-    [mms] Implement new 2.0 API. See UPGRADING for full details of changes.
 1.6.2:
   api: 1.6.0
   state:
@@ -961,53 +975,7 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [mms] Fix unserializing Horde_Mime_Part containing data (Bug #9819).
-1.0.0:
-  api: 1.0.0
-  state:
-    release: stable
-    api: stable
-  date: 2011-04-06
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First stable release for Horde 4.
-    [mms] Fix Horde_Mime::isChild().
-1.0.0RC3:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-29
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    [mms] Provide option to always use Windows-1252 when decoding ISO-8859-1 data.
-1.0.0RC2:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-29
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    Second release candidate for Horde 4.
-    [mms] Improve handling of empty address groups.
-1.0.0RC1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-22
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First release candidate for Horde 4.
-1.0.0beta1:
+1.0.0-beta1:
   api: 1.0.0
   state:
     release: beta
@@ -1017,8 +985,9 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
+    Original version string was 1.0.0beta1
     Simplify charset handling in Horde_Mime_Mail.
-1.0.0alpha1:
+1.0.0-alpha1:
   api: 1.0.0
   state:
     release: alpha
@@ -1028,6 +997,7 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
+    Original version string was 1.0.0alpha1
     First alpha release for Horde 4.
     Add RFC 3282 language support to Horde_Mime_Part.
     Add workaround for Horde Bug #8747.
@@ -1046,3 +1016,52 @@
     Use Gnumeric to display MS Excel documents.
     Use AbiWord to display MS Word documents (Request #8011).
     Add support for decoding IDN (RFC 3490) names (Request #5836).
+1.0.0-RC3:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0RC3
+    [mms] Provide option to always use Windows-1252 when decoding ISO-8859-1 data.
+1.0.0-RC2:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0RC2
+    Second release candidate for Horde 4.
+    [mms] Improve handling of empty address groups.
+1.0.0-RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0RC1
+    First release candidate for Horde 4.
+1.0.0:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-04-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 4.
+    [mms] Fix Horde_Mime::isChild().
