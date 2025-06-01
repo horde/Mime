@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2007-2017 Horde LLC (http://www.horde.org/)
  *
@@ -269,9 +270,12 @@ class Horde_Mime_Mail
      *
      * @return integer  The part number.
      */
-    public function addPart($mime_type, $content, $charset = 'us-ascii',
-                            $disposition = null)
-    {
+    public function addPart(
+        $mime_type,
+        $content,
+        $charset = 'us-ascii',
+        $disposition = null
+    ) {
         $part = new Horde_Mime_Part();
         $part->setType($mime_type);
         $part->setCharset($charset);
@@ -317,9 +321,12 @@ class Horde_Mime_Mail
      *
      * @return integer  The part number.
      */
-    public function addAttachment($file, $name = null, $type = null,
-                                  $charset = 'us-ascii')
-    {
+    public function addAttachment(
+        $file,
+        $name = null,
+        $type = null,
+        $charset = 'us-ascii'
+    ) {
         if (empty($name)) {
             $name = basename($file);
         }
@@ -499,7 +506,8 @@ class Horde_Mime_Mail
             return Horde_Stream_Wrapper_Combine::getStream(
                 array($hdr->stream,
                       $this->getBasePart()->toString(
-                        array('stream' => true, 'encode' => Horde_Mime_Part::ENCODE_7BIT | Horde_Mime_Part::ENCODE_8BIT | Horde_Mime_Part::ENCODE_BINARY))
+                          array('stream' => true, 'encode' => Horde_Mime_Part::ENCODE_7BIT | Horde_Mime_Part::ENCODE_8BIT | Horde_Mime_Part::ENCODE_BINARY)
+                      )
                 )
             );
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2002-2017 Horde LLC (http://www.horde.org/)
  *
@@ -24,11 +25,10 @@
  * @license   http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package   Mime
  */
-class Horde_Mime_Headers
-implements ArrayAccess, IteratorAggregate, Serializable
+class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
 {
     /* Serialized version. */
-    const VERSION = 3;
+    public const VERSION = 3;
 
     /**
      * The default charset to use when parsing text parts with no charset
@@ -207,15 +207,15 @@ implements ArrayAccess, IteratorAggregate, Serializable
         }
 
         switch ($classname) {
-        case 'Horde_Mime_Headers_ContentParam_ContentDisposition':
-        case 'Horde_Mime_Headers_ContentParam_ContentType':
-            /* BC */
-            if (!empty($opts['params'])) {
-                foreach ($opts['params'] as $key => $val) {
-                    $ob[$key] = $val;
+            case 'Horde_Mime_Headers_ContentParam_ContentDisposition':
+            case 'Horde_Mime_Headers_ContentParam_ContentType':
+                /* BC */
+                if (!empty($opts['params'])) {
+                    foreach ($opts['params'] as $key => $val) {
+                        $ob[$key] = $val;
+                    }
                 }
-            }
-            break;
+                break;
         }
 
         $this->_headers[$ob->name] = $ob;
@@ -354,7 +354,7 @@ implements ArrayAccess, IteratorAggregate, Serializable
             } else {
                 $pos = strpos($val, ':');
 
-                $curr = new stdClass;
+                $curr = new stdClass();
                 $curr->header = substr($val, 0, $pos);
                 $curr->text = ltrim(substr($val, $pos + 1));
 
@@ -529,7 +529,7 @@ implements ArrayAccess, IteratorAggregate, Serializable
      */
     public static function __callStatic($name, $arguments)
     {
-        $d = new Horde_Mime_Headers_Deprecated(new Horde_Mime_Headers);
+        $d = new Horde_Mime_Headers_Deprecated(new Horde_Mime_Headers());
         return call_user_func_array(array($d, $name), $arguments);
     }
 
@@ -555,8 +555,8 @@ implements ArrayAccess, IteratorAggregate, Serializable
     }
 
     /* Constants for getValue(). @deprecated */
-    const VALUE_STRING = 1;
-    const VALUE_BASE = 2;
-    const VALUE_PARAMS = 3;
+    public const VALUE_STRING = 1;
+    public const VALUE_BASE = 2;
+    public const VALUE_PARAMS = 3;
 
 }

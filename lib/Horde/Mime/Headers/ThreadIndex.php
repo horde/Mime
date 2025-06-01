@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2023 Horde LLC (http://www.horde.org/)
  *
@@ -23,7 +24,7 @@
  */
 class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
 {
-    const EOL = "\r\n";
+    public const EOL = "\r\n";
 
     public static function getHandles()
     {
@@ -56,21 +57,21 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
         for ($i = 0; $i < $len; ++$i) {
             $chr = ord($this->value[$i]);
             switch ($chr) {
-            case 0:
-                // NULLs not valid here, should have
-                // been caught above. Just nuke the header
-                // in this case, it's broken.
-                return array('');
-            case 10:
-            case 13:
-                $crlf = 0;
-                break;
-            default:
-                if (++$crlf > 998) {
-                    $needs_encoding = true;
-                    break 2;
-                }
-                break;
+                case 0:
+                    // NULLs not valid here, should have
+                    // been caught above. Just nuke the header
+                    // in this case, it's broken.
+                    return array('');
+                case 10:
+                case 13:
+                    $crlf = 0;
+                    break;
+                default:
+                    if (++$crlf > 998) {
+                        $needs_encoding = true;
+                        break 2;
+                    }
+                    break;
             }
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -22,9 +23,7 @@
  * @package   Mime
  * @since     2.5.0
  */
-class Horde_Mime_Headers_AddressesMulti
-extends Horde_Mime_Headers_Element_Multiple
-implements Horde_Mime_Headers_Element_Address
+class Horde_Mime_Headers_AddressesMulti extends Horde_Mime_Headers_Element_Multiple implements Horde_Mime_Headers_Element_Address
 {
     /**
      */
@@ -42,12 +41,12 @@ implements Horde_Mime_Headers_Element_Address
     public function __get($name)
     {
         switch ($name) {
-        case 'full_value':
-        case 'value':
-            return array_map('strval', $this->_values);
+            case 'full_value':
+            case 'value':
+                return array_map('strval', $this->_values);
 
-        case 'value_single':
-            return strval(reset($this->_values));
+            case 'value_single':
+                return strval(reset($this->_values));
         }
 
         return parent::__get($name);
@@ -74,7 +73,8 @@ implements Horde_Mime_Headers_Element_Address
             if ($ob instanceof Horde_Mail_Rfc822_Group) {
                 $ob->groupname = $this->_sanityCheck($ob->groupname);
             } else {
-                $ob->personal = $this->_sanityCheck($ob->personal);                         }
+                $ob->personal = $this->_sanityCheck($ob->personal);
+            }
         }
 
         $this->_values[] = $addr_list;

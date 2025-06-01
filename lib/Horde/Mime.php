@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
  *
@@ -28,7 +29,7 @@ class Horde_Mime
      *
      * @var string
      */
-    const EOL = "\r\n";
+    public const EOL = "\r\n";
 
     /**
      * Use windows-1252 charset when decoding ISO-8859-1 data?
@@ -84,57 +85,57 @@ class Horde_Mime
         /* Tokenize string. */
         for ($i = 0, $len = strlen($text); $i < $len; ++$i) {
             switch ($text[$i]) {
-            case "\t":
-            case "\r":
-            case "\n":
-                if (!is_null($word)) {
-                    $parts[] = array(intval($encoded), $word, $i - $word);
-                    $word = null;
-                } elseif (!is_null($lwsp)) {
-                    $parts[] = array(2, $lwsp, $i - $lwsp);
-                    $lwsp = null;
-                }
-
-                $parts[] = array(0, $i, 1);
-                break;
-
-            case ' ':
-                if (!is_null($word)) {
-                    $parts[] = array(intval($encoded), $word, $i - $word);
-                    $word = null;
-                }
-                if (is_null($lwsp)) {
-                    $lwsp = $i;
-                }
-                break;
-
-            default:
-                if (is_null($word)) {
-                    $encoded = false;
-                    $word = $i;
-                    if (!is_null($lwsp)) {
+                case "\t":
+                case "\r":
+                case "\n":
+                    if (!is_null($word)) {
+                        $parts[] = array(intval($encoded), $word, $i - $word);
+                        $word = null;
+                    } elseif (!is_null($lwsp)) {
                         $parts[] = array(2, $lwsp, $i - $lwsp);
                         $lwsp = null;
                     }
 
-                    /* Check for MIME encoding delimiter. Encode it if
-                     * found. */
-                    if (($text[$i] === '=') &&
-                        (($i + 1) < $len) &&
-                        ($text[$i +1] === '?')) {
-                        ++$i;
-                        $encoded = $is_encoded = true;
-                    }
-                }
+                    $parts[] = array(0, $i, 1);
+                    break;
 
-                /* Check for 8-bit characters or control characters. */
-                if (!$encoded) {
-                    $c = ord($text[$i]);
-                    if ($encoded = (($c & 0x80) || ($c < 32))) {
-                        $is_encoded = true;
+                case ' ':
+                    if (!is_null($word)) {
+                        $parts[] = array(intval($encoded), $word, $i - $word);
+                        $word = null;
                     }
-                }
-                break;
+                    if (is_null($lwsp)) {
+                        $lwsp = $i;
+                    }
+                    break;
+
+                default:
+                    if (is_null($word)) {
+                        $encoded = false;
+                        $word = $i;
+                        if (!is_null($lwsp)) {
+                            $parts[] = array(2, $lwsp, $i - $lwsp);
+                            $lwsp = null;
+                        }
+
+                        /* Check for MIME encoding delimiter. Encode it if
+                         * found. */
+                        if (($text[$i] === '=') &&
+                            (($i + 1) < $len) &&
+                            ($text[$i + 1] === '?')) {
+                            ++$i;
+                            $encoded = $is_encoded = true;
+                        }
+                    }
+
+                    /* Check for 8-bit characters or control characters. */
+                    if (!$encoded) {
+                        $c = ord($text[$i]);
+                        if ($encoded = (($c & 0x80) || ($c < 32))) {
+                            $is_encoded = true;
+                        }
+                    }
+                    break;
             }
         }
 
@@ -153,49 +154,49 @@ class Horde_Mime
             $val = $parts[$i];
 
             switch ($val[0]) {
-            case 0:
-            case 2:
-                $out .= substr($text, $val[1], $val[2]);
-                break;
+                case 0:
+                case 2:
+                    $out .= substr($text, $val[1], $val[2]);
+                    break;
 
-            case 1:
-                $j = $i;
-                for ($k = $i + 1; $k < $cnt; ++$k) {
-                    switch ($parts[$k][0]) {
-                    case 0:
-                        break 2;
+                case 1:
+                    $j = $i;
+                    for ($k = $i + 1; $k < $cnt; ++$k) {
+                        switch ($parts[$k][0]) {
+                            case 0:
+                                break 2;
 
-                    case 1:
-                        $i = $k;
-                        break;
+                            case 1:
+                                $i = $k;
+                                break;
+                        }
                     }
-                }
 
-                $encode = '';
-                for (; $j <= $i; ++$j) {
-                    $encode .= substr($text, $parts[$j][1], $parts[$j][2]);
-                }
+                    $encode = '';
+                    for (; $j <= $i; ++$j) {
+                        $encode .= substr($text, $parts[$j][1], $parts[$j][2]);
+                    }
 
-                $delim = '=?' . $charset . '?b?';
-                $e_parts = explode(
-                    self::EOL,
-                    rtrim(
-                        chunk_split(
-                            base64_encode($encode),
-                            /* strlen($delim) + 2 = space taken by MIME
-                             * delimiter */
-                            intval((75 - strlen($delim) + 2) / 4) * 4
+                    $delim = '=?' . $charset . '?b?';
+                    $e_parts = explode(
+                        self::EOL,
+                        rtrim(
+                            chunk_split(
+                                base64_encode($encode),
+                                /* strlen($delim) + 2 = space taken by MIME
+                                 * delimiter */
+                                intval((75 - strlen($delim) + 2) / 4) * 4
+                            )
                         )
-                    )
-                );
+                    );
 
-                $tmp = array();
-                foreach ($e_parts as $val) {
-                    $tmp[] = $delim . $val . '?=';
-                }
+                    $tmp = array();
+                    foreach ($e_parts as $val) {
+                        $tmp[] = $delim . $val . '?=';
+                    }
 
-                $out .= implode(' ', $tmp);
-                break;
+                    $out .= implode(' ', $tmp);
+                    break;
             }
         }
 
@@ -249,29 +250,29 @@ class Horde_Mime
             $encoded_text = substr($string, $d2 + 1, $end - $d2 - 1);
 
             switch ($encoding) {
-            case 'Q':
-            case 'q':
-                $out .= Horde_String::convertCharset(
-                    quoted_printable_decode(
-                        str_replace('_', ' ', $encoded_text)
-                    ),
-                    $orig_charset,
-                    'UTF-8'
-                );
-            break;
+                case 'Q':
+                case 'q':
+                    $out .= Horde_String::convertCharset(
+                        quoted_printable_decode(
+                            str_replace('_', ' ', $encoded_text)
+                        ),
+                        $orig_charset,
+                        'UTF-8'
+                    );
+                    break;
 
-            case 'B':
-            case 'b':
-                $out .= Horde_String::convertCharset(
-                    base64_decode($encoded_text),
-                    $orig_charset,
-                    'UTF-8'
-                );
-            break;
+                case 'B':
+                case 'b':
+                    $out .= Horde_String::convertCharset(
+                        base64_decode($encoded_text),
+                        $orig_charset,
+                        'UTF-8'
+                    );
+                    break;
 
-            default:
-                // Ignore unknown encoding.
-                break;
+                default:
+                    // Ignore unknown encoding.
+                    break;
             }
 
             $old_pos = $end + 2;
@@ -307,7 +308,7 @@ class Horde_Mime
     /**
      * @deprecated
      */
-    const MIME_PARAM_QUOTED = '/[\x01-\x20\x22\x28\x29\x2c\x2f\x3a-\x40\x5b-\x5d]/';
+    public const MIME_PARAM_QUOTED = '/[\x01-\x20\x22\x28\x29\x2c\x2f\x3a-\x40\x5b-\x5d]/';
 
     /**
      * @deprecated  Use Horde_Mime_Headers_ContentParam#encode() instead.
@@ -356,21 +357,21 @@ class Horde_Mime
         $id_ob = new Horde_Mime_Id($id);
 
         switch ($action) {
-        case 'down':
-            $action = $id_ob::ID_DOWN;
-            break;
+            case 'down':
+                $action = $id_ob::ID_DOWN;
+                break;
 
-        case 'next':
-            $action = $id_ob::ID_NEXT;
-            break;
+            case 'next':
+                $action = $id_ob::ID_NEXT;
+                break;
 
-        case 'prev':
-            $action = $id_ob::ID_PREV;
-            break;
+            case 'prev':
+                $action = $id_ob::ID_PREV;
+                break;
 
-        case 'up':
-            $action = $id_ob::ID_UP;
-            break;
+            case 'up':
+                $action = $id_ob::ID_UP;
+                break;
         }
 
         return $id_ob->idArithmetic($action, $options);
@@ -388,9 +389,11 @@ class Horde_Mime
     /**
      * @deprecated  Use Horde_Mime_QuotedPrintable instead.
      */
-    public static function quotedPrintableEncode($text, $eol = self::EOL,
-                                                 $wrap = 76)
-    {
+    public static function quotedPrintableEncode(
+        $text,
+        $eol = self::EOL,
+        $wrap = 76
+    ) {
         return Horde_Mime_QuotedPrintable::encode($text, $eol, $wrap);
     }
 

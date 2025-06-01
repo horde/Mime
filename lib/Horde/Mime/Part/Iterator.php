@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -22,8 +23,7 @@
  * @package   Mime
  * @since     2.9.0
  */
-class Horde_Mime_Part_Iterator
-implements Countable, Iterator
+class Horde_Mime_Part_Iterator implements Countable, Iterator
 {
     /**
      * Include the base when iterating?
@@ -122,7 +122,7 @@ implements Countable, Iterator
     #[ReturnTypeWillChange]
     public function rewind()
     {
-        $this->_state = new stdClass;
+        $this->_state = new stdClass();
         $this->_state->current = $this->_part;
         $this->_state->index = 0;
         $this->_state->recurse = array();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,34 +22,33 @@
  * @license   http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package   Mime
  */
-class Horde_Mime_Part
-implements ArrayAccess, Countable, RecursiveIterator, Serializable
+class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Serializable
 {
     /* Serialized version. */
-    const VERSION = 2;
+    public const VERSION = 2;
 
     /* The character(s) used internally for EOLs. */
-    const EOL = "\n";
+    public const EOL = "\n";
 
     /* The character string designated by RFC 2045 to designate EOLs in MIME
      * messages. */
-    const RFC_EOL = "\r\n";
+    public const RFC_EOL = "\r\n";
 
     /* The default encoding. */
-    const DEFAULT_ENCODING = 'binary';
+    public const DEFAULT_ENCODING = 'binary';
 
     /* Constants indicating the valid transfer encoding allowed. */
-    const ENCODE_7BIT = 1;
-    const ENCODE_8BIT = 2;
-    const ENCODE_BINARY = 4;
+    public const ENCODE_7BIT = 1;
+    public const ENCODE_8BIT = 2;
+    public const ENCODE_BINARY = 4;
 
     /* MIME nesting limit. */
-    const NESTING_LIMIT = 100;
+    public const NESTING_LIMIT = 100;
 
     /* Status mask value: Need to reindex the current part. */
-    const STATUS_REINDEX = 1;
+    public const STATUS_REINDEX = 1;
     /* Status mask value: This is the base MIME part. */
-    const STATUS_BASEPART = 2;
+    public const STATUS_BASEPART = 2;
 
     /**
      * The default charset to use when parsing text parts with no charset
@@ -412,40 +412,42 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         fseek($fp, 0, SEEK_END);
         if (ftell($fp)) {
             switch ($encoding) {
-            case 'base64':
-                try {
-                    return $this->_writeStream($fp, array(
-                        'error' => true,
-                        'filter' => array(
-                            'convert.base64-decode' => array()
-                        )
-                    ));
-                } catch (ErrorException $e) {}
+                case 'base64':
+                    try {
+                        return $this->_writeStream($fp, array(
+                            'error' => true,
+                            'filter' => array(
+                                'convert.base64-decode' => array()
+                            )
+                        ));
+                    } catch (ErrorException $e) {
+                    }
 
-                rewind($fp);
-                return $this->_writeStream(base64_decode(stream_get_contents($fp)));
+                    rewind($fp);
+                    return $this->_writeStream(base64_decode(stream_get_contents($fp)));
 
-            case 'quoted-printable':
-                try {
-                    return $this->_writeStream($fp, array(
-                        'error' => true,
-                        'filter' => array(
-                            'convert.quoted-printable-decode' => array()
-                        )
-                    ));
-                } catch (ErrorException $e) {}
+                case 'quoted-printable':
+                    try {
+                        return $this->_writeStream($fp, array(
+                            'error' => true,
+                            'filter' => array(
+                                'convert.quoted-printable-decode' => array()
+                            )
+                        ));
+                    } catch (ErrorException $e) {
+                    }
 
-                // Workaround for Horde Bug #8747
-                rewind($fp);
-                return $this->_writeStream(quoted_printable_decode(stream_get_contents($fp)));
+                    // Workaround for Horde Bug #8747
+                    rewind($fp);
+                    return $this->_writeStream(quoted_printable_decode(stream_get_contents($fp)));
 
-            case 'uuencode':
-            case 'x-uuencode':
-            case 'x-uue':
-                /* Support for uuencoded encoding - although not required by
-                 * RFCs, some mailers may still encode this way. */
-                $res = Horde_Mime::uudecode($this->_readStream($fp));
-                return $this->_writeStream($res[0]['data']);
+                case 'uuencode':
+                case 'x-uuencode':
+                case 'x-uue':
+                    /* Support for uuencoded encoding - although not required by
+                     * RFCs, some mailers may still encode this way. */
+                    $res = Horde_Mime::uudecode($this->_readStream($fp));
+                    return $this->_writeStream($res[0]['data']);
             }
         }
 
@@ -465,42 +467,42 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         $this->_temp['transferEncodeClose'] = true;
 
         switch ($encoding) {
-        case 'base64':
-            /* Base64 Encoding: See RFC 2045, section 6.8 */
-            return $this->_writeStream($fp, array(
-                'filter' => array(
-                    'convert.base64-encode' => array(
-                        'line-break-chars' => $this->getEOL(),
-                        'line-length' => 76
+            case 'base64':
+                /* Base64 Encoding: See RFC 2045, section 6.8 */
+                return $this->_writeStream($fp, array(
+                    'filter' => array(
+                        'convert.base64-encode' => array(
+                            'line-break-chars' => $this->getEOL(),
+                            'line-length' => 76
+                        )
                     )
-                )
-            ));
+                ));
 
-        case 'quoted-printable':
-            // PHP Bug 65776 - Must normalize the EOL characters.
-            stream_filter_register('horde_eol', 'Horde_Stream_Filter_Eol');
-            $stream = new Horde_Stream_Existing(array(
-                'stream' => $fp
-            ));
-            $stream->stream = $this->_writeStream($stream->stream, array(
-                'filter' => array(
-                    'horde_eol' => array('eol' => $stream->getEOL()
-                )
-            )));
+            case 'quoted-printable':
+                // PHP Bug 65776 - Must normalize the EOL characters.
+                stream_filter_register('horde_eol', 'Horde_Stream_Filter_Eol');
+                $stream = new Horde_Stream_Existing(array(
+                    'stream' => $fp
+                ));
+                $stream->stream = $this->_writeStream($stream->stream, array(
+                    'filter' => array(
+                        'horde_eol' => array('eol' => $stream->getEOL()
+                    )
+                )));
 
-            /* Quoted-Printable Encoding: See RFC 2045, section 6.7 */
-            return $this->_writeStream($fp, array(
-                'filter' => array(
-                    'convert.quoted-printable-encode' => array_filter(array(
-                        'line-break-chars' => $stream->getEOL(),
-                        'line-length' => 76
-                    ))
-                )
-            ));
+                /* Quoted-Printable Encoding: See RFC 2045, section 6.7 */
+                return $this->_writeStream($fp, array(
+                    'filter' => array(
+                        'convert.quoted-printable-encode' => array_filter(array(
+                            'line-break-chars' => $stream->getEOL(),
+                            'line-length' => 76
+                        ))
+                    )
+                ));
 
-        default:
-            $this->_temp['transferEncodeClose'] = false;
-            return $fp;
+            default:
+                $this->_temp['transferEncodeClose'] = false;
+                return $fp;
         }
     }
 
@@ -519,14 +521,14 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         }
     }
 
-     /**
-      * Get the full MIME Content-Type of this part.
-      *
-      * @param boolean $charset  Append character set information to the end
-      *                          of the content type if this is a text/* part?
-      *`
-      * @return string  The MIME type of this part.
-      */
+    /**
+     * Get the full MIME Content-Type of this part.
+     *
+     * @param boolean $charset  Append character set information to the end
+     *                          of the content type if this is a text/* part?
+     *`
+     * @return string  The MIME type of this part.
+     */
     public function getType($charset = false)
     {
         $ct = $this->_headers['content-type'];
@@ -546,18 +548,18 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     public function getDefaultType()
     {
         switch ($this->getPrimaryType()) {
-        case 'text':
-            /* RFC 2046 (4.1.4): text parts default to text/plain. */
-            return 'text/plain';
+            case 'text':
+                /* RFC 2046 (4.1.4): text parts default to text/plain. */
+                return 'text/plain';
 
-        case 'multipart':
-            /* RFC 2046 (5.1.3): multipart parts default to multipart/mixed. */
-            return 'multipart/mixed';
+            case 'multipart':
+                /* RFC 2046 (5.1.3): multipart parts default to multipart/mixed. */
+                return 'multipart/mixed';
 
-        default:
-            /* RFC 2046 (4.2, 4.3, 4.4, 4.5.3, 5.2.4): all others default to
-               application/octet-stream. */
-            return 'application/octet-stream';
+            default:
+                /* RFC 2046 (4.2, 4.3, 4.4, 4.5.3, 5.2.4): all others default to
+                   application/octet-stream. */
+                return 'application/octet-stream';
         }
     }
 
@@ -748,32 +750,32 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         }
 
         switch ($encoding = Horde_String::lower($encoding)) {
-        case '7bit':
-        case '8bit':
-        case 'base64':
-        case 'binary':
-        case 'quoted-printable':
-        // Non-RFC types, but old mailers may still use
-        case 'uuencode':
-        case 'x-uuencode':
-        case 'x-uue':
-            if (empty($options['send'])) {
-                $this->_transferEncoding = $encoding;
-            } else {
-                $this->_temp['sendEncoding'] = $encoding;
-            }
-            break;
+            case '7bit':
+            case '8bit':
+            case 'base64':
+            case 'binary':
+            case 'quoted-printable':
+                // Non-RFC types, but old mailers may still use
+            case 'uuencode':
+            case 'x-uuencode':
+            case 'x-uue':
+                if (empty($options['send'])) {
+                    $this->_transferEncoding = $encoding;
+                } else {
+                    $this->_temp['sendEncoding'] = $encoding;
+                }
+                break;
 
-        default:
-            if (empty($options['send'])) {
-                /* RFC 2045: Any entity with unrecognized encoding must be
-                 * treated as if it has a Content-Type of
-                 * "application/octet-stream" regardless of what the
-                 * Content-Type field actually says. */
-                $this->setType('application/octet-stream');
-                $this->_transferEncoding = null;
-            }
-            break;
+            default:
+                if (empty($options['send'])) {
+                    /* RFC 2045: Any entity with unrecognized encoding must be
+                     * treated as if it has a Content-Type of
+                     * "application/octet-stream" regardless of what the
+                     * Content-Type field actually says. */
+                    $this->setType('application/octet-stream');
+                    $this->_transferEncoding = null;
+                }
+                break;
         }
     }
 
@@ -1019,15 +1021,15 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
                 if (!empty($this->_contents)) {
                     $encoding = $this->_getTransferEncoding($options['encode']);
                     switch ($encoding) {
-                    case '8bit':
-                        if (empty($options['_baseptr'])) {
-                            $options['_baseptr'] = '8bit';
-                        }
-                        break;
+                        case '8bit':
+                            if (empty($options['_baseptr'])) {
+                                $options['_baseptr'] = '8bit';
+                            }
+                            break;
 
-                    case 'binary':
-                        $options['_baseptr'] = 'binary';
-                        break;
+                        case 'binary':
+                            $options['_baseptr'] = 'binary';
+                            break;
                     }
 
                     $parts[] = $this->_transferEncode($this->_contents, $encoding);
@@ -1099,15 +1101,15 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
         if (!is_null($oldbaseptr)) {
             switch ($this->_temp['toString']) {
-            case '8bit':
-                if (empty($oldbaseptr)) {
-                    $oldbaseptr = '8bit';
-                }
-                break;
+                case '8bit':
+                    if (empty($oldbaseptr)) {
+                        $oldbaseptr = '8bit';
+                    }
+                    break;
 
-            case 'binary':
-                $oldbaseptr = 'binary';
-                break;
+                case 'binary':
+                    $oldbaseptr = 'binary';
+                    break;
             }
         }
 
@@ -1140,65 +1142,65 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             $encoding = '7bit';
         } else {
             switch ($this->getPrimaryType()) {
-            case 'message':
-            case 'multipart':
-                /* RFC 2046 [5.2.1] - message/rfc822 messages only allow 7bit,
-                 * 8bit, and binary encodings. If the current encoding is
-                 * either base64 or q-p, switch it to 8bit instead.
-                 * RFC 2046 [5.2.2, 5.2.3, 5.2.4] - All other messages
-                 * only allow 7bit encodings.
-                 *
-                 * TODO: What if message contains 8bit characters and we are
-                 * in strict 7bit mode? Not sure there is anything we can do
-                 * in that situation, especially for message/rfc822 parts.
-                 *
-                 * These encoding will be figured out later (via toString()).
-                 * They are limited to 7bit, 8bit, and binary. Default to
-                 * '7bit' per RFCs. */
-                $default_8bit = 'base64';
-                $encoding = '7bit';
-                break;
+                case 'message':
+                case 'multipart':
+                    /* RFC 2046 [5.2.1] - message/rfc822 messages only allow 7bit,
+                     * 8bit, and binary encodings. If the current encoding is
+                     * either base64 or q-p, switch it to 8bit instead.
+                     * RFC 2046 [5.2.2, 5.2.3, 5.2.4] - All other messages
+                     * only allow 7bit encodings.
+                     *
+                     * TODO: What if message contains 8bit characters and we are
+                     * in strict 7bit mode? Not sure there is anything we can do
+                     * in that situation, especially for message/rfc822 parts.
+                     *
+                     * These encoding will be figured out later (via toString()).
+                     * They are limited to 7bit, 8bit, and binary. Default to
+                     * '7bit' per RFCs. */
+                    $default_8bit = 'base64';
+                    $encoding = '7bit';
+                    break;
 
-            case 'text':
-                $default_8bit = 'quoted-printable';
-                $encoding = '7bit';
-                break;
+                case 'text':
+                    $default_8bit = 'quoted-printable';
+                    $encoding = '7bit';
+                    break;
 
-            default:
-                $default_8bit = 'base64';
-                /* If transfer encoding has changed from the default, use that
-                 * value. */
-                $encoding = ($this->_transferEncoding == self::DEFAULT_ENCODING)
-                    ? 'base64'
-                    : $this->_transferEncoding;
-                break;
+                default:
+                    $default_8bit = 'base64';
+                    /* If transfer encoding has changed from the default, use that
+                     * value. */
+                    $encoding = ($this->_transferEncoding == self::DEFAULT_ENCODING)
+                        ? 'base64'
+                        : $this->_transferEncoding;
+                    break;
             }
 
             switch ($encoding) {
-            case 'base64':
-            case 'binary':
-                break;
+                case 'base64':
+                case 'binary':
+                    break;
 
-            default:
-                $encoding = $this->_scanStream($this->_contents);
-                break;
+                default:
+                    $encoding = $this->_scanStream($this->_contents);
+                    break;
             }
 
             switch ($encoding) {
-            case 'base64':
-            case 'binary':
-                /* If the text is longer than 998 characters between
-                 * linebreaks, use quoted-printable encoding to ensure the
-                 * text will not be chopped (i.e. by sendmail if being
-                 * sent as mail text). */
-                $encoding = $default_8bit;
-                break;
+                case 'base64':
+                case 'binary':
+                    /* If the text is longer than 998 characters between
+                     * linebreaks, use quoted-printable encoding to ensure the
+                     * text will not be chopped (i.e. by sendmail if being
+                     * sent as mail text). */
+                    $encoding = $default_8bit;
+                    break;
 
-            case '8bit':
-                $encoding = (($encode & self::ENCODE_8BIT) || ($encode & self::ENCODE_BINARY))
-                    ? '8bit'
-                    : $default_8bit;
-                break;
+                case '8bit':
+                    $encoding = (($encode & self::ENCODE_8BIT) || ($encode & self::ENCODE_BINARY))
+                        ? '8bit'
+                        : $default_8bit;
+                    break;
             }
         }
 
@@ -1455,50 +1457,50 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         $type = $this->getType();
 
         switch ($type) {
-        case 'application/ms-tnef':
-        case 'application/pgp-keys':
-        case 'application/vnd.ms-tnef':
-            return false;
+            case 'application/ms-tnef':
+            case 'application/pgp-keys':
+            case 'application/vnd.ms-tnef':
+                return false;
         }
 
         if ($this->parent) {
             switch ($this->parent->getType()) {
-            case 'multipart/encrypted':
-                switch ($type) {
-                case 'application/octet-stream':
-                    return false;
-                }
-                break;
+                case 'multipart/encrypted':
+                    switch ($type) {
+                        case 'application/octet-stream':
+                            return false;
+                    }
+                    break;
 
-            case 'multipart/signed':
-                switch ($type) {
-                case 'application/pgp-signature':
-                case 'application/pkcs7-signature':
-                case 'application/x-pkcs7-signature':
-                    return false;
-                }
-                break;
+                case 'multipart/signed':
+                    switch ($type) {
+                        case 'application/pgp-signature':
+                        case 'application/pkcs7-signature':
+                        case 'application/x-pkcs7-signature':
+                            return false;
+                    }
+                    break;
             }
         }
 
         switch ($this->getDisposition()) {
-        case 'attachment':
-            return true;
+            case 'attachment':
+                return true;
         }
 
         switch ($this->getPrimaryType()) {
-        case 'application':
-            if (strlen((string)$this->getName())) {
+            case 'application':
+                if (strlen((string)$this->getName())) {
+                    return true;
+                }
+                break;
+
+            case 'audio':
+            case 'video':
                 return true;
-            }
-            break;
 
-        case 'audio':
-        case 'video':
-            return true;
-
-        case 'multipart':
-            return false;
+            case 'multipart':
+                return false;
         }
 
         return false;
@@ -1555,9 +1557,12 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      * @throws Horde_Mime_Exception
      * @throws InvalidArgumentException
      */
-    public function send($email, $headers, Horde_Mail_Transport $mailer,
-                         array $opts = array())
-    {
+    public function send(
+        $email,
+        $headers,
+        Horde_Mail_Transport $mailer,
+        array $opts = array()
+    ) {
         $old_status = $this->_status;
         $this->isBasePart(true);
 
@@ -1574,14 +1579,16 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
                 if (isset($smtp_ext['8BITMIME'])) {
                     $encode |= self::ENCODE_8BIT;
                 }
-            } catch (Horde_Mail_Exception $e) {}
+            } catch (Horde_Mail_Exception $e) {
+            }
             $canonical = false;
         } elseif ($mailer instanceof Horde_Mail_Transport_Smtphorde) {
             try {
                 if ($mailer->getSMTPObject()->data_8bit) {
                     $encode |= self::ENCODE_8BIT;
                 }
-            } catch (Horde_Mail_Exception $e) {}
+            } catch (Horde_Mail_Exception $e) {
+            }
             $canonical = false;
         }
 
@@ -1606,11 +1613,11 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
                 $this->_temp['toString']
             );
             switch ($this->_temp['toString']) {
-            case '8bit':
-                if ($mailer instanceof Horde_Mail_Transport_Smtp) {
-                    $mailer->addServiceExtensionParameter('BODY', '8BITMIME');
-                }
-                break;
+                case '8bit':
+                    if ($mailer instanceof Horde_Mail_Transport_Smtp) {
+                        $mailer->addServiceExtensionParameter('BODY', '8BITMIME');
+                    }
+                    break;
             }
         }
 
@@ -1759,7 +1766,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
         }
 
         if (!empty($options['error'])) {
-            set_error_handler(function($errno, $errstr) {
+            set_error_handler(function ($errno, $errstr) {
                 throw new ErrorException($errstr, $errno);
             });
             $error = null;
@@ -1842,7 +1849,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             'horde_mime_scan_stream',
             'Horde_Mime_Filter_Encoding'
         );
-        $filter_params = new stdClass;
+        $filter_params = new stdClass();
         $filter = stream_filter_append(
             $fp,
             'horde_mime_scan_stream',
@@ -1913,9 +1920,11 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      *
      * @return Horde_Mime_Part  The MIME part object.
      */
-    protected static function _getStructure($header, $body,
-                                            array $opts = array())
-    {
+    protected static function _getStructure(
+        $header,
+        $body,
+        array $opts = array()
+    ) {
         $opts = array_merge(array(
             'ctype' => 'text/plain',
             'forcemime' => false,
@@ -1995,37 +2004,37 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
         /* Process subparts. */
         switch ($ob->getPrimaryType()) {
-        case 'message':
-            if ($ob->getSubType() == 'rfc822') {
-                $ob[] = self::parseMessage($body, array(
-                    'forcemime' => true,
-                    'no_body' => $opts['no_body']
-                ));
-            }
-            break;
-
-        case 'multipart':
-            $boundary = $ob->getContentTypeParameter('boundary');
-            if (!is_null($boundary)) {
-                foreach (self::_findBoundary($body, 0, $boundary) as $val) {
-                    if (!isset($val['length'])) {
-                        break;
-                    }
-                    $subpart = substr($body, $val['start'], $val['length']);
-                    $hdr_pos = self::_findHeader($subpart, self::EOL);
-                    $ob[] = self::_getStructure(
-                        substr($subpart, 0, $hdr_pos),
-                        substr($subpart, $hdr_pos + 2),
-                        array(
-                            'ctype' => ($ob->getSubType() == 'digest') ? 'message/rfc822' : 'text/plain',
-                            'forcemime' => true,
-                            'level' => $opts['level'],
-                            'no_body' => $opts['no_body']
-                        )
-                    );
+            case 'message':
+                if ($ob->getSubType() == 'rfc822') {
+                    $ob[] = self::parseMessage($body, array(
+                        'forcemime' => true,
+                        'no_body' => $opts['no_body']
+                    ));
                 }
-            }
-            break;
+                break;
+
+            case 'multipart':
+                $boundary = $ob->getContentTypeParameter('boundary');
+                if (!is_null($boundary)) {
+                    foreach (self::_findBoundary($body, 0, $boundary) as $val) {
+                        if (!isset($val['length'])) {
+                            break;
+                        }
+                        $subpart = substr($body, $val['start'], $val['length']);
+                        $hdr_pos = self::_findHeader($subpart, self::EOL);
+                        $ob[] = self::_getStructure(
+                            substr($subpart, 0, $hdr_pos),
+                            substr($subpart, $hdr_pos + 2),
+                            array(
+                                'ctype' => ($ob->getSubType() == 'digest') ? 'message/rfc822' : 'text/plain',
+                                'forcemime' => true,
+                                'level' => $opts['level'],
+                                'no_body' => $opts['no_body']
+                            )
+                        );
+                    }
+                }
+                break;
         }
 
         return $ob;
@@ -2059,11 +2068,11 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
         if ($id == 0) {
             switch ($type) {
-            case 'body':
-                return substr($rawtext, $curr_pos + 1);
+                case 'body':
+                    return substr($rawtext, $curr_pos + 1);
 
-            case 'header':
-                return trim(substr($rawtext, 0, $hdr_pos));
+                case 'header':
+                    return trim(substr($rawtext, 0, $hdr_pos));
             }
         }
 
@@ -2148,9 +2157,12 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      * @return array  Keys are the boundary number, values are an array with
      *                two elements: 'start' and 'length'.
      */
-    protected static function _findBoundary($text, $pos, $boundary,
-                                            $end = null)
-    {
+    protected static function _findBoundary(
+        $text,
+        $pos,
+        $boundary,
+        $end = null
+    ) {
         $i = 0;
         $out = array();
 
@@ -2161,7 +2173,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             /* Boundary needs to appear at beginning of string or right after
              * a LF. */
             if (($pos != 0) && ($text[$pos - 1] != "\n")) {
-		$pos++;
+                $pos++;
                 continue;
             }
 
@@ -2176,17 +2188,17 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
             $pos += $search_len;
             if (isset($text[$pos])) {
                 switch ($text[$pos]) {
-                case "\r":
-                    $pos += 2;
-                    $out[++$i] = array('start' => $pos);
-                    break;
+                    case "\r":
+                        $pos += 2;
+                        $out[++$i] = array('start' => $pos);
+                        break;
 
-                case "\n":
-                    $out[++$i] = array('start' => ++$pos);
-                    break;
+                    case "\n":
+                        $out[++$i] = array('start' => ++$pos);
+                        break;
 
-                case '-':
-                    return $out;
+                    case '-':
+                        return $out;
                 }
             }
         }
@@ -2265,7 +2277,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -2425,14 +2437,14 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     {
         if (!isset($data[0]) || ($data[0] != self::VERSION)) {
             switch ($data[0]) {
-            case 1:
-                $convert = new Horde_Mime_Part_Upgrade_V1($data);
-                $data = $convert->data;
-                break;
+                case 1:
+                    $convert = new Horde_Mime_Part_Upgrade_V1($data);
+                    $data = $convert->data;
+                    break;
 
-            default:
-                $data = null;
-                break;
+                default:
+                    $data = null;
+                    break;
             }
 
             if (is_null($data)) {
@@ -2474,7 +2486,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @deprecated
      */
-    const UNKNOWN = 'x-unknown';
+    public const UNKNOWN = 'x-unknown';
 
     /**
      * @deprecated

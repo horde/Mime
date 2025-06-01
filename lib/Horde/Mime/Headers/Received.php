@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,8 +22,7 @@
  * @package   Mime
  * @since     2.5.0
  */
-class Horde_Mime_Headers_Received
-extends Horde_Mime_Headers_Element_Multiple
+class Horde_Mime_Headers_Received extends Horde_Mime_Headers_Element_Multiple
 {
     /**
      */

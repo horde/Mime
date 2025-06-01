@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -25,17 +26,16 @@
  * @property-read string $full_value  Full header value.
  * @property-read string $value  Header value.
  */
-class Horde_Mime_Headers_Element_Single
-extends Horde_Mime_Headers_Element
+class Horde_Mime_Headers_Element_Single extends Horde_Mime_Headers_Element
 {
     /**
      */
     public function __get($name)
     {
         switch ($name) {
-        case 'full_value':
-        case 'value':
-            return reset($this->_values);
+            case 'full_value':
+            case 'value':
+                return reset($this->_values);
         }
 
         return parent::__get($name);

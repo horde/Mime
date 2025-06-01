@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -89,7 +90,8 @@ class Horde_Mime_Headers_Deprecated
                             }
                         }
                     }
-                } catch (Net_DNS2_Exception $e) {}
+                } catch (Net_DNS2_Exception $e) {
+                }
             } else {
                 $remote = gethostbyaddr($remote_addr);
             }
@@ -107,7 +109,8 @@ class Horde_Mime_Headers_Deprecated
                                 }
                             }
                         }
-                    } catch (Net_DNS2_Exception $e) {}
+                    } catch (Net_DNS2_Exception $e) {
+                    }
                 } else {
                     $remote = gethostbyaddr($remote_addr);
                 }
@@ -169,16 +172,16 @@ class Horde_Mime_Headers_Deprecated
         }
 
         switch ($type) {
-        case Horde_Mime_Headers::VALUE_BASE:
-            $tmp = $ob->value;
-            break;
+            case Horde_Mime_Headers::VALUE_BASE:
+                $tmp = $ob->value;
+                break;
 
-        case Horde_Mime_Headers::VALUE_PARAMS:
-            return array_change_key_case($ob->params, CASE_LOWER);
+            case Horde_Mime_Headers::VALUE_PARAMS:
+                return array_change_key_case($ob->params, CASE_LOWER);
 
-        case Horde_Mime_Headers::VALUE_STRING:
-            $tmp = $ob->full_value;
-            break;
+            case Horde_Mime_Headers::VALUE_STRING:
+                $tmp = $ob->full_value;
+                break;
         }
 
         return (is_array($tmp) && (count($tmp) === 1))

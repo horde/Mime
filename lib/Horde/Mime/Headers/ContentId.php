@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,9 +22,7 @@
  * @package   Mime
  * @since     2.8.0
  */
-class Horde_Mime_Headers_ContentId
-extends Horde_Mime_Headers_Element_Single
-implements Horde_Mime_Headers_Extension_Mime
+class Horde_Mime_Headers_ContentId extends Horde_Mime_Headers_Element_Single implements Horde_Mime_Headers_Extension_Mime
 {
     /**
      * Creates a Content-ID header conforming to RFC 2045 [7].

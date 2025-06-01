@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -23,9 +24,7 @@
  *
  * @property-read array $langs  The list of languages.
  */
-class Horde_Mime_Headers_ContentLanguage
-extends Horde_Mime_Headers_Element_Single
-implements Horde_Mime_Headers_Extension_Mime
+class Horde_Mime_Headers_ContentLanguage extends Horde_Mime_Headers_Element_Single implements Horde_Mime_Headers_Extension_Mime
 {
     /**
      */
@@ -39,13 +38,13 @@ implements Horde_Mime_Headers_Extension_Mime
     public function __get($name)
     {
         switch ($name) {
-        case 'full_value':
-        case 'value':
-        case 'value_single':
-            return implode(',', $this->_values);
+            case 'full_value':
+            case 'value':
+            case 'value_single':
+                return implode(',', $this->_values);
 
-        case 'langs':
-            return $this->_values;
+            case 'langs':
+                return $this->_values;
         }
 
         return parent::__get($name);

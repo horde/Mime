@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -22,15 +23,13 @@
  * @package   Mime
  * @since     2.8.0
  */
-class Horde_Mime_Headers_ContentTransferEncoding
-extends Horde_Mime_Headers_Element_Single
-implements Horde_Mime_Headers_Extension_Mime
+class Horde_Mime_Headers_ContentTransferEncoding extends Horde_Mime_Headers_Element_Single implements Horde_Mime_Headers_Extension_Mime
 {
     /** Default encoding (RFC 2045 [6.1]). */
-    const DEFAULT_ENCODING = '7bit';
+    public const DEFAULT_ENCODING = '7bit';
 
     /** Unknown encoding specifier. */
-    const UNKNOWN_ENCODING = 'x-unknown';
+    public const UNKNOWN_ENCODING = 'x-unknown';
 
     /**
      */
@@ -53,21 +52,21 @@ implements Horde_Mime_Headers_Extension_Mime
         $encoding = Horde_String::lower($val);
 
         switch ($encoding) {
-        case '7bit':
-        case '8bit':
-        case 'base64':
-        case 'binary':
-        case 'quoted-printable':
-            // Valid encodings
-            break;
+            case '7bit':
+            case '8bit':
+            case 'base64':
+            case 'binary':
+            case 'quoted-printable':
+                // Valid encodings
+                break;
 
-        default:
-            /* RFC 2045 [6.3] - Valid non-standardized encodings must begin
-             * with 'x-'. */
-            if (substr($encoding, 0, 2) !== 'x-') {
-                $encoding = self::UNKNOWN_ENCODING;
-            }
-            break;
+            default:
+                /* RFC 2045 [6.3] - Valid non-standardized encodings must begin
+                 * with 'x-'. */
+                if (substr($encoding, 0, 2) !== 'x-') {
+                    $encoding = self::UNKNOWN_ENCODING;
+                }
+                break;
         }
 
         if ($encoding !== $val) {

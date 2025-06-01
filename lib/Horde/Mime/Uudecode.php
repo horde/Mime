@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
  *
@@ -40,7 +41,7 @@
  */
 class Horde_Mime_Uudecode implements Countable, IteratorAggregate
 {
-    const UUENCODE_REGEX = "/begin ([0-7]{3}) (.+)\r?\n(.+)\r?\nend/Us";
+    public const UUENCODE_REGEX = "/begin ([0-7]{3}) (.+)\r?\n(.+)\r?\nend/Us";
 
     /**
      * Uudecode data.
@@ -86,7 +87,7 @@ class Horde_Mime_Uudecode implements Countable, IteratorAggregate
         $decoded = '';
 
         foreach (explode("\n", $input) as $line) {
-            $c = count($bytes = unpack('c*', substr(trim($line,"\r\n\t"), 1)));
+            $c = count($bytes = unpack('c*', substr(trim($line, "\r\n\t"), 1)));
 
             while ($c % 4) {
                 $bytes[++$c] = 0;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,8 +22,7 @@
  * @package   Mime
  * @since     2.8.0
  */
-class Horde_Mime_Headers_ContentParam_ContentDisposition
-extends Horde_Mime_Headers_ContentParam
+class Horde_Mime_Headers_ContentParam_ContentDisposition extends Horde_Mime_Headers_ContentParam
 {
     /**
      */
@@ -38,12 +38,12 @@ extends Horde_Mime_Headers_ContentParam
         $val = parent::__get($name);
 
         switch ($name) {
-        case 'full_value':
-            $val = parent::__get($name);
-            if (substr(ltrim($val), 0, 1) === ';') {
-                $val = 'attachment' . $val;
-            }
-            break;
+            case 'full_value':
+                $val = parent::__get($name);
+                if (substr(ltrim($val), 0, 1) === ';') {
+                    $val = 'attachment' . $val;
+                }
+                break;
         }
 
         return $val;

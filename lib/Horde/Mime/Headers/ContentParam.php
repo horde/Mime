@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -24,9 +25,7 @@
  *
  * @property-read array $params  Content parameters.
  */
-class Horde_Mime_Headers_ContentParam
-extends Horde_Mime_Headers_Element_Single
-implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
+class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 {
     /**
      * Content parameters.
@@ -49,15 +48,15 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
     public function __get($name)
     {
         switch ($name) {
-        case 'full_value':
-            $tmp = $this->value;
-            foreach ($this->_escapeParams($this->params) as $key => $val) {
-                $tmp .= '; ' . $key . '=' . $val;
-            }
-            return $tmp;
+            case 'full_value':
+                $tmp = $this->value;
+                foreach ($this->_escapeParams($this->params) as $key => $val) {
+                    $tmp .= '; ' . $key . '=' . $val;
+                }
+                return $tmp;
 
-        case 'params':
-            return $this->_params->getArrayCopy();
+            case 'params':
+                return $this->_params->getArrayCopy();
         }
 
         return parent::__get($name);
@@ -369,7 +368,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->_params[$offset]);
@@ -377,7 +376,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->_params[$offset];
@@ -385,7 +384,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->_params[$offset] = $this->_sanityCheck($value);
@@ -393,7 +392,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_params[$offset]);
@@ -403,7 +402,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      * Serialize (until PHP 7.3)
-     * 
+     *
      * @return string serialized object state
      */
     public function serialize()
@@ -427,27 +426,27 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      * Unserialize (PHP 7.4+)
-     * 
+     *
      * @param array $data
      */
     public function __unserialize(array $data): void
     {
         foreach ($data as $key => $val) {
             switch ($key) {
-            case '_params':
-                $this->_params = new Horde_Support_CaseInsensitiveArray($val);
-                break;
+                case '_params':
+                    $this->_params = new Horde_Support_CaseInsensitiveArray($val);
+                    break;
 
-            default:
-                $this->$key = $val;
-                break;
+                default:
+                    $this->$key = $val;
+                    break;
             }
         }
     }
 
     /**
      * Unserialize (until PHP 7.3)
-     * 
+     *
      * @param string $data
      */
     public function unserialize($data)

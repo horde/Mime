@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
  *
@@ -156,9 +157,11 @@ class Horde_Mime_Magic
      * @return mixed  The MIME type of the file. Returns false if the file
      *                type can not be determined.
      */
-    public static function analyzeFile($path, $magic_db = null,
-                                       $opts = array())
-    {
+    public static function analyzeFile(
+        $path,
+        $magic_db = null,
+        $opts = array()
+    ) {
         if (Horde_Util::extensionExists('fileinfo')) {
             $res = empty($magic_db)
                 ? finfo_open(FILEINFO_MIME)
@@ -201,9 +204,11 @@ class Horde_Mime_Magic
      * @return mixed  The MIME type of the file. Returns false if the file
      *                type can not be determined.
      */
-    public static function analyzeData($data, $magic_db = null,
-                                       $opts = array())
-    {
+    public static function analyzeData(
+        $data,
+        $magic_db = null,
+        $opts = array()
+    ) {
         /* If the PHP Mimetype extension is available, use that. */
         if (Horde_Util::extensionExists('fileinfo')) {
             $res = empty($magic_db)

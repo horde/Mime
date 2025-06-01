@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
  *
@@ -27,10 +28,9 @@
  *                                      parameter added (if this is a text/*
  *                                      part).
  */
-class Horde_Mime_Headers_ContentParam_ContentType
-extends Horde_Mime_Headers_ContentParam
+class Horde_Mime_Headers_ContentParam_ContentType extends Horde_Mime_Headers_ContentParam
 {
-    const DEFAULT_CONTENT_TYPE = 'application/octet-stream';
+    public const DEFAULT_CONTENT_TYPE = 'application/octet-stream';
 
     /**
      * Creates a default Content-Type header, conforming to the MIME
@@ -41,7 +41,7 @@ extends Horde_Mime_Headers_ContentParam
      */
     public static function create()
     {
-        $ob = new stdClass;
+        $ob = new stdClass();
         $ob->value = self::DEFAULT_CONTENT_TYPE;
 
         return new self(null, $ob);
@@ -59,31 +59,31 @@ extends Horde_Mime_Headers_ContentParam
     public function __get($name)
     {
         switch ($name) {
-        case 'params':
-            $params = new Horde_Support_CaseInsensitiveArray(
-                parent::__get($name)
-            );
-            foreach ($params as $key => $val) {
-                if (!isset($this[$key])) {
-                    unset($params[$key]);
+            case 'params':
+                $params = new Horde_Support_CaseInsensitiveArray(
+                    parent::__get($name)
+                );
+                foreach ($params as $key => $val) {
+                    if (!isset($this[$key])) {
+                        unset($params[$key]);
+                    }
                 }
-            }
-            return $params->getArrayCopy();
+                return $params->getArrayCopy();
 
-        case 'ptype':
-            $val = $this->value;
-            return substr($val, 0, strpos($val, '/'));
+            case 'ptype':
+                $val = $this->value;
+                return substr($val, 0, strpos($val, '/'));
 
-        case 'stype':
-            $val = $this->value;
-            return substr($val, strpos($val, '/') + 1);
+            case 'stype':
+                $val = $this->value;
+                return substr($val, strpos($val, '/') + 1);
 
-        case 'type_charset':
-            $val = $this->value;
-            foreach ($this->_escapeParams(array_filter(array('charset' => $this['charset']))) as $k2 => $v2) {
-                $val .= '; ' . $k2 . '=' . $v2;
-            }
-            return $val;
+            case 'type_charset':
+                $val = $this->value;
+                foreach ($this->_escapeParams(array_filter(array('charset' => $this['charset']))) as $k2 => $v2) {
+                    $val .= '; ' . $k2 . '=' . $v2;
+                }
+                return $val;
         }
 
         return parent::__get($name);
@@ -102,28 +102,28 @@ extends Horde_Mime_Headers_ContentParam
             parent::setContentParamValue(self::DEFAULT_CONTENT_TYPE);
         } else {
             switch ($this->ptype) {
-            case 'multipart':
-                if (!isset($this['boundary'])) {
-                    $this['boundary'] = '=_' . new Horde_Support_Randomid();
-                }
-                break;
+                case 'multipart':
+                    if (!isset($this['boundary'])) {
+                        $this['boundary'] = '=_' . new Horde_Support_Randomid();
+                    }
+                    break;
 
-            case 'application':
-            case 'audio':
-            case 'image':
-            case 'message':
-            case 'model':
-            case 'text':
-            case 'video':
-                // No-op
-                break;
+                case 'application':
+                case 'audio':
+                case 'image':
+                case 'message':
+                case 'model':
+                case 'text':
+                case 'video':
+                    // No-op
+                    break;
 
-            default:
-                if (substr($val, 0, 2) !== 'x-') {
-                    /* Append 'x-' for any unknown primary MIME type. */
-                    parent::setContentParamValue('x-' . $val);
-                }
-                break;
+                default:
+                    if (substr($val, 0, 2) !== 'x-') {
+                        /* Append 'x-' for any unknown primary MIME type. */
+                        parent::setContentParamValue('x-' . $val);
+                    }
+                    break;
             }
         }
     }

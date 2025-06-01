@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2004-2017 Horde LLC (http://www.horde.org/)
  *
@@ -23,7 +24,7 @@
 class Horde_Mime_Mdn
 {
     /* RFC 3798 header for requesting a MDN. */
-    const MDN_HEADER = 'Disposition-Notification-To';
+    public const MDN_HEADER = 'Disposition-Notification-To';
 
     /**
      * The Horde_Mime_Headers object.
@@ -91,15 +92,15 @@ class Horde_Mime_Mdn
             : array();
 
         switch (count($addr_ob)) {
-        case 0:
-            return false;
+            case 0:
+                return false;
 
-        case 1:
-            // No-op
-            break;
+            case 1:
+                // No-op
+                break;
 
-        default:
-            return true;
+            default:
+                return true;
         }
 
         /* RFC 3798 [2.1] states that "MDNs SHOULD NOT be sent automatically
@@ -152,10 +153,16 @@ class Horde_Mime_Mdn
      *                          information to provide. Key is the type of
      *                          modification, value is the text.
      */
-    public function generate($action, $sending, $type, $name, $mailer,
-                             array $opts = array(), array $mod = array(),
-                             array $err = array())
-    {
+    public function generate(
+        $action,
+        $sending,
+        $type,
+        $name,
+        $mailer,
+        array $opts = array(),
+        array $mod = array(),
+        array $err = array()
+    ) {
         $opts = array_merge(array(
             'charset' => null,
             'from_addr' => null

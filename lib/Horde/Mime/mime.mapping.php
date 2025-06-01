@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file contains a mapping of common file extensions to MIME types.
  * It has been automatically generated.

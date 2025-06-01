@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,8 +22,7 @@
  * @package   Mime
  * @since     2.5.0
  */
-class Horde_Mime_Headers_MessageId
-extends Horde_Mime_Headers_Identification
+class Horde_Mime_Headers_MessageId extends Horde_Mime_Headers_Identification
 {
     /**
      * Creates a Message-ID header conforming to RFC 2822 [3.6.4] and the

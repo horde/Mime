@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -24,10 +25,10 @@
 class Horde_Mime_Id
 {
     /* Constants for idArithmetic() method. */
-    const ID_DOWN = 1;
-    const ID_NEXT = 2;
-    const ID_PREV = 3;
-    const ID_UP = 4;
+    public const ID_DOWN = 1;
+    public const ID_NEXT = 2;
+    public const ID_PREV = 3;
+    public const ID_UP = 4;
 
     /**
      * MIME ID.
@@ -92,39 +93,39 @@ class Horde_Mime_Id
         $end = ($pos === false) ? $id : substr($id, $pos + 1);
 
         switch ($action) {
-        case self::ID_DOWN:
-            if ($end == '0') {
-                $id = ($pos === false) ? 1 : substr_replace($id, '1', $pos + 1);
-            } else {
-                $id .= empty($options['no_rfc822']) ? '.0' : '.1';
-            }
-            break;
+            case self::ID_DOWN:
+                if ($end == '0') {
+                    $id = ($pos === false) ? 1 : substr_replace($id, '1', $pos + 1);
+                } else {
+                    $id .= empty($options['no_rfc822']) ? '.0' : '.1';
+                }
+                break;
 
-        case self::ID_NEXT:
-            ++$end;
-            $id = ($pos === false) ? $end : substr_replace($id, $end, $pos + 1);
-            break;
+            case self::ID_NEXT:
+                ++$end;
+                $id = ($pos === false) ? $end : substr_replace($id, $end, $pos + 1);
+                break;
 
-        case self::ID_PREV:
-            if (($end == '0') ||
-                (empty($options['no_rfc822']) && ($end == '1'))) {
-                $id = null;
-            } elseif ($pos === false) {
-                $id = --$end;
-            } else {
-                $id = substr_replace($id, --$end, $pos + 1);
-            }
-            break;
+            case self::ID_PREV:
+                if (($end == '0') ||
+                    (empty($options['no_rfc822']) && ($end == '1'))) {
+                    $id = null;
+                } elseif ($pos === false) {
+                    $id = --$end;
+                } else {
+                    $id = substr_replace($id, --$end, $pos + 1);
+                }
+                break;
 
-        case self::ID_UP:
-            if ($pos === false) {
-                $id = ($end == '0') ? null : '0';
-            } elseif (!empty($options['no_rfc822']) || ($end == '0')) {
-                $id = substr($id, 0, $pos);
-            } else {
-                $id = substr_replace($id, '0', $pos + 1);
-            }
-            break;
+            case self::ID_UP:
+                if ($pos === false) {
+                    $id = ($end == '0') ? null : '0';
+                } elseif (!empty($options['no_rfc822']) || ($end == '0')) {
+                    $id = substr($id, 0, $pos);
+                } else {
+                    $id = substr_replace($id, '0', $pos + 1);
+                }
+                break;
         }
 
         return (!is_null($id) && --$options['count'])

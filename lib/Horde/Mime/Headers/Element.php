@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -24,8 +25,7 @@
  * @property-read string $name  Header name.
  * @property-read string $value_single  The first header value.
  */
-abstract class Horde_Mime_Headers_Element
-implements IteratorAggregate
+abstract class Horde_Mime_Headers_Element implements IteratorAggregate
 {
     /**
      * Header name (UTF-8, although limited to US-ASCII subset by RFCs).
@@ -61,11 +61,11 @@ implements IteratorAggregate
     public function __get($name)
     {
         switch ($name) {
-        case 'name':
-            return $this->_name;
+            case 'name':
+                return $this->_name;
 
-        case 'value_single':
-            return reset($this->_values);
+            case 'value_single':
+                return reset($this->_values);
         }
     }
 
@@ -142,9 +142,9 @@ implements IteratorAggregate
         }
 
         /* Ensure no null characters exist in header data. */
-		if ($data === null) {
-			return '';
-		}
+        if ($data === null) {
+            return '';
+        }
         return str_replace("\0", '', $data);
     }
 
@@ -176,7 +176,7 @@ implements IteratorAggregate
 
     /**
      */
-	#[ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->_values);

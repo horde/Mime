@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2012-2017 Horde LLC (http://www.horde.org/)
  *
@@ -123,14 +124,14 @@ class Horde_Mime_Related implements IteratorAggregate
         foreach ($dom as $node) {
             if ($node instanceof DOMElement) {
                 switch (Horde_String::lower($node->tagName)) {
-                case 'body':
-                case 'td':
-                    $this->_cidReplace($node, 'background', $callback);
-                    break;
+                    case 'body':
+                    case 'td':
+                        $this->_cidReplace($node, 'background', $callback);
+                        break;
 
-                case 'img':
-                    $this->_cidReplace($node, 'src', $callback);
-                    break;
+                    case 'img':
+                        $this->_cidReplace($node, 'src', $callback);
+                        break;
                 }
             }
         }

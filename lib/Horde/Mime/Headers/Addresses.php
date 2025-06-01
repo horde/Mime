@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
  *
@@ -21,9 +22,7 @@
  * @package   Mime
  * @since     2.5.0
  */
-class Horde_Mime_Headers_Addresses
-extends Horde_Mime_Headers_Element_Single
-implements Horde_Mime_Headers_Element_Address
+class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single implements Horde_Mime_Headers_Element_Address
 {
     /**
      * By default, if more than 1 address header is found, the addresses are
@@ -46,10 +45,10 @@ implements Horde_Mime_Headers_Element_Address
     public function __get($name)
     {
         switch ($name) {
-        case 'full_value':
-        case 'value':
-        case 'value_single':
-            return strval($this->_values);
+            case 'full_value':
+            case 'value':
+            case 'value_single':
+                return strval($this->_values);
         }
 
         return parent::__get($name);
@@ -88,18 +87,18 @@ implements Horde_Mime_Headers_Element_Address
         }
 
         switch (Horde_String::lower($this->name)) {
-        case 'bcc':
-        case 'cc':
-        case 'from':
-        case 'to':
-            /* Catch malformed undisclosed-recipients entries. */
-            if ((count($addr_list) == 1) &&
-                preg_match("/^\s*undisclosed-recipients:?\s*$/i", $addr_list[0]->bare_address)) {
-                $addr_list = new Horde_Mail_Rfc822_List(
-                    'undisclosed-recipients:;'
-                );
-            }
-            break;
+            case 'bcc':
+            case 'cc':
+            case 'from':
+            case 'to':
+                /* Catch malformed undisclosed-recipients entries. */
+                if ((count($addr_list) == 1) &&
+                    preg_match("/^\s*undisclosed-recipients:?\s*$/i", $addr_list[0]->bare_address)) {
+                    $addr_list = new Horde_Mail_Rfc822_List(
+                        'undisclosed-recipients:;'
+                    );
+                }
+                break;
         }
 
         if ($this->append_addr && $this->_values) {
