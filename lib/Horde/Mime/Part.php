@@ -1488,7 +1488,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
         switch ($this->getPrimaryType()) {
         case 'application':
-            if (strlen($this->getName())) {
+            if (strlen((string)$this->getName())) {
                 return true;
             }
             break;
