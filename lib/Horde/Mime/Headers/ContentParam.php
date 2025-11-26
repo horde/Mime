@@ -178,7 +178,7 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
             ++$pre_len;
         }
 
-        if (($pre_len + strlen($string)) > 75) {
+        if ($name != 'boundary' && ($pre_len + strlen($string)) > 75) {
             /* Account for continuation '*'. */
             ++$pre_len;
             $wrap = true;
