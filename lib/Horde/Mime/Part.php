@@ -1573,15 +1573,6 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         if (isset($opts['encode'])) {
             /* Always allow 7bit encoding. */
             $encode |= $opts['encode'];
-        } elseif ($mailer instanceof Horde_Mail_Transport_Smtp) {
-            try {
-                $smtp_ext = $mailer->getSMTPObject()->getServiceExtensions();
-                if (isset($smtp_ext['8BITMIME'])) {
-                    $encode |= self::ENCODE_8BIT;
-                }
-            } catch (Horde_Mail_Exception $e) {
-            }
-            $canonical = false;
         } elseif ($mailer instanceof Horde_Mail_Transport_Smtphorde) {
             try {
                 if ($mailer->getSMTPObject()->data_8bit) {
@@ -1612,13 +1603,6 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
                 'Content-Transfer-Encoding',
                 $this->_temp['toString']
             );
-            switch ($this->_temp['toString']) {
-                case '8bit':
-                    if ($mailer instanceof Horde_Mail_Transport_Smtp) {
-                        $mailer->addServiceExtensionParameter('BODY', '8BITMIME');
-                    }
-                    break;
-            }
         }
 
         $this->_status = $old_status;

@@ -48,12 +48,12 @@ dependencies:
     composer:
       horde/nls: ^3
       horde/text_filter: ^3
-      pear/net_dns2: ^1.5.3
+      mikepultz/netdns2: ^2.0
   dev:
     composer:
       horde/nls: ^3
       horde/test: ^3
       horde/text_filter: ^3
-      pear/net_dns2: ^1.5.3
+      mikepultz/netdns2: ^2.0
     ext:
       intl: '*'
