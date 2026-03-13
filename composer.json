@@ -35,13 +35,13 @@
         "horde/nls": "^3 || dev-FRAMEWORK_6_0",
         "horde/test": "^3 || dev-FRAMEWORK_6_0",
         "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
-        "pear/net_dns2": "^1.5.3",
+        "mikepultz/netdns2": "^2.0",
         "ext-intl": "*"
     },
     "suggest": {
         "horde/nls": "^3 || dev-FRAMEWORK_6_0",
         "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
-        "pear/net_dns2": "^1.5.3"
+        "mikepultz/netdns2": "^2.0"
     },
     "autoload": {
         "psr-0": {
