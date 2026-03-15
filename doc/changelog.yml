@@ -1,4 +1,18 @@
 ---
+3.0.0-alpha7:
+  api: 3.0.0-alpha7
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-03-15
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    Merge pull request #13 from horde/feat/migrate-netdns2
+    feat: Replace dead pear/net_dns2 with PHP 8.x compatible
+    Do not split long boundary
+    chore(git): add IDE and build artifact ignores
 3.0.0-alpha6:
   api: 3.0.0-alpha1
   state:
