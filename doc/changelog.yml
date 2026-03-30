@@ -1,4 +1,18 @@
 ---
+3.0.0-beta1:
+  api: 3.0.0-beta1
+  state:
+    release: beta
+    api: beta
+  date: 2026-03-30
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    style: php-cs-fixer
+    Merge pull request #14 from horde/fix/NetDNS2_fix_exception_handling
+    Refactor exception handling for NetDNS2
+    Update exception handling to use namespace
 3.0.0-alpha7:
   api: 3.0.0-alpha7
   state:
