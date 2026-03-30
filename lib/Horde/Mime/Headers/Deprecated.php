@@ -12,6 +12,8 @@
  * @package   Mime
  */
 
+use NetDNS2\Exception as NetDNS2Exception;
+
 /**
  * Deprecated Horde_Mime_Headers methods.
  *
@@ -90,7 +92,7 @@ class Horde_Mime_Headers_Deprecated
                             }
                         }
                     }
-                } catch (\NetDNS2\Exception $e) {
+                } catch (NetDNS2Exception $e) {
                 }
             } else {
                 $remote = gethostbyaddr($remote_addr);
@@ -109,7 +111,7 @@ class Horde_Mime_Headers_Deprecated
                                 }
                             }
                         }
-                    } catch (\NetDNS2\Exception $e) {
+                    } catch (NetDNS2Exception $e) {
                     }
                 } else {
                     $remote = gethostbyaddr($remote_addr);
