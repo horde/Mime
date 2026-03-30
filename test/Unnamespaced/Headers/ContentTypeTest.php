@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2015-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Headers;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers_ContentParam_ContentType;
+use Horde_Mime_Headers_ContentParam_ContentType;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentParam_ContentType class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Headers_ContentParam_ContentType;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class ContentTypeTest extends TestCase
 {
@@ -51,42 +55,42 @@ class ContentTypeTest extends TestCase
 
     public function parsingOfInputProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
                 'text/plain',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 '    TEXT/PLAIN',
                 'text/plain',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 ' modEL/hTmL   ',
                 'model/html',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 'bogus/foo',
                 'x-bogus/foo',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 " message/RFC822   ;   Filename=\"foo\";\n BAR=33 ; foo  = 22",
                 'message/rfc822',
-                array(
+                [
                     'bar' => '33',
                     'filename' => 'foo',
-                    'foo' => '22'
-                )
-            ),
-            array(
+                    'foo' => '22',
+                ],
+            ],
+            [
                 'foo',
                 Horde_Mime_Headers_ContentParam_ContentType::DEFAULT_CONTENT_TYPE,
-                array()
-            )
-        );
+                [],
+            ],
+        ];
     }
 
     public function testClone()
@@ -106,7 +110,7 @@ class ContentTypeTest extends TestCase
             $ob2->value
         );
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $ob2->params
         );
     }
@@ -125,7 +129,7 @@ class ContentTypeTest extends TestCase
             $ob2->value
         );
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $ob2->params
         );
     }
@@ -152,7 +156,7 @@ class ContentTypeTest extends TestCase
         $params['foo'] = '123';
 
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $ob->params
         );
     }
@@ -177,28 +181,28 @@ class ContentTypeTest extends TestCase
 
     public function parsingContentTypeValueProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
                 'text',
-                'plain'
-            ),
-            array(
+                'plain',
+            ],
+            [
                 'TEXT/HTML',
                 'text',
-                'html'
-            ),
-            array(
+                'html',
+            ],
+            [
                 'foo/bar',
                 'x-foo',
-                'bar'
-            ),
-            array(
+                'bar',
+            ],
+            [
                 'text/plain; charset=utf-8',
                 'text',
-                'plain'
-            )
-        );
+                'plain',
+            ],
+        ];
     }
 
     /**
@@ -218,23 +222,23 @@ class ContentTypeTest extends TestCase
 
     public function typeCharsetPropertyProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
                 'utf-8',
-                'text/plain; charset=utf-8'
-            ),
-            array(
+                'text/plain; charset=utf-8',
+            ],
+            [
                 'text/html',
                 'utf-8',
-                'text/html; charset=utf-8'
-            ),
-            array(
+                'text/html; charset=utf-8',
+            ],
+            [
                 'image/jpeg',
                 'utf-8',
-                'image/jpeg'
-            )
-        );
+                'image/jpeg',
+            ],
+        ];
     }
 
     /**
@@ -254,20 +258,20 @@ class ContentTypeTest extends TestCase
 
     public function multipartPartsHaveBoundary()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'image/jpeg',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'multipart/mixed',
-                true
-            )
-        );
+                true,
+            ],
+        ];
     }
 
     /**
@@ -287,20 +291,20 @@ class ContentTypeTest extends TestCase
 
     public function charsetIsLowercaseProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'utf-8',
-                'utf-8'
-            ),
-            array(
+                'utf-8',
+            ],
+            [
                 'ISO-8859-1',
-                'iso-8859-1'
-            ),
-            array(
+                'iso-8859-1',
+            ],
+            [
                 'US-ASCII',
-                null
-            )
-        );
+                null,
+            ],
+        ];
     }
 
     public function testMultipartCantUnsetBoundary()
@@ -334,40 +338,40 @@ class ContentTypeTest extends TestCase
 
     public function isDefaultProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 'text/plain; charset=us-ascii',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 'text/plain; charset=us-ascii; foo=bar',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'text/plain; charset=utf-8',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'text/html',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'text/html; charset=us-ascii',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'image/jpeg',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'image/jpeg; charset=utf-8',
-                false
-            )
-        );
+                false,
+            ],
+        ];
     }
 
 }

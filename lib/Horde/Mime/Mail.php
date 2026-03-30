@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2007-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2007-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -74,7 +74,7 @@ class Horde_Mime_Mail
      *
      * @var array
      */
-    protected $_parts = array();
+    protected $_parts = [];
 
     /**
      * The Mail driver name.
@@ -97,7 +97,7 @@ class Horde_Mime_Mail
      * @link http://pear.php.net/Mail
      * @var array
      */
-    protected $_mailer_params = array();
+    protected $_mailer_params = [];
 
     /**
      * Constructor.
@@ -109,7 +109,7 @@ class Horde_Mime_Mail
      *
      * @throws Horde_Mime_Exception
      */
-    public function __construct($params = array())
+    public function __construct($params = [])
     {
         /* Set SERVER_NAME. */
         if (!isset($_SERVER['SERVER_NAME'])) {
@@ -141,7 +141,7 @@ class Horde_Mime_Mail
      *
      * @throws Horde_Mime_Exception
      */
-    public function addHeaders($headers = array())
+    public function addHeaders($headers = [])
     {
         foreach ($headers as $header => $value) {
             $this->addHeader($header, $value);
@@ -165,8 +165,8 @@ class Horde_Mime_Mail
     {
         $lc_header = Horde_String::lower($header);
 
-        if (is_null($overwrite) &&
-            in_array($lc_header, $this->_headers->singleFields(true))) {
+        if (is_null($overwrite)
+            && in_array($lc_header, $this->_headers->singleFields(true))) {
             $overwrite = true;
         }
 
@@ -255,7 +255,7 @@ class Horde_Mime_Mail
         $this->_htmlBody->setCharset($charset);
         $this->_htmlBody->setContents($body);
         if ($alternative) {
-            $this->setBody(Horde_Text_Filter::filter($body, 'Html2text', array('charset' => $charset, 'wrap' => false)), $charset);
+            $this->setBody(Horde_Text_Filter::filter($body, 'Html2text', ['charset' => $charset, 'wrap' => false]), $charset);
         }
         $this->_base = null;
     }
@@ -358,7 +358,7 @@ class Horde_Mime_Mail
      */
     public function clearParts()
     {
-        $this->_parts = array();
+        $this->_parts = [];
     }
 
     /**
@@ -469,7 +469,7 @@ class Horde_Mime_Mail
 
         /* Build recipients. */
         $recipients = clone $this->_recipients;
-        foreach (array('to', 'cc') as $header) {
+        foreach (['to', 'cc'] as $header) {
             if ($h = $this->_headers[$header]) {
                 $recipients->add($h->getAddressList());
             }
@@ -504,11 +504,11 @@ class Horde_Mime_Mail
             $hdr = new Horde_Stream();
             $hdr->add($this->_headers->toString(), true);
             return Horde_Stream_Wrapper_Combine::getStream(
-                array($hdr->stream,
-                      $this->getBasePart()->toString(
-                          array('stream' => true, 'encode' => Horde_Mime_Part::ENCODE_7BIT | Horde_Mime_Part::ENCODE_8BIT | Horde_Mime_Part::ENCODE_BINARY)
-                      )
-                )
+                [$hdr->stream,
+                    $this->getBasePart()->toString(
+                        ['stream' => true, 'encode' => Horde_Mime_Part::ENCODE_7BIT | Horde_Mime_Part::ENCODE_8BIT | Horde_Mime_Part::ENCODE_BINARY]
+                    ),
+                ]
             );
         }
 

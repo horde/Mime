@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2023 Horde LLC (http://www.horde.org/)
+ * Copyright 2023-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -28,9 +28,9 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
 
     public static function getHandles()
     {
-        return array(
-            'thread-index'
-        );
+        return [
+            'thread-index',
+        ];
     }
 
     /**
@@ -44,7 +44,7 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
         // other data that would normally get encoded.
         $encoded = Horde_Mime::encode($this->value, $opts['charset']);
         if ($encoded != $this->value) {
-            return array($this->value);
+            return [$this->value];
         }
 
         // We didn't encode it already, check for extra-long
@@ -61,7 +61,7 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
                     // NULLs not valid here, should have
                     // been caught above. Just nuke the header
                     // in this case, it's broken.
-                    return array('');
+                    return [''];
                 case 10:
                 case 13:
                     $crlf = 0;
@@ -90,13 +90,13 @@ class Horde_Mime_Headers_ThreadIndex extends Horde_Mime_Headers_Element_Single
                     )
                 )
             );
-            $tmp = array();
+            $tmp = [];
             foreach ($parts as $val) {
                 $tmp[] = $delim . $val . '?=';
             }
-            return array(Horde_Mime::encode(implode(' ', $tmp), $opts['charset']));
+            return [Horde_Mime::encode(implode(' ', $tmp), $opts['charset'])];
         }
 
-        return array($this->value);
+        return [$this->value];
     }
 }

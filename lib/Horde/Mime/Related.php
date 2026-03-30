@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2012-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2012-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -29,7 +29,7 @@ class Horde_Mime_Related implements IteratorAggregate
      *
      * @var array
      */
-    protected $_cids = array();
+    protected $_cids = [];
 
     /**
      * Start ID.
@@ -51,7 +51,7 @@ class Horde_Mime_Related implements IteratorAggregate
         }
 
         $id = null;
-        $ids = array();
+        $ids = [];
         $related_id = $mime_part->getMimeId();
 
         /* Build a list of parts -> CIDs. */
@@ -59,8 +59,8 @@ class Horde_Mime_Related implements IteratorAggregate
             $part_id = $val->getMimeId();
             $ids[] = $part_id;
 
-            if ((strcmp($related_id, $part_id) !== 0) &&
-                ($cid = $val->getContentId())) {
+            if ((strcmp($related_id, $part_id) !== 0)
+                && ($cid = $val->getContentId())) {
                 $this->_cids[$part_id] = $cid;
             }
         }
@@ -145,8 +145,8 @@ class Horde_Mime_Related implements IteratorAggregate
     {
         if ($node->hasAttribute($attribute)) {
             $val = $node->getAttribute($attribute);
-            if ((strpos($val, 'cid:') === 0) &&
-                ($id = $this->cidSearch(substr($val, 4)))) {
+            if ((strpos($val, 'cid:') === 0)
+                && ($id = $this->cidSearch(substr($val, 4)))) {
                 $node->setAttribute($attribute, call_user_func($callback, $id, $attribute, $node));
             }
         }

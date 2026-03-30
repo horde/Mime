@@ -13,7 +13,7 @@
  * @category Horde
  * @package  Mime
  */
-$mime_extension_map = array(
+$mime_extension_map = [
     '__MAXPERIOD__'     => '1',
     '3dml'              => 'text/vnd.in3d.3dml',
     '3ds'               => 'image/x-3ds',
@@ -1442,5 +1442,5 @@ $mime_extension_map = array(
     'zsav'              => 'application/x-spss-sav',
     '123'               => 'application/vnd.lotus-1-2-3',
     '602'               => 'application/x-t602',
-    '669'               => 'audio/x-mod'
-);
+    '669'               => 'audio/x-mod',
+];

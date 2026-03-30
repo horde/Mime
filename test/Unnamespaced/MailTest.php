@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,13 +9,15 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Mail;
-use \Horde_Mail_Transport_Mock;
-use \Horde_Mime_Headers;
-use \Horde_Mime_Part;
-use \Horde_Text_Filter;
+use Horde_Mime_Mail;
+use Horde_Mail_Transport_Mock;
+use Horde_Mime_Headers;
+use Horde_Mime_Part;
+use Horde_Text_Filter;
 
 /**
  * Tests for the Horde_Mime_Mail class.
@@ -26,6 +29,7 @@ use \Horde_Text_Filter;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class MailTest extends TestCase
 {
@@ -43,20 +47,20 @@ class MailTest extends TestCase
 
     public function testConstructor()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'body' => "This is\nthe body",
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-15'
-        ));
+            'charset' => 'iso-8859-15',
+        ]);
 
         $dummy = new Horde_Mail_Transport_Mock();
         $mail->send($dummy);
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -73,7 +77,7 @@ MIME-Version: 1.0',
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
@@ -96,7 +100,7 @@ MIME-Version: 1.0',
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -113,29 +117,29 @@ MIME-Version: 1.0',
         );
 
         $this->assertEquals(
-            array('recipient@example.com',
-                  'invisible@example.com'),
+            ['recipient@example.com',
+                'invisible@example.com'],
             $sent['recipients']
         );
     }
 
     public function testEncoding()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'Schöner Betreff',
             'body' => "Hübsche Umlaute \n und Leerzeichen.",
             'To' => 'Empfänger <recipient@example.com>',
             'From' => 'sender@example.com',
             'Cc' => 'Der schöne Peter <peter@example.com>',
-            'charset' => 'iso-8859-1'
-        ));
+            'charset' => 'iso-8859-1',
+        ]);
 
         $dummy = new Horde_Mail_Transport_Mock();
         $mail->send($dummy);
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: =?iso-8859-1?b?U2No9m5lcg==?= Betreff
+            'Subject: =?iso-8859-1?b?U2No9m5lcg==?= Betreff
 To: =?iso-8859-1?b?RW1wZuRuZ2Vy?= <recipient@example.com>
 From: sender@example.com
 Cc: Der =?iso-8859-1?b?c2No9m5l?= Peter <peter@example.com>
@@ -159,21 +163,21 @@ Content-Transfer-Encoding: quoted-printable',
         );
 
         $this->assertEquals(
-            array('recipient@example.com',
-                  'peter@example.com'),
+            ['recipient@example.com',
+                'peter@example.com'],
             $sent['recipients']
         );
     }
 
     public function testAddPart()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'body' => "This is\nthe body",
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-15'
-        ));
+            'charset' => 'iso-8859-15',
+        ]);
         $mail->addPart(
             'text/plain',
             'This is a plain text',
@@ -192,7 +196,7 @@ Content-Transfer-Encoding: quoted-printable',
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -204,7 +208,7 @@ MIME-Version: 1.0',
         );
 
         $this->assertStringMatchesFormat(
-"This message is in MIME format.
+            "This message is in MIME format.
 
 --=_%s
 Content-Type: text/plain; charset=iso-8859-15; format=flowed; DelSp=Yes
@@ -229,19 +233,19 @@ bHRlciBEZWljaC4K
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
 
     public function testAddHtml()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-1'
-        ));
+            'charset' => 'iso-8859-1',
+        ]);
         $mail->setBody("This is\nthe plain text body.");
 
         $dummy = new Horde_Mail_Transport_Mock();
@@ -249,7 +253,7 @@ bHRlciBEZWljaC4K
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -266,15 +270,15 @@ MIME-Version: 1.0',
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
 
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'To' => 'recipient@example.com',
-            'From' => 'sender@example.com'
-        ));
+            'From' => 'sender@example.com',
+        ]);
         $mail->setHTMLBody(
             "<h1>Header Title</h1>\n<p>This is<br />the html text body.</p>",
             'iso-8859-1',
@@ -286,7 +290,7 @@ MIME-Version: 1.0',
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -303,16 +307,16 @@ MIME-Version: 1.0',
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
 
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-1'
-        ));
+            'charset' => 'iso-8859-1',
+        ]);
 
         if (class_exists(Horde_Text_Filter::class)) {
             $mail->setHTMLBody("<h1>Header Title</h1>\n<p>This is<br />the html text body.</p>");
@@ -325,7 +329,7 @@ MIME-Version: 1.0',
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -337,7 +341,7 @@ MIME-Version: 1.0',
         );
 
         $this->assertStringMatchesFormat(
-"This message is in MIME format.
+            "This message is in MIME format.
 
 --=_%s
 Content-Type: text/plain; charset=iso-8859-1; format=flowed; DelSp=Yes
@@ -359,20 +363,20 @@ Content-Description: HTML Version of Message
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
 
     public function testAddAttachment()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'body' => "This is\nthe body",
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-15'
-        ));
+            'charset' => 'iso-8859-15',
+        ]);
         $mail->addAttachment(__DIR__ . '/fixtures/attachment.bin');
         $mail->addAttachment(
             __DIR__ . '/fixtures/uudecode.txt',
@@ -386,7 +390,7 @@ Content-Description: HTML Version of Message
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: sender@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -398,7 +402,7 @@ MIME-Version: 1.0',
         );
 
         $this->assertStringMatchesFormat(
-"This message is in MIME format.
+            "This message is in MIME format.
 
 --=_%s
 Content-Type: text/plain; charset=iso-8859-15; format=flowed; DelSp=Yes
@@ -438,20 +442,20 @@ end
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
 
     public function testReusing()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'body' => "This is\nthe body",
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-15'
-        ));
+            'charset' => 'iso-8859-15',
+        ]);
 
         $dummy = new Horde_Mail_Transport_Mock();
         $mail->send($dummy);
@@ -471,11 +475,11 @@ end
         $this->assertNotEquals($hdrs1->getValue('message-id'), $hdrs2->getValue('message-id'));
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent1['recipients']
         );
         $this->assertEquals(
-            array('recipient2@example.com'),
+            ['recipient2@example.com'],
             $sent2['recipients']
         );
 
@@ -487,19 +491,19 @@ end
 
     public function testFlowedText()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'charset' => 'ISO-8859-1',
             'Subject' => 'My Subject',
             'To' => 'recipient@example.com',
             'From' => 'foo@example.com',
-            'body' => file_get_contents(__DIR__ . '/fixtures/flowed_msg.txt')));
+            'body' => file_get_contents(__DIR__ . '/fixtures/flowed_msg.txt')]);
 
         $dummy = new Horde_Mail_Transport_Mock();
         $mail->send($dummy);
         $sent = $this->filterLineEnding($dummy->sentMessages[0]);
 
         $this->assertStringMatchesFormat(
-'Subject: My Subject
+            'Subject: My Subject
 To: recipient@example.com
 From: foo@example.com
 Message-ID: <%d.%s@mail.example.com>
@@ -511,7 +515,7 @@ MIME-Version: 1.0',
         );
 
         $this->assertEquals(
-'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do  
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do  
 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad  
 minim veniam, quis nostrud exercitation ullamco laboris nisi ut  
 aliquip ex ea commodo
@@ -525,19 +529,19 @@ id est laborum.
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
 
     public function testEmptyBody()
     {
-        $mail = new Horde_Mime_Mail(array(
+        $mail = new Horde_Mime_Mail([
             'Subject' => 'My Subject',
             'To' => 'recipient@example.com',
             'From' => 'sender@example.com',
-            'charset' => 'iso-8859-15'
-        ));
+            'charset' => 'iso-8859-15',
+        ]);
 
         $dummy = new Horde_Mail_Transport_Mock();
         $mail->send($dummy);
@@ -551,7 +555,7 @@ id est laborum.
         );
 
         $this->assertEquals(
-            array('recipient@example.com'),
+            ['recipient@example.com'],
             $sent['recipients']
         );
     }
@@ -613,27 +617,28 @@ Mike', $body);
         $headers->addHeader('From', 'sender@example.com');
         $headers->addHeader('Subject', 'My Subject');
         $mailer = new Horde_Mail_Transport_Mock();
-        $base_part->send('recipient@example.com', $headers, $mailer, array('encode' => Horde_Mime_Part::ENCODE_8BIT));
+        $base_part->send('recipient@example.com', $headers, $mailer, ['encode' => Horde_Mime_Part::ENCODE_8BIT]);
         $sent = current($mailer->sentMessages);
         $sent_mime = Horde_Mime_Part::parseMessage($sent['header_text'] . "\n\n" . $sent['body']);
         $headers = Horde_Mime_Headers::parseHeaders(
-            $sent_mime[$sent_mime->findBody('plain')]->toString(array(
+            $sent_mime[$sent_mime->findBody('plain')]->toString([
                 'headers' => true,
-                'encode' => Horde_Mime_Part::ENCODE_8BIT
-            ))
+                'encode' => Horde_Mime_Part::ENCODE_8BIT,
+            ])
         );
         $this->assertEquals('8bit', $headers->getHeader('Content-Transfer-Encoding')->value_single);
         $headers = Horde_Mime_Headers::parseHeaders(
-            $sent_mime[$sent_mime->findBody('html')]->toString(array(
+            $sent_mime[$sent_mime->findBody('html')]->toString([
                 'headers' => true,
-                'encode' => Horde_Mime_Part::ENCODE_8BIT
-            ))
+                'encode' => Horde_Mime_Part::ENCODE_8BIT,
+            ])
         );
         $this->assertEquals('quoted-printable', $headers->getHeader('Content-Transfer-Encoding'));
     }
 
     // PHP 8.1 str_replace does not tolerate multi-level arrays
-    private function filterLineEnding(array $sent) {
+    private function filterLineEnding(array $sent)
+    {
         foreach (array_keys($sent) as $key) {
             if (is_array($sent[$key])) {
                 $sent[$key] = $this->filterLineEnding($sent[$key]);

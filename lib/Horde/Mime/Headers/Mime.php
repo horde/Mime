@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -29,7 +29,7 @@ class Horde_Mime_Headers_Mime extends Horde_Mime_Headers_Element_Single implemen
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // MIME: RFC 1864
             'content-md5',
             // MIME: RFC 2110
@@ -41,8 +41,8 @@ class Horde_Mime_Headers_Mime extends Horde_Mime_Headers_Element_Single implemen
             // MIME: RFC 2912 [3]
             'content-features',
             // MIME: RFC 3297
-            'content-alternative'
-        );
+            'content-alternative',
+        ];
     }
 
 }

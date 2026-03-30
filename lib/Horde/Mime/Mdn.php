@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2004-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2004-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -89,7 +89,7 @@ class Horde_Mime_Mdn
          * header. */
         $addr_ob = ($hdr = $this->_headers[self::MDN_HEADER])
             ? $hdr->getAddressList(true)
-            : array();
+            : [];
 
         switch (count($addr_ob)) {
             case 0:
@@ -159,14 +159,14 @@ class Horde_Mime_Mdn
         $type,
         $name,
         $mailer,
-        array $opts = array(),
-        array $mod = array(),
-        array $err = array()
+        array $opts = [],
+        array $mod = [],
+        array $err = []
     ) {
-        $opts = array_merge(array(
+        $opts = array_merge([
             'charset' => null,
-            'from_addr' => null
-        ), $opts);
+            'from_addr' => null,
+        ], $opts);
 
         if (!($hdr = $this->_headers[self::MDN_HEADER])) {
             throw new RuntimeException(
@@ -237,11 +237,11 @@ class Horde_Mime_Mdn
         }
 
         /* Create the Disposition field now (RFC 3798 [3.2.6]). */
-        $dispo = (($action) ? 'manual-action' : 'automatic-action') .
-            '/' .
-            (($sending) ? 'MDN-sent-manually' : 'MDN-sent-automatically') .
-            '; ' .
-            $type;
+        $dispo = (($action) ? 'manual-action' : 'automatic-action')
+            . '/'
+            . (($sending) ? 'MDN-sent-manually' : 'MDN-sent-automatically')
+            . '; '
+            . $type;
         if (!empty($mod)) {
             $dispo .= '/' . implode(', ', $mod);
         }
@@ -259,7 +259,7 @@ class Horde_Mime_Mdn
          * is left up to the user. */
         $part_three = new Horde_Mime_Part();
         $part_three->setType('message/rfc822');
-        $part_three_text = array(trim($this->_headers->toString()) . "\n");
+        $part_three_text = [trim($this->_headers->toString()) . "\n"];
         if (!empty($this->_msgtext)) {
             $part_three_text[] = "\n" . $this->_msgtext;
         }

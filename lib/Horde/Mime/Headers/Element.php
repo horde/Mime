@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -39,7 +39,7 @@ abstract class Horde_Mime_Headers_Element implements IteratorAggregate
      *
      * @var array
      */
-    protected $_values = array();
+    protected $_values = [];
 
     /**
      * Constructor.
@@ -94,11 +94,11 @@ abstract class Horde_Mime_Headers_Element implements IteratorAggregate
      *
      * @return array  An array of string values.
      */
-    final public function sendEncode(array $opts = array())
+    final public function sendEncode(array $opts = [])
     {
-        return $this->_sendEncode(array_merge(array(
-            'charset' => 'UTF-8'
-        ), $opts));
+        return $this->_sendEncode(array_merge([
+            'charset' => 'UTF-8',
+        ], $opts));
     }
 
     /**
@@ -118,10 +118,10 @@ abstract class Horde_Mime_Headers_Element implements IteratorAggregate
      */
     protected function _sanityCheck($data)
     {
-        $charset_test = array(
+        $charset_test = [
             'windows-1252',
-            Horde_Mime_Headers::$defaultCharset
-        );
+            Horde_Mime_Headers::$defaultCharset,
+        ];
 
         if (!Horde_String::validUtf8($data)) {
             /* Appears to be a PHP error with the internal String structure
@@ -169,7 +169,7 @@ abstract class Horde_Mime_Headers_Element implements IteratorAggregate
      */
     public static function getHandles()
     {
-        return array();
+        return [];
     }
 
     /* IteratorAggregate method */

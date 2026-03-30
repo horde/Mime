@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -77,11 +77,11 @@ class Horde_Mime_Id
      * @return mixed  The resulting ID string, or null if that ID can not
      *                exist.
      */
-    public function idArithmetic($action, array $options = array())
+    public function idArithmetic($action, array $options = [])
     {
-        return $this->_idArithmetic($this->id, $action, array_merge(array(
-            'count' => 1
-        ), $options));
+        return $this->_idArithmetic($this->id, $action, array_merge([
+            'count' => 1,
+        ], $options));
     }
 
     /**
@@ -107,8 +107,8 @@ class Horde_Mime_Id
                 break;
 
             case self::ID_PREV:
-                if (($end == '0') ||
-                    (empty($options['no_rfc822']) && ($end == '1'))) {
+                if (($end == '0')
+                    || (empty($options['no_rfc822']) && ($end == '1'))) {
                     $id = null;
                 } elseif ($pos === false) {
                     $id = --$end;
@@ -146,8 +146,8 @@ class Horde_Mime_Id
             ? substr($this->id, 0, -1)
             : rtrim($this->id, '.') . '.';
 
-        return ((($base == 0) && ($id != 0)) ||
-                (strpos(strval($id), strval($base)) === 0));
+        return ((($base == 0) && ($id != 0))
+                || (strpos(strval($id), strval($base)) === 0));
     }
 
 }

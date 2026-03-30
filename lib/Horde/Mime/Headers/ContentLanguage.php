@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -63,7 +63,7 @@ class Horde_Mime_Headers_ContentLanguage extends Horde_Mime_Headers_Element_Sing
             $value = array_map('trim', explode(',', $value));
         }
 
-        $this->_values = array();
+        $this->_values = [];
         foreach ($value as $val) {
             $this->_values[] = Horde_String::lower(
                 $this->_sanityCheck(Horde_Mime::decode($val))
@@ -75,9 +75,9 @@ class Horde_Mime_Headers_ContentLanguage extends Horde_Mime_Headers_Element_Sing
      */
     public static function getHandles()
     {
-        return array(
-            'content-language'
-        );
+        return [
+            'content-language',
+        ];
     }
 
 }

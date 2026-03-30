@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2015-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Headers;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers_ContentLanguage;
+use Horde_Mime_Headers_ContentLanguage;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentLanguage class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Headers_ContentLanguage;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class ContentLanguageTest extends TestCase
 {
@@ -45,33 +49,33 @@ class ContentLanguageTest extends TestCase
 
     public function parsingOfInputProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'en',
                 'en',
-                array('en')
-            ),
-            array(
+                ['en'],
+            ],
+            [
                 'en, de',
                 'en,de',
-                array('en', 'de')
-            ),
-            array(
+                ['en', 'de'],
+            ],
+            [
                 '    eN  , de      ,PT',
                 'en,de,pt',
-                array('en', 'de', 'pt')
-            ),
-            array(
-                array('en', 'de'),
+                ['en', 'de', 'pt'],
+            ],
+            [
+                ['en', 'de'],
                 'en,de',
-                array('en', 'de')
-            ),
-            array(
+                ['en', 'de'],
+            ],
+            [
                 "e\0n",
                 'en',
-                array('en')
-            )
-        );
+                ['en'],
+            ],
+        ];
     }
 
 }

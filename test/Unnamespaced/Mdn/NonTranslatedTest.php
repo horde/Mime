@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2014-2016 Horde LLC
@@ -8,10 +9,12 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Mdn;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers;
-use \Horde_Mime_Mdn;
+use Horde_Mime_Headers;
+use Horde_Mime_Mdn;
 
 /**
  * Tests for the Horde_Mime_Mdn object that require translations to not occur.
@@ -23,6 +26,7 @@ use \Horde_Mime_Mdn;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class NonTranslatedTest extends TestCase
 {
@@ -64,11 +68,11 @@ class NonTranslatedTest extends TestCase
             'displayed',
             'test.example.com',
             $mailer,
-            array(
-                'from_addr' => 'bar@example.com'
-            ),
-            array('error'),
-            array('error' => 'Foo')
+            [
+                'from_addr' => 'bar@example.com',
+            ],
+            ['error'],
+            ['error' => 'Foo']
         );
 
         $sent = str_replace("\r\n", "\n", $mailer->sentMessages[0]);
@@ -91,7 +95,7 @@ class NonTranslatedTest extends TestCase
         );
 
         $this->assertStringMatchesFormat(
-'This message is in MIME format.
+            'This message is in MIME format.
 
 --=%s
 Content-Type: text/plain; format=flowed; DelSp=Yes

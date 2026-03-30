@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -80,7 +80,7 @@ class Horde_Mime_Headers_ContentParam_ContentType extends Horde_Mime_Headers_Con
 
             case 'type_charset':
                 $val = $this->value;
-                foreach ($this->_escapeParams(array_filter(array('charset' => $this['charset']))) as $k2 => $v2) {
+                foreach ($this->_escapeParams(array_filter(['charset' => $this['charset']])) as $k2 => $v2) {
                     $val .= '; ' . $k2 . '=' . $v2;
                 }
                 return $val;
@@ -139,9 +139,9 @@ class Horde_Mime_Headers_ContentParam_ContentType extends Horde_Mime_Headers_Con
      */
     public static function getHandles()
     {
-        return array(
-            'content-type'
-        );
+        return [
+            'content-type',
+        ];
     }
 
     /* ArrayAccess methods. */
@@ -157,8 +157,8 @@ class Horde_Mime_Headers_ContentParam_ContentType extends Horde_Mime_Headers_Con
         if (strcasecmp($offset, 'boundary') === 0) {
             return ($this->ptype === 'multipart');
         } elseif (strcasecmp($offset, 'charset') === 0) {
-            return (($this->ptype === 'text') &&
-                    (parent::offsetGet($offset) !== 'us-ascii'));
+            return (($this->ptype === 'text')
+                    && (parent::offsetGet($offset) !== 'us-ascii'));
         }
 
         return true;
@@ -189,8 +189,8 @@ class Horde_Mime_Headers_ContentParam_ContentType extends Horde_Mime_Headers_Con
      */
     public function offsetUnset($offset): void
     {
-        if (($this->ptype !== 'multipart') ||
-            (strcasecmp($offset, 'boundary') !== 0)) {
+        if (($this->ptype !== 'multipart')
+            || (strcasecmp($offset, 'boundary') !== 0)) {
             parent::offsetUnset($offset);
         }
     }

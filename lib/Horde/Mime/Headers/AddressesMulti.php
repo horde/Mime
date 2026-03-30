@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -29,7 +29,7 @@ class Horde_Mime_Headers_AddressesMulti extends Horde_Mime_Headers_Element_Multi
      */
     public function __clone()
     {
-        $copy = array();
+        $copy = [];
         foreach ($this->_values as $val) {
             $copy[] = clone $val;
         }
@@ -84,13 +84,13 @@ class Horde_Mime_Headers_AddressesMulti extends Horde_Mime_Headers_Element_Multi
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // Mail: RFC 5322 (Address that can appear in multiple headers)
             'resent-to',
             'resent-cc',
             'resent-bcc',
-            'resent-from'
-        );
+            'resent-from',
+        ];
     }
 
     /**

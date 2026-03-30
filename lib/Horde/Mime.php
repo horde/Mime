@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -80,7 +80,7 @@ class Horde_Mime
         /* 0 = word unencoded
          * 1 = word encoded
          * 2 = spaces */
-        $parts = array();
+        $parts = [];
 
         /* Tokenize string. */
         for ($i = 0, $len = strlen($text); $i < $len; ++$i) {
@@ -89,19 +89,19 @@ class Horde_Mime
                 case "\r":
                 case "\n":
                     if (!is_null($word)) {
-                        $parts[] = array(intval($encoded), $word, $i - $word);
+                        $parts[] = [intval($encoded), $word, $i - $word];
                         $word = null;
                     } elseif (!is_null($lwsp)) {
-                        $parts[] = array(2, $lwsp, $i - $lwsp);
+                        $parts[] = [2, $lwsp, $i - $lwsp];
                         $lwsp = null;
                     }
 
-                    $parts[] = array(0, $i, 1);
+                    $parts[] = [0, $i, 1];
                     break;
 
                 case ' ':
                     if (!is_null($word)) {
-                        $parts[] = array(intval($encoded), $word, $i - $word);
+                        $parts[] = [intval($encoded), $word, $i - $word];
                         $word = null;
                     }
                     if (is_null($lwsp)) {
@@ -114,15 +114,15 @@ class Horde_Mime
                         $encoded = false;
                         $word = $i;
                         if (!is_null($lwsp)) {
-                            $parts[] = array(2, $lwsp, $i - $lwsp);
+                            $parts[] = [2, $lwsp, $i - $lwsp];
                             $lwsp = null;
                         }
 
                         /* Check for MIME encoding delimiter. Encode it if
                          * found. */
-                        if (($text[$i] === '=') &&
-                            (($i + 1) < $len) &&
-                            ($text[$i + 1] === '?')) {
+                        if (($text[$i] === '=')
+                            && (($i + 1) < $len)
+                            && ($text[$i + 1] === '?')) {
                             ++$i;
                             $encoded = $is_encoded = true;
                         }
@@ -144,9 +144,9 @@ class Horde_Mime
         }
 
         if (is_null($lwsp)) {
-            $parts[] = array(intval($encoded), $word, $len);
+            $parts[] = [intval($encoded), $word, $len];
         } else {
-            $parts[] = array(2, $lwsp, $len);
+            $parts[] = [2, $lwsp, $len];
         }
 
         /* Combine parts into MIME encoded string. */
@@ -190,7 +190,7 @@ class Horde_Mime
                         )
                     );
 
-                    $tmp = array();
+                    $tmp = [];
                     foreach ($e_parts as $val) {
                         $tmp[] = $delim . $val . '?=';
                     }
@@ -219,8 +219,8 @@ class Horde_Mime
             /* Save any preceding text, if it is not LWSP between two
              * encoded words. */
             $pre = substr($string, $old_pos, $pos - $old_pos);
-            if (!$old_pos ||
-                (strspn($pre, " \t\n\r") != strlen($pre))) {
+            if (!$old_pos
+                || (strspn($pre, " \t\n\r") != strlen($pre))) {
                 $out .= $pre;
             }
 
@@ -230,8 +230,8 @@ class Horde_Mime
             }
 
             $orig_charset = substr($string, $pos + 2, $d1 - $pos - 2);
-            if (self::$decodeWindows1252 &&
-                (Horde_String::lower($orig_charset) == 'iso-8859-1')) {
+            if (self::$decodeWindows1252
+                && (Horde_String::lower($orig_charset) == 'iso-8859-1')) {
                 $orig_charset = 'windows-1252';
             }
 
@@ -313,16 +313,16 @@ class Horde_Mime
     /**
      * @deprecated  Use Horde_Mime_Headers_ContentParam#encode() instead.
      */
-    public static function encodeParam($name, $val, array $opts = array())
+    public static function encodeParam($name, $val, array $opts = [])
     {
         $cp = new Horde_Mime_Headers_ContentParam(
             'UNUSED',
-            array($name => $val)
+            [$name => $val]
         );
 
-        return $cp->encode(array_merge(array(
-            'broken_rfc2231' => self::$brokenRFC2231
-        ), $opts));
+        return $cp->encode(array_merge([
+            'broken_rfc2231' => self::$brokenRFC2231,
+        ], $opts));
     }
 
     /**
@@ -343,16 +343,16 @@ class Horde_Mime
                 : 'attachment';
         }
 
-        return array(
+        return [
             'params' => $cp->params,
-            'val' => $val
-        );
+            'val' => $val,
+        ];
     }
 
     /**
      * @deprecated  Use Horde_Mime_Id instead.
      */
-    public static function mimeIdArithmetic($id, $action, $options = array())
+    public static function mimeIdArithmetic($id, $action, $options = [])
     {
         $id_ob = new Horde_Mime_Id($id);
 

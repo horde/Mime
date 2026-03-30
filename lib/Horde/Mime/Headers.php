@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2002-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2002-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -45,7 +45,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
      *
      * @var array
      */
-    protected static $_handlers = array();
+    protected static $_handlers = [];
 
     /**
      * The internal headers array.
@@ -100,7 +100,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
      *                case sensitivity cannot be guaranteed. Values are
      *                header values.
      */
-    public function toArray(array $opts = array())
+    public function toArray(array $opts = [])
     {
         $charset = array_key_exists('charset', $opts)
             ? (empty($opts['charset']) ? 'UTF-8' : $opts['charset'])
@@ -108,15 +108,15 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
         $eol = empty($opts['canonical'])
             ? $this->_eol
             : "\r\n";
-        $ret = array();
+        $ret = [];
 
         foreach ($this->_headers as $ob) {
-            $sopts = array(
-                'charset' => $charset
-            );
+            $sopts = [
+                'charset' => $charset,
+            ];
 
-            if (($ob instanceof Horde_Mime_Headers_Addresses) ||
-                ($ob instanceof Horde_Mime_Headers_AddressesMulti)) {
+            if (($ob instanceof Horde_Mime_Headers_Addresses)
+                || ($ob instanceof Horde_Mime_Headers_AddressesMulti)) {
                 if (!empty($opts['defserver'])) {
                     $sopts['defserver'] = $opts['defserver'];
                 }
@@ -127,7 +127,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
                 }
             }
 
-            $tmp = array();
+            $tmp = [];
 
             foreach ($ob->sendEncode(array_filter($sopts)) as $val) {
                 if (empty($opts['nowrap'])) {
@@ -136,7 +136,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
                     $val = ltrim(
                         substr(
                             wordwrap(
-                                $htext . strtr(trim($val), array("\r" => '', "\n" => '')),
+                                $htext . strtr(trim($val), ["\r" => '', "\n" => '']),
                                 76,
                                 $eol . ' '
                             ),
@@ -163,7 +163,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
      *
      * @return string  The headers in string format.
      */
-    public function toString(array $opts = array())
+    public function toString(array $opts = [])
     {
         $eol = empty($opts['canonical'])
             ? $this->_eol
@@ -171,7 +171,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
         $text = '';
 
         foreach ($this->toArray($opts) as $key => $val) {
-            foreach ((is_array($val) ? $val : array($val)) as $entry) {
+            foreach ((is_array($val) ? $val : [$val]) as $entry) {
                 $text .= $key . ': ' . $entry . $eol;
             }
         }
@@ -186,7 +186,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
      * @param string $value   The header value (UTF-8).
      * @param array $opts     DEPRECATED
      */
-    public function addHeader($header, $value, array $opts = array())
+    public function addHeader($header, $value, array $opts = [])
     {
         /* Existing header? Add to that object. */
         $header = trim($header);
@@ -262,7 +262,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     protected function _getHeaderClassName($header)
     {
         if (empty(self::$_handlers)) {
-            $search = array(
+            $search = [
                 'Horde_Mime_Headers_Element_Single',
                 'Horde_Mime_Headers_AddressesMulti',
                 'Horde_Mime_Headers_Addresses',
@@ -280,8 +280,8 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
                 'Horde_Mime_Headers_Received',
                 'Horde_Mime_Headers_Subject',
                 'Horde_Mime_Headers_UserAgent',
-                'Horde_Mime_Headers_ThreadIndex'
-            );
+                'Horde_Mime_Headers_ThreadIndex',
+            ];
 
             foreach ($search as $val) {
                 foreach ($val::getHandles() as $hdr) {
@@ -292,9 +292,8 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
 
         $header = Horde_String::lower($header);
 
-        return isset(self::$_handlers[$header])
-            ? self::$_handlers[$header]
-            : 'Horde_Mime_Headers_Element_Multiple';
+        return self::$_handlers[$header]
+            ?? 'Horde_Mime_Headers_Element_Multiple';
     }
 
     /**
@@ -334,7 +333,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     {
         $curr = null;
         $headers = new Horde_Mime_Headers();
-        $hdr_list = array();
+        $hdr_list = [];
 
         if ($text instanceof Horde_Stream) {
             $stream = $text;
@@ -366,9 +365,9 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
             /* When parsing, only keep the FIRST header seen for single value
              * text-only headers, since newer headers generally are appended
              * to the top of the message. */
-            if (!($ob = $headers[$val->header]) ||
-                !($ob instanceof Horde_Mime_Headers_Element_Single) ||
-                ($ob instanceof Horde_Mime_Headers_Addresses)) {
+            if (!($ob = $headers[$val->header])
+                || !($ob instanceof Horde_Mime_Headers_Element_Single)
+                || ($ob instanceof Horde_Mime_Headers_Addresses)) {
                 $headers->addHeader($val->header, rtrim($val->text));
             }
         }
@@ -399,13 +398,13 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
      */
     public function __serialize(): array
     {
-        return array(
+        return [
             // Serialized data ID.
             self::VERSION,
             $this->_headers->getArrayCopy(),
             // TODO: BC
-            $this->_eol
-        );
+            $this->_eol,
+        ];
     }
 
     /**
@@ -521,7 +520,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     public function __call($name, $arguments)
     {
         $d = new Horde_Mime_Headers_Deprecated($this);
-        return call_user_func_array(array($d, $name), $arguments);
+        return call_user_func_array([$d, $name], $arguments);
     }
 
     /**
@@ -530,7 +529,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     public static function __callStatic($name, $arguments)
     {
         $d = new Horde_Mime_Headers_Deprecated(new Horde_Mime_Headers());
-        return call_user_func_array(array($d, $name), $arguments);
+        return call_user_func_array([$d, $name], $arguments);
     }
 
     /**

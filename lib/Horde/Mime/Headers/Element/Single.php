@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -58,16 +58,16 @@ class Horde_Mime_Headers_Element_Single extends Horde_Mime_Headers_Element
             $value = reset($value);
         }
 
-        $this->_values = array(
-            $this->_sanityCheck(Horde_Mime::decode($value))
-        );
+        $this->_values = [
+            $this->_sanityCheck(Horde_Mime::decode($value)),
+        ];
     }
 
     /**
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // Mail: RFC 3798
             'disposition-notification-options',
             'original-recipient',
@@ -85,8 +85,8 @@ class Horde_Mime_Headers_Element_Single extends Horde_Mime_Headers_Element
             // OTHER: X-Priority
             // See: http://kb.mozillazine.org/Emulate_Microsoft_email_clients
             'x-priority',
-            'thread-index'
-        );
+            'thread-index',
+        ];
     }
 
 }

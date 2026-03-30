@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2012-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2012-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2012-2016 Horde LLC
@@ -8,10 +9,12 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Related;
-use \Horde_Mime_Part;
+use Horde_Mime_Related;
+use Horde_Mime_Part;
 
 /**
  * Tests for the Horde_Mime_Related class.
@@ -23,6 +26,7 @@ use \Horde_Mime_Part;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class RelatedTest extends TestCase
 {
@@ -39,20 +43,20 @@ class RelatedTest extends TestCase
 
     public function startProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg.txt')
                 )),
-                1
-            ),
-            array(
+                1,
+            ],
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg_2.txt')
                 )),
-                2
-            )
-        );
+                2,
+            ],
+        ];
     }
 
     /**
@@ -68,22 +72,22 @@ class RelatedTest extends TestCase
 
     public function searchProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg.txt')
                 )),
                 '789',
-                3
-            ),
-            array(
+                3,
+            ],
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg_2.txt')
                 )),
                 'abc',
-                2
-            )
-        );
+                2,
+            ],
+        ];
     }
 
     /**
@@ -99,20 +103,20 @@ class RelatedTest extends TestCase
 
     public function iteratorProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg.txt')
                 )),
-                array('2' => '456', '3' => '789')
-            ),
-            array(
+                ['2' => '456', '3' => '789'],
+            ],
+            [
                 new Horde_Mime_Related(Horde_Mime_Part::parseMessage(
                     file_get_contents(__DIR__ . '/fixtures/related_msg_2.txt')
                 )),
-                array('2' => 'abc')
-            )
-        );
+                ['2' => 'abc'],
+            ],
+        ];
     }
 
     public function testReplace()
@@ -124,7 +128,7 @@ class RelatedTest extends TestCase
 
         $ob = $related->cidReplace(
             $part['1']->getContents(),
-            array($this, 'callbackTestReplace')
+            [$this, 'callbackTestReplace']
         );
 
         $body = $ob->dom->getElementsByTagName('body');

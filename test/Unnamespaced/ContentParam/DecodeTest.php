@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\ContentParam;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_ContentParam_Decode;
+use Horde_Mime_ContentParam_Decode;
 
 /**
  * Tests for the Horde_Mime_ContentParam_Decode class.
@@ -22,6 +25,7 @@ use \Horde_Mime_ContentParam_Decode;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class DecodeTest extends TestCase
 {
@@ -43,41 +47,41 @@ class DecodeTest extends TestCase
 
     public function decodeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'foo=bar',
-                array(
-                    'foo' => 'bar'
-                )
-            ),
-            array(
+                [
+                    'foo' => 'bar',
+                ],
+            ],
+            [
                 'foofoo=b',
-                array(
-                    'foofoo' => 'b'
-                )
-            ),
-            array(
+                [
+                    'foofoo' => 'b',
+                ],
+            ],
+            [
                 'f=barbar',
-                array(
-                    'f' => 'barbar'
-                )
-            ),
-            array(
+                [
+                    'f' => 'barbar',
+                ],
+            ],
+            [
                 'foo=bar; a=b',
-                array(
+                [
                     'a' => 'b',
-                    'foo' => 'bar'
-                )
-            ),
-            array(
+                    'foo' => 'bar',
+                ],
+            ],
+            [
                 '  foo =    bar    ; a     =b ;c   =   d   ',
-                array(
+                [
                     'a' => 'b',
                     'c' => 'd',
-                    'foo' => 'bar'
-                )
-            )
-        );
+                    'foo' => 'bar',
+                ],
+            ],
+        ];
     }
 
 }

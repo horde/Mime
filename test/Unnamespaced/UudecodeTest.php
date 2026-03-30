@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Uudecode;
+use Horde_Mime_Uudecode;
 
 /**
  * Tests for the Horde_Mime_Uudecode class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Uudecode;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class UudecodeTest extends TestCase
 {
@@ -40,7 +44,7 @@ class UudecodeTest extends TestCase
         $res = iterator_to_array($uudecode);
 
         foreach ($expected as $key => $val) {
-            foreach (array('data', 'name', 'perm') as $key2 => $val2) {
+            foreach (['data', 'name', 'perm'] as $key2 => $val2) {
                 $this->assertArrayHasKey($val2, $res[$key]);
                 $this->assertEquals(
                     $val[$key2],
@@ -52,15 +56,15 @@ class UudecodeTest extends TestCase
 
     public function uudecodeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 file_get_contents(__DIR__ . '/fixtures/uudecode.txt'),
-                array(
-                    array('Test string', 'test.txt', 644),
-                    array('2nd string', 'test2.txt', 755)
-                )
-            )
-        );
+                [
+                    ['Test string', 'test.txt', 644],
+                    ['2nd string', 'test2.txt', 755],
+                ],
+            ],
+        ];
     }
 
 }

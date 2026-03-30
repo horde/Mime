@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -41,7 +41,7 @@ class Horde_Mime_Part_Upgrade_V1
         // Version number
         array_shift($data);
 
-        $d = array();
+        $d = [];
 
         $type = array_shift($data);
         $subtype = array_shift($data);

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -11,9 +12,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Filter;
+
 use Horde_Test_Case;
-use \stdClass;
+use stdClass;
 
 /**
  * Test for the SMTP BODY filter.
@@ -25,6 +28,7 @@ use \stdClass;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class EncodingTest extends Horde_Test_Case
 {
@@ -33,7 +37,7 @@ class EncodingTest extends Horde_Test_Case
      */
     public function testBodyFilter($data, $result)
     {
-        $params = new stdClass;
+        $params = new stdClass();
 
         $stream = fopen('php://temp', 'r+');
         stream_filter_register('horde_smtp_body', 'Horde_Mime_Filter_Encoding');
@@ -55,56 +59,56 @@ class EncodingTest extends Horde_Test_Case
 
     public function bodyFilterProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 "This is 7-bit\r\ndata.",
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 str_repeat('A', 900) . "This is also 7-bit\r\ndata.",
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 "This is 7-bit\rdata\rwith\rCR\rline-endings.",
                 false,
-            ),
-            array(
+            ],
+            [
                 "This is 7-bit\ndata\nwith\nLF\nline-endings.",
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 "This is 7-bit\r\ndata\nwith\rinconsistent\r\nline-endings.",
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 "This is 8-bit åå\r\ndata.",
-                '8bit'
-            ),
-            array(
+                '8bit',
+            ],
+            [
                 str_repeat('A', 900) . "This is also 8-bit åå\r\ndata.",
-                '8bit'
-            ),
-            array(
+                '8bit',
+            ],
+            [
                 "This is 8-bit åå\rdata\rwith\rCR\rline-endings.",
-                '8bit'
-            ),
-            array(
+                '8bit',
+            ],
+            [
                 "This is 8-bit åå\ndata\nwith\nLF\nline-endings.",
-                '8bit'
-            ),
-            array(
+                '8bit',
+            ],
+            [
                 "This is binary \0\r\ndata.",
-                'binary'
-            ),
-            array(
+                'binary',
+            ],
+            [
                 str_repeat('A', 1500) . "This is also binary data.",
-                'binary'
-            ),
-            array(
+                'binary',
+            ],
+            [
                 str_repeat('A', 1500) . "This is also binary åå\r\ndata.",
-                'binary'
-            )
-        );
+                'binary',
+            ],
+        ];
     }
 
 }

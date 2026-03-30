@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -77,9 +77,8 @@ class Horde_Mime_Magic
             $ext = substr($ext, $pos + 1);
         }
 
-        return isset($map[$ext])
-            ? $map[$ext]
-            : 'x-extension/' . $ext;
+        return $map[$ext]
+            ?? 'x-extension/' . $ext;
     }
 
     /**
@@ -131,7 +130,7 @@ class Horde_Mime_Magic
         }
 
         if (($key = array_search($type, self::_getMimeExtensionMap())) === false) {
-            list($major, $minor) = explode('/', $type);
+            [$major, $minor] = explode('/', $type);
             if ($major == 'x-extension') {
                 return $minor;
             }
@@ -160,7 +159,7 @@ class Horde_Mime_Magic
     public static function analyzeFile(
         $path,
         $magic_db = null,
-        $opts = array()
+        $opts = []
     ) {
         if (Horde_Util::extensionExists('fileinfo')) {
             $res = empty($magic_db)
@@ -173,7 +172,7 @@ class Horde_Mime_Magic
 
                 /* Remove any additional information. */
                 if (empty($opts['nostrip'])) {
-                    foreach (array(';', ',', '\\0') as $separator) {
+                    foreach ([';', ',', '\\0'] as $separator) {
                         if (($pos = strpos($type, $separator)) !== false) {
                             $type = rtrim(substr($type, 0, $pos));
                         }
@@ -207,7 +206,7 @@ class Horde_Mime_Magic
     public static function analyzeData(
         $data,
         $magic_db = null,
-        $opts = array()
+        $opts = []
     ) {
         /* If the PHP Mimetype extension is available, use that. */
         if (Horde_Util::extensionExists('fileinfo')) {

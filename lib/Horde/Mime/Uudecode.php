@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * -----
  *
@@ -54,7 +54,7 @@ class Horde_Mime_Uudecode implements Countable, IteratorAggregate
      *
      * @var array
      */
-    protected $_data = array();
+    protected $_data = [];
 
     /**
      * Scans $input for uuencoded data and converts it to unencoded data.
@@ -66,11 +66,11 @@ class Horde_Mime_Uudecode implements Countable, IteratorAggregate
         /* Find all uuencoded sections. */
         if (preg_match_all(self::UUENCODE_REGEX, $input, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $v) {
-                $this->_data[] = array(
+                $this->_data[] = [
                     'data' => $this->_uudecode($v[3]),
                     'name' => $v[2],
-                    'perm' => $v[1]
-                );
+                    'perm' => $v[1],
+                ];
             }
         }
     }

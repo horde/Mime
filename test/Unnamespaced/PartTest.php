@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,10 +9,12 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers;
-use \Horde_Mime_Part;
+use Horde_Mime_Headers;
+use Horde_Mime_Part;
 
 /**
  * Tests for the Horde_Mime_Part class.
@@ -23,6 +26,7 @@ use \Horde_Mime_Part;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class PartTest extends TestCase
 {
@@ -77,9 +81,9 @@ class PartTest extends TestCase
         );
 
         $this->assertEquals(
-            "Content-Type: image/png; name=index.png\r\n" .
-            "Content-Disposition: attachment; filename=index.png\r\n" .
-            'Content-Transfer-Encoding: base64',
+            "Content-Type: image/png; name=index.png\r\n"
+            . "Content-Disposition: attachment; filename=index.png\r\n"
+            . 'Content-Transfer-Encoding: base64',
             Horde_Mime_Part::getRawPartText($msg, 'header', '3')
         );
 
@@ -101,12 +105,12 @@ class PartTest extends TestCase
         $msg = file_get_contents(__DIR__ . '/fixtures/samplemultipart_msg.txt');
         $part = Horde_Mime_Part::parseMessage($msg);
         $part->isBasePart(true);
-        $msg = $part->toString(array('headers' => true));
+        $msg = $part->toString(['headers' => true]);
         $test_part = Horde_Mime_Part::parseMessage($msg);
-        $map = array(
+        $map = [
             'multipart/alternative',
             'text/plain',
-            'text/html');
+            'text/html'];
         $this->assertEquals($map, $test_part->contentTypeMap());
 
         $this->assertEquals(
@@ -184,14 +188,14 @@ class PartTest extends TestCase
         $part->setDisposition('attachment');
 
         $this->assertEquals(
-            "Content-Type: text/plain\r\n" .
-            "Content-Disposition: attachment; size=3\r\n" .
-            "\r\n" .
-            '123',
-            $part->toString(array(
+            "Content-Type: text/plain\r\n"
+            . "Content-Disposition: attachment; size=3\r\n"
+            . "\r\n"
+            . '123',
+            $part->toString([
                 'canonical' => true,
-                'headers' => true
-            ))
+                'headers' => true,
+            ])
         );
     }
 
@@ -251,7 +255,7 @@ class PartTest extends TestCase
         $part = new Horde_Mime_Part();
         $part->setType('text/plain');
 
-        $part->setContents($data, array('encoding' => $encoding));
+        $part->setContents($data, ['encoding' => $encoding]);
 
         $this->assertEquals(
             $text,
@@ -261,23 +265,23 @@ class PartTest extends TestCase
 
     public function contentsTransferDecodingProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'xIE=',
                 'base64',
-                'ā'
-            ),
-            array(
+                'ā',
+            ],
+            [
                 '=C4=81',
                 'quoted-printable',
-                'ā'
-            ),
-            array(
+                'ā',
+            ],
+            [
                 'ā',
                 '8bit',
-                'ā'
-            )
-        );
+                'ā',
+            ],
+        ];
     }
 
     /**
@@ -304,23 +308,23 @@ class PartTest extends TestCase
 
     public function setTypeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'text/plain',
                 'text/plain',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'multipart/mixed',
                 'multipart/mixed',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 'foo/bar',
                 'x-foo/bar',
-                false
-            )
-        );
+                false,
+            ],
+        ];
     }
 
     public function testAppendContents()
@@ -351,7 +355,7 @@ class PartTest extends TestCase
         $tmp = fopen('php://temp', 'r+');
         fwrite($tmp, '5');
         rewind($tmp);
-        $part->appendContents(array('4', $tmp, '6'));
+        $part->appendContents(['4', $tmp, '6']);
         $this->assertEquals(
             '123456',
             $part->getContents()
@@ -398,11 +402,11 @@ class PartTest extends TestCase
 
     public function setDispositionProvider()
     {
-        return array(
-            array('attachment'),
-            array('inline'),
-            array('')
-        );
+        return [
+            ['attachment'],
+            ['inline'],
+            [''],
+        ];
     }
 
     public function testUnserialize()
@@ -420,12 +424,12 @@ class PartTest extends TestCase
         );
 
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $part1->getAllContentTypeParameters()
         );
 
         $this->assertIsResource(
-            $part1->getContents(array('stream' => true))
+            $part1->getContents(['stream' => true])
         );
 
         $this->assertEquals(
@@ -593,8 +597,8 @@ C
 
     public function testBug12842()
     {
-        $msg = file_get_contents(__DIR__ . '/fixtures/bug12842_a.txt') .
-            str_replace("\n", "\r\n", file_get_contents(__DIR__ . '/fixtures/bug12842_b.txt'));
+        $msg = file_get_contents(__DIR__ . '/fixtures/bug12842_a.txt')
+            . str_replace("\n", "\r\n", file_get_contents(__DIR__ . '/fixtures/bug12842_b.txt'));
         $part = Horde_Mime_Part::parseMessage($msg);
 
         $this->assertTrue(isset($part['1']));
@@ -639,7 +643,7 @@ C
         $part2 = new Horde_Mime_Part();
         $part2->setBytes(10);
         $part2->setTransferEncoding('base64');
-        $part2->setContents('TestTes', array('encoding' => '7bit'));
+        $part2->setContents('TestTes', ['encoding' => '7bit']);
 
         $this->assertEquals(
             7,
@@ -699,12 +703,12 @@ C
 
     public function setCharsetProvider()
     {
-        return array(
-            array('utf-8', 'text/plain; charset=utf-8'),
-            array('UtF-8', 'text/plain; charset=utf-8'),
-            array('us-ascii', 'text/plain'),
-            array('', 'text/plain')
-        );
+        return [
+            ['utf-8', 'text/plain; charset=utf-8'],
+            ['UtF-8', 'text/plain; charset=utf-8'],
+            ['us-ascii', 'text/plain'],
+            ['', 'text/plain'],
+        ];
     }
 
     public function testIdSortingInMessageRfc822Part()
@@ -727,7 +731,7 @@ C
         $part->buildMimeIds();
 
         $this->assertEquals(
-            array('1.0', '1', '1.1', '1.2'),
+            ['1.0', '1', '1.1', '1.2'],
             array_keys($part->contentTypeMap(true))
         );
     }
@@ -740,7 +744,7 @@ C
         $part->setType('text/plain');
         $part->setContents($text);
 
-        $stream = $part->getContents(array('stream' => true));
+        $stream = $part->getContents(['stream' => true]);
 
         $part->setContents($stream);
 
@@ -800,13 +804,13 @@ C
 
         $part->setLanguage("e\0n");
         $this->assertEquals(
-            array('en'),
+            ['en'],
             $part->getLanguage()
         );
 
-        $part->setLanguage(array("e\0n", "d\0e"));
+        $part->setLanguage(["e\0n", "d\0e"]);
         $this->assertEquals(
-            array('en', 'de'),
+            ['en', 'de'],
             $part->getLanguage()
         );
 
@@ -855,7 +859,7 @@ C
         );
 
         $this->assertEquals(
-            array('en'),
+            ['en'],
             $part->getLanguage()
         );
 
@@ -895,7 +899,7 @@ C
         );
 
         $this->assertEquals(
-            array(),
+            [],
             $part->getParts()
         );
 
@@ -934,7 +938,7 @@ C
     {
         $iterator = $this->_getTestPart()->partIterator();
 
-        $ids = array(
+        $ids = [
             '0',
             '1',
             '2',
@@ -942,8 +946,8 @@ C
             '3.1',
             '3.2',
             '3.2.1',
-            '3.2.2'
-        );
+            '3.2.2',
+        ];
         reset($ids);
 
         foreach ($iterator as $val) {
@@ -990,7 +994,7 @@ MIME-Version: 1.0
 Test.
 
 --=_%s--",
-            $part->toString(array('headers' => true))
+            $part->toString(['headers' => true])
         );
     }
 
@@ -1038,7 +1042,7 @@ Test.
 
     public function setUp(): void
     {
-        Horde_Mime_Part::$defaultCharset =
-            Horde_Mime_Headers::$defaultCharset = 'us-ascii';
+        Horde_Mime_Part::$defaultCharset
+            = Horde_Mime_Headers::$defaultCharset = 'us-ascii';
     }
 }

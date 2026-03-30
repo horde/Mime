@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -74,7 +74,7 @@ class Horde_Mime_Headers_Deprecated
 
     /**
      */
-    public function addReceivedHeader(array $opts = array())
+    public function addReceivedHeader(array $opts = [])
     {
         $old_error = error_reporting(0);
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -140,8 +140,8 @@ class Horde_Mime_Headers_Deprecated
             $server_name = 'unknown';
         }
 
-        $is_ssl = isset($_SERVER['HTTPS']) &&
-                 $_SERVER['HTTPS'] != 'off';
+        $is_ssl = isset($_SERVER['HTTPS'])
+                 && $_SERVER['HTTPS'] != 'off';
 
         if ($remote == $remote_addr) {
             $remote = '[' . $remote . ']';
@@ -149,10 +149,10 @@ class Horde_Mime_Headers_Deprecated
 
         $this->_headers->addHeaderOb(new Horde_Mime_Headers_Element_Multiple(
             'Received',
-            'from ' . $remote . ' (' . $remote_ident .
-            '[' . $remote_addr . ']) ' .
-            'by ' . $server_name . ' (Horde Framework) with HTTP' .
-            ($is_ssl ? 'S' : '') . '; ' . date('r')
+            'from ' . $remote . ' (' . $remote_ident
+            . '[' . $remote_addr . ']) '
+            . 'by ' . $server_name . ' (Horde Framework) with HTTP'
+            . ($is_ssl ? 'S' : '') . '; ' . date('r')
         ));
     }
 
@@ -209,7 +209,7 @@ class Horde_Mime_Headers_Deprecated
 
     /**
      */
-    public function replaceHeader($header, $value, array $opts = array())
+    public function replaceHeader($header, $value, array $opts = [])
     {
         $this->_headers->removeHeader($header);
         $this->_headers->addHeader($header, $value, $opts);
@@ -228,30 +228,30 @@ class Horde_Mime_Headers_Deprecated
      */
     public function addressFields()
     {
-        return array(
+        return [
             'from', 'to', 'cc', 'bcc', 'reply-to', 'resent-to', 'resent-cc',
-            'resent-bcc', 'resent-from', 'sender'
-        );
+            'resent-bcc', 'resent-from', 'sender',
+        ];
     }
 
     /**
      */
     public function singleFields($list = true)
     {
-        $fields = array(
+        $fields = [
             'to', 'from', 'cc', 'bcc', 'date', 'sender', 'reply-to',
             'message-id', 'in-reply-to', 'references', 'subject',
             'content-md5', 'mime-version', 'content-type',
             'content-transfer-encoding', 'content-id', 'content-description',
             'content-base', 'content-disposition', 'content-duration',
             'content-location', 'content-features', 'content-language',
-            'content-alternative', 'importance', 'x-priority'
-        );
+            'content-alternative', 'importance', 'x-priority',
+        ];
 
-        $list_fields = array(
+        $list_fields = [
             'list-help', 'list-unsubscribe', 'list-subscribe', 'list-owner',
-            'list-post', 'list-archive', 'list-id'
-        );
+            'list-post', 'list-archive', 'list-id',
+        ];
 
         return $list
             ? array_merge($fields, $list_fields)
@@ -262,7 +262,7 @@ class Horde_Mime_Headers_Deprecated
      */
     public function mimeParamFields()
     {
-        return array('content-type', 'content-disposition');
+        return ['content-type', 'content-disposition'];
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2015-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Headers;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers_ContentTransferEncoding;
+use Horde_Mime_Headers_ContentTransferEncoding;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentTransferEncoding class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Headers_ContentTransferEncoding;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class ContentTransferEncodingTest extends TestCase
 {
@@ -46,48 +50,48 @@ class ContentTransferEncodingTest extends TestCase
 
     public function valuesProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 '7bit',
                 '7bit',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 ' 8BIT',
                 '8bit',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 ' quoted-pRiNtAbLe   ',
                 'quoted-printable',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'BINARY',
                 'binary',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'base64',
                 'base64',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 "7\0bit",
                 '7bit',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 ' X-foo',
                 'x-foo',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'foo',
                 Horde_Mime_Headers_ContentTransferEncoding::UNKNOWN_ENCODING,
-                false
-            )
-        );
+                false,
+            ],
+        ];
     }
 
 }

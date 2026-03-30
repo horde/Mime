@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,15 +9,17 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers;
-use \Horde_Mime_Headers_ContentParam_ContentType;
-use \Horde_Mime_Headers_ContentParam_ContentDisposition;
-use \Horde_Mail_Rfc822;
-use \Horde_Stream_Existing;
-use \Horde_Mime_Headers_Addresses;
-use \Horde_Mime_Headers_Element_Single;
+use Horde_Mime_Headers;
+use Horde_Mime_Headers_ContentParam_ContentType;
+use Horde_Mime_Headers_ContentParam_ContentDisposition;
+use Horde_Mail_Rfc822;
+use Horde_Stream_Existing;
+use Horde_Mime_Headers_Addresses;
+use Horde_Mime_Headers_Element_Single;
 
 /**
  * Tests for the Horde_Mime_Headers class.
@@ -28,6 +31,7 @@ use \Horde_Mime_Headers_Element_Single;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class HeadersTest extends TestCase
 {
@@ -62,15 +66,15 @@ class HeadersTest extends TestCase
             strval($hdrs2['To'])
         );
         $this->assertEquals(
-            array('foo2@example.com', 'foo3@example.com'),
+            ['foo2@example.com', 'foo3@example.com'],
             $hdrs2['Resent-To']->value
         );
         $this->assertEquals(
-            array('charset' => 'iso-8859-1'),
+            ['charset' => 'iso-8859-1'],
             $hdrs2['Content-Type']->params
         );
         $this->assertEquals(
-            array('filename' => 'foo'),
+            ['filename' => 'foo'],
             $hdrs2['Content-Disposition']->params
         );
     }
@@ -99,23 +103,23 @@ class HeadersTest extends TestCase
 
     public function serializeProvider()
     {
-        return array(
-            array(
-                'Subject', 'My Subject'
-            ),
-            array(
-                'To', 'recipient@example.com'
-            ),
-            array(
-                'Cc', 'null@example.com'
-            ),
-            array(
-                'Bcc', 'invisible@example.com'
-            ),
-            array(
-                'From', 'sender@example.com'
-            )
-        );
+        return [
+            [
+                'Subject', 'My Subject',
+            ],
+            [
+                'To', 'recipient@example.com',
+            ],
+            [
+                'Cc', 'null@example.com',
+            ],
+            [
+                'Bcc', 'invisible@example.com',
+            ],
+            [
+                'From', 'sender@example.com',
+            ],
+        ];
     }
 
     /**
@@ -140,37 +144,39 @@ class HeadersTest extends TestCase
 
     public function normalHeaderDecodeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'Test',
                 '=?iso-8859-15?b?VmVyc2nzbg==?=',
-                'Versión'
-            ),
-            array(
+                'Versión',
+            ],
+            [
                 'To',
                 '=?utf-8?B?IklsZ2EginVwbGluc2thIg==?= <foo@example.com>',
-                'Ilga Šuplinska <foo@example.com>'
-            ),
-            array(
+                'Ilga Šuplinska <foo@example.com>',
+            ],
+            [
                 'From',
                 'Firstname =?utf-8?b?U2Vjb25kw5Es?= Third <correct.email@host.com>',
-                '"Firstname SecondÑ, Third" <correct.email@host.com>'
-            ),
-            array(
+                '"Firstname SecondÑ, Third" <correct.email@host.com>',
+            ],
+            [
                 'From',
                 '=?utf-8?B?TGFuZXNza29nLCBKw7hyZ2Vu?= <Jorgen.Lanesskog@marinit.no>',
-                '"Lanesskog, Jørgen" <Jorgen.Lanesskog@marinit.no>'
-            )
-        );
+                '"Lanesskog, Jørgen" <Jorgen.Lanesskog@marinit.no>',
+            ],
+        ];
     }
 
     /**
      * @dataProvider contentParamHeaderDecodeProvider
      */
     public function testContentParamHeaderDecode(
-        $header, $value, $decode_value, $decode_params
-    )
-    {
+        $header,
+        $value,
+        $decode_value,
+        $decode_params
+    ) {
         $hdrs = new Horde_Mime_Headers();
         $hdrs->addHeader($header, $value);
 
@@ -191,25 +197,25 @@ class HeadersTest extends TestCase
 
     public function contentParamHeaderDecodeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'Content-Type',
                 'text/plain; name="=?iso-8859-15?b?VmVyc2nzbg==?="',
                 'text/plain',
-                array(
-                    'name' => 'Versión'
-                )
-            ),
-            array(
+                [
+                    'name' => 'Versión',
+                ],
+            ],
+            [
                 'Content-Disposition',
                 "attachment; size=147502;\n filename*=utf-8''Factura%20n%C2%BA%2010.pdf",
                 'attachment',
-                array(
+                [
                     'size' => '147502',
-                    'filename' => 'Factura nº 10.pdf'
-                )
-            )
-        );
+                    'filename' => 'Factura nº 10.pdf',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -233,40 +239,42 @@ class HeadersTest extends TestCase
 
     public function headerAutoDetectCharsetProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'Test',
                 // This string is in Windows-1252
                 'Test: ' . base64_decode('UnVubmVyc5IgQWxlcnQh='),
-                'Runners’ Alert!'
-            )
-        );
+                'Runners’ Alert!',
+            ],
+        ];
     }
 
     /**
      * @dataProvider headerEncodeProvider
      */
     public function testHeaderEncode(
-        $header, $values, $charset, $encoded
-    )
-    {
+        $header,
+        $values,
+        $charset,
+        $encoded
+    ) {
         $hdrs = new Horde_Mime_Headers();
         foreach ($values as $val) {
             $hdrs->addHeader($header, $val);
         }
 
-        $hdr_encode = $hdrs[$header]->sendEncode(array(
-            'charset' => $charset
-        ));
+        $hdr_encode = $hdrs[$header]->sendEncode([
+            'charset' => $charset,
+        ]);
 
         $this->assertEquals(
             $encoded,
             $hdr_encode
         );
 
-        $hdr_array = $hdrs->toArray(array(
-            'charset' => $charset
-        ));
+        $hdr_array = $hdrs->toArray([
+            'charset' => $charset,
+        ]);
 
         $this->assertEquals(
             (count($encoded) > 1) ? $encoded : reset($encoded),
@@ -276,50 +284,50 @@ class HeadersTest extends TestCase
 
     public function headerEncodeProvider()
     {
-        return array(
+        return [
             /* Single address header */
-            array(
+            [
                 'To',
-                array(
-                    'Empfänger <recipient@example.com>'
-                ),
-                'iso-8859-1',
-                array(
-                    '=?iso-8859-1?b?RW1wZuRuZ2Vy?= <recipient@example.com>'
-                )
-            ),
-            /* Multiple address header */
-            array(
-                'Resent-To',
-                array(
+                [
                     'Empfänger <recipient@example.com>',
-                    'Foo <foo@example.com>'
-                ),
+                ],
                 'iso-8859-1',
-                array(
+                [
                     '=?iso-8859-1?b?RW1wZuRuZ2Vy?= <recipient@example.com>',
-                    'Foo <foo@example.com>'
-                )
-            ),
+                ],
+            ],
+            /* Multiple address header */
+            [
+                'Resent-To',
+                [
+                    'Empfänger <recipient@example.com>',
+                    'Foo <foo@example.com>',
+                ],
+                'iso-8859-1',
+                [
+                    '=?iso-8859-1?b?RW1wZuRuZ2Vy?= <recipient@example.com>',
+                    'Foo <foo@example.com>',
+                ],
+            ],
             /* Bug #13814 */
-            array(
+            [
                 'Content-Description',
-                array(
-                    'AüA'
-                ),
+                [
+                    'AüA',
+                ],
                 'utf-8',
-                array(
-                    '=?utf-8?b?QcO8QQ==?='
-                )
-            )
-        );
+                [
+                    '=?utf-8?b?QcO8QQ==?=',
+                ],
+            ],
+        ];
     }
 
     public function testMultipleContentType()
     {
         $hdrs = Horde_Mime_Headers::parseHeaders(
-            "Content-Type: multipart/mixed\n" .
             "Content-Type: multipart/mixed\n"
+            . "Content-Type: multipart/mixed\n"
         );
 
         $this->assertIsString(
@@ -354,18 +362,18 @@ class HeadersTest extends TestCase
     {
         $expected = 'recipient1@example.com, recipient2@example.com';
 
-        return array(
-            array(
+        return [
+            [
                 'To',
                 'To: recipient1@example.com, recipient2@example.com',
-                $expected
-            ),
-            array(
+                $expected,
+            ],
+            [
                 'To',
                 "To: recipient1@example.com\nTo: recipient2@example.com",
-                $expected
-            )
-        );
+                $expected,
+            ],
+        ];
     }
 
     /**
@@ -393,12 +401,12 @@ class HeadersTest extends TestCase
 
     public function addHeaderWithGroupProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'To',
-                'Test: foo@example.com, bar@example.com;'
-            )
-        );
+                'Test: foo@example.com, bar@example.com;',
+            ],
+        ];
     }
 
     /**
@@ -422,23 +430,25 @@ class HeadersTest extends TestCase
 
     public function unencodeMimeHeaderProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'From',
                 // The header is base64 encoded to preserve charset data.
                 base64_decode('RnJvbTogwqkgVklBR1JBIMKuIE9mZmljaWFsIFNpdGUgPGZvb0BleGFtcGxlLmNvbT4='),
-                '© VIAGRA ® Official Site <foo@example.com>'
-            )
-        );
+                '© VIAGRA ® Official Site <foo@example.com>',
+            ],
+        ];
     }
 
     /**
      * @dataProvider parseContentDispositionHeaderWithUtf8DataProvider
      */
     public function testParseContentDispositionHeaderWithUtf8Data(
-        $header, $parameter, $msg, $value
-    )
-    {
+        $header,
+        $parameter,
+        $msg,
+        $value
+    ) {
         $hdrs = Horde_Mime_Headers::parseHeaders($msg);
 
         /* @deprecated */
@@ -459,14 +469,14 @@ class HeadersTest extends TestCase
 
     public function parseContentDispositionHeaderWithUtf8DataProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'content-disposition',
                 'filename',
                 file_get_contents(__DIR__ . '/fixtures/sample_msg_eai.txt'),
-                'blåbærsyltetøy'
-            )
-        );
+                'blåbærsyltetøy',
+            ],
+        ];
     }
 
     public function testCaseInsensitiveContentParameters()
@@ -562,11 +572,11 @@ class HeadersTest extends TestCase
 
     public function undisclosedHeaderParsingProvider()
     {
-        return array(
-            array('To', 'undisclosed-recipients'),
-            array('To', 'undisclosed-recipients:'),
-            array('To', 'undisclosed-recipients:;')
-        );
+        return [
+            ['To', 'undisclosed-recipients'],
+            ['To', 'undisclosed-recipients:'],
+            ['To', 'undisclosed-recipients:;'],
+        ];
     }
 
     public function testMultipleToAddresses()
@@ -605,9 +615,9 @@ class HeadersTest extends TestCase
 
     public function testParseHeadersGivingHordeStreamObject()
     {
-        $stream = new Horde_Stream_Existing(array(
-            'stream' => fopen(__DIR__ . '/fixtures/multiple_to.txt', 'r')
-        ));
+        $stream = new Horde_Stream_Existing([
+            'stream' => fopen(__DIR__ . '/fixtures/multiple_to.txt', 'r'),
+        ]);
         $hdrs = Horde_Mime_Headers::parseHeaders($stream);
 
         /* @deprecated */
@@ -618,9 +628,9 @@ class HeadersTest extends TestCase
 
     public function testParseHeadersBlankSubject()
     {
-        $stream = new Horde_Stream_Existing(array(
-            'stream' => fopen(__DIR__ . '/fixtures/blank_subject.txt', 'r')
-        ));
+        $stream = new Horde_Stream_Existing([
+            'stream' => fopen(__DIR__ . '/fixtures/blank_subject.txt', 'r'),
+        ]);
         $hdrs = Horde_Mime_Headers::parseHeaders($stream);
 
         /* @deprecated */
@@ -657,18 +667,18 @@ class HeadersTest extends TestCase
 
     public function multiplePriorityHeadersProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'Importance',
                 "Importance: High\nImportance: Low\n",
-                'High'
-            ),
-            array(
+                'High',
+            ],
+            [
                 'X-priority',
                 "X-Priority: 1\nX-priority: 5\n",
-                '1'
-            )
-        );
+                '1',
+            ],
+        ];
     }
 
     public function testInvalidHeaderParsing()
@@ -705,16 +715,16 @@ class HeadersTest extends TestCase
 
     public function addHeaderObProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new Horde_Mime_Headers_Addresses('To', 'foo@example.com'),
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 new Horde_Mime_Headers_Element_Single('To', 'foo@example.com'),
-                false
-            )
-        );
+                false,
+            ],
+        ];
     }
 
     /**
@@ -736,23 +746,23 @@ class HeadersTest extends TestCase
 
     public function headerGenerationProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'content-disposition',
                 'inline',
-                'Horde_Mime_Headers_ContentParam_ContentDisposition'
-            ),
-            array(
+                'Horde_Mime_Headers_ContentParam_ContentDisposition',
+            ],
+            [
                 'content-language',
                 'en',
-                'Horde_Mime_Headers_ContentLanguage'
-            ),
-            array(
+                'Horde_Mime_Headers_ContentLanguage',
+            ],
+            [
                 'content-type',
                 'text/plain',
-                'Horde_Mime_Headers_ContentParam_ContentType'
-            )
-        );
+                'Horde_Mime_Headers_ContentParam_ContentType',
+            ],
+        ];
     }
 
     public function testBug14381()

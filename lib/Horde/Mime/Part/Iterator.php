@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -51,7 +51,7 @@ class Horde_Mime_Part_Iterator implements Countable, Iterator
      */
     public function __construct(Horde_Mime_Part $part, $base = false)
     {
-        $this->_includeBase = (bool)$base;
+        $this->_includeBase = (bool) $base;
         $this->_part = $part;
     }
 
@@ -102,10 +102,10 @@ class Horde_Mime_Part_Iterator implements Countable, Iterator
         $out = $this->_state->current->getPartByIndex($this->_state->index++);
 
         if ($out) {
-            $this->_state->recurse[] = array(
+            $this->_state->recurse[] = [
                 $this->_state->current,
-                $this->_state->index
-            );
+                $this->_state->index,
+            ];
             $this->_state->current = $out;
             $this->_state->index = 0;
         } elseif ($tmp = array_pop($this->_state->recurse)) {
@@ -125,7 +125,7 @@ class Horde_Mime_Part_Iterator implements Countable, Iterator
         $this->_state = new stdClass();
         $this->_state->current = $this->_part;
         $this->_state->index = 0;
-        $this->_state->recurse = array();
+        $this->_state->recurse = [];
 
         if (!$this->_includeBase) {
             $this->next();

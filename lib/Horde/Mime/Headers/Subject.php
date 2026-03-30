@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -35,17 +35,17 @@ class Horde_Mime_Headers_Subject extends Horde_Mime_Headers_Element_Single
      */
     protected function _sendEncode($opts)
     {
-        return array(Horde_Mime::encode($this->value, $opts['charset']));
+        return [Horde_Mime::encode($this->value, $opts['charset'])];
     }
 
     /**
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // Mail: RFC 5322
-            'subject'
-        );
+            'subject',
+        ];
     }
 
 }

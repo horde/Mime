@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2014-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Id;
+use Horde_Mime_Id;
 
 /**
  * Tests for the Horde_Mime_Id class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Id;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class MimeIdTest extends TestCase
 {
@@ -51,80 +55,80 @@ class MimeIdTest extends TestCase
 
     public function idArithmeticProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 '0',
                 Horde_Mime_Id::ID_DOWN,
-                array(),
-                '1'
-            ),
-            array(
+                [],
+                '1',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_DOWN,
-                array(),
-                '1.1.0'
-            ),
-            array(
+                [],
+                '1.1.0',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_DOWN,
-                array('no_rfc822' => true),
-                '1.1.1'
-            ),
-            array(
+                ['no_rfc822' => true],
+                '1.1.1',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_NEXT,
-                array(),
-                '1.2'
-            ),
-            array(
+                [],
+                '1.2',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_NEXT,
-                array('count' => 3),
-                '1.4'
-            ),
-            array(
+                ['count' => 3],
+                '1.4',
+            ],
+            [
                 '1',
                 Horde_Mime_Id::ID_NEXT,
-                array(),
-                '2'
-            ),
-            array(
+                [],
+                '2',
+            ],
+            [
                 '1.2',
                 Horde_Mime_Id::ID_PREV,
-                array(),
-                '1.1'
-            ),
-            array(
+                [],
+                '1.1',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_PREV,
-                array(),
-                null
-            ),
-            array(
+                [],
+                null,
+            ],
+            [
                 '2',
                 Horde_Mime_Id::ID_PREV,
-                array(),
-                '1'
-            ),
-            array(
+                [],
+                '1',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_UP,
-                array(),
-                '1.0'
-            ),
-            array(
+                [],
+                '1.0',
+            ],
+            [
                 '1.1',
                 Horde_Mime_Id::ID_UP,
-                array('no_rfc822' => true),
-                '1'
-            ),
-            array(
+                ['no_rfc822' => true],
+                '1',
+            ],
+            [
                 '2',
                 Horde_Mime_Id::ID_UP,
-                array(),
-                '0'
-            )
-        );
+                [],
+                '0',
+            ],
+        ];
     }
 
     /**
@@ -143,17 +147,17 @@ class MimeIdTest extends TestCase
 
     public function isChildProvider()
     {
-        return array(
-            array('1', '1.0', true),
-            array('1', '1.1', true),
-            array('1', '1.1.0', true),
-            array('1', '1.1.1.1.1.1.1', true),
-            array('1', '1', false),
-            array('1', '2', false),
-            array('1', '2.1', false),
-            array('1', '10', false),
-            array('1', '10.0', false)
-        );
+        return [
+            ['1', '1.0', true],
+            ['1', '1.1', true],
+            ['1', '1.1.0', true],
+            ['1', '1.1.1.1.1.1.1', true],
+            ['1', '1', false],
+            ['1', '2', false],
+            ['1', '2.1', false],
+            ['1', '10', false],
+            ['1', '10.0', false],
+        ];
     }
 
 }

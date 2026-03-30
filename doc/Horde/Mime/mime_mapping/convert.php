@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Create MIME mapping file from data sources.
  *
- * Copyright 2001-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2001-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -17,18 +18,18 @@
 
 /* Files containing MIME extensions (Apache format).
  * https://github.com/apache/httpd/blob/trunk/docs/conf/mime.types */
-$files = array(
+$files = [
     'mime.types',
-    'mime.types.horde'
-);
+    'mime.types.horde',
+];
 
 /* Files contating MIME extensions (freedesktop.org format).
  * http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec */
-$od_files = array(
-    'mime.globs'
-);
+$od_files = [
+    'mime.globs',
+];
 
-$exts = array();
+$exts = [];
 $maxlength = strlen('__MAXPERIOD__');
 $maxperiod = 0;
 
@@ -71,9 +72,9 @@ foreach ($od_files as $val) {
         $pos = strpos($fields[1], '*.');
         if ($pos !== false) {
             $val2 = substr($fields[1], $pos + 2);
-            if ((strpos($val2, '*') !== false) ||
-                (strpos($val2, '[') !== false) ||
-                isset($exts[$val2])) {
+            if ((strpos($val2, '*') !== false)
+                || (strpos($val2, '[') !== false)
+                || isset($exts[$val2])) {
                 continue;
             }
             $maxperiod = max(substr_count($val2, '.'), $maxperiod);
@@ -84,13 +85,13 @@ foreach ($od_files as $val) {
 }
 
 /* Assemble/sort the extensions into an output array. */
-$output = array(
+$output = [
     sprintf(
         "'__MAXPERIOD__'%s => '%u'",
         str_repeat(' ', $maxlength - strlen('__MAXPERIOD__')),
         $maxperiod
-    )
-);
+    ),
+];
 
 ksort($exts);
 
@@ -122,21 +123,21 @@ $generated = sprintf(
 $map = implode(",\n    ", $output);
 
 print <<<HEADER
-<?php
-/**
- * This file contains a mapping of common file extensions to MIME types.
- * It has been automatically generated.
- * Any changes made directly to this file may/will be lost in the future.
- *
- * Any unknown file extensions will automatically be mapped to
- * 'x-extension/<ext>' where <ext> is the unknown file extension.
- *
- * Generated: $generated
- *
- * @category Horde
- * @package  Mime
- */
-\$mime_extension_map = array(
-    $map
-);
-HEADER;
+    <?php
+    /**
+     * This file contains a mapping of common file extensions to MIME types.
+     * It has been automatically generated.
+     * Any changes made directly to this file may/will be lost in the future.
+     *
+     * Any unknown file extensions will automatically be mapped to
+     * 'x-extension/<ext>' where <ext> is the unknown file extension.
+     *
+     * Generated: $generated
+     *
+     * @category Horde
+     * @package  Mime
+     */
+    \$mime_extension_map = array(
+        $map
+    );
+    HEADER;

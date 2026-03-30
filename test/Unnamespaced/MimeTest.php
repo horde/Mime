@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2010-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime;
+use Horde_Mime;
 
 /**
  * Tests for the Horde_Mime class.
@@ -22,6 +25,7 @@ use \Horde_Mime;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class MimeTest extends TestCase
 {
@@ -38,21 +42,21 @@ class MimeTest extends TestCase
 
     public function is8bitProvider()
     {
-        return array(
-            array('A', false),
-            array('a', false),
-            array('1', false),
-            array('!', false),
-            array("\0", false),
-            array("\10", false),
-            array("\127", false),
-            array("\x80", true),
-            array('ä', true),
-            array('A©B', true),
-            array(' ® ', true),
+        return [
+            ['A', false],
+            ['a', false],
+            ['1', false],
+            ['!', false],
+            ["\0", false],
+            ["\10", false],
+            ["\127", false],
+            ["\x80", true],
+            ['ä', true],
+            ['A©B', true],
+            [' ® ', true],
             // This string is in Windows-1252
-            array(base64_decode('UnVubmVyc5IgQWxlcnQh='), true)
-        );
+            [base64_decode('UnVubmVyc5IgQWxlcnQh='), true],
+        ];
     }
 
     /**
@@ -68,44 +72,44 @@ class MimeTest extends TestCase
 
     public function decodeProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 '=?utf-8?Q?_Fran=C3=A7ois_Xavier=2E_XXXXXX_?= <foo@example.com>',
-                ' François Xavier. XXXXXX  <foo@example.com>'
-            ),
+                ' François Xavier. XXXXXX  <foo@example.com>',
+            ],
 
             /* Adapted from Dovecot's
              * src/lib-mail/test-message-header-decode.c. */
-            array(
+            [
                 " \t=?utf-8?q?=c3=a4?=  =?utf-8?q?=c3=a4?=  b  \t\r\n ",
-                " \tää  b  \t\r\n "
-            ),
-            array(
+                " \tää  b  \t\r\n ",
+            ],
+            [
                 "a =?utf-8?q?=c3=a4?= b",
-                "a ä b"
-            ),
-            array(
+                "a ä b",
+            ],
+            [
                 "a =?utf-8?q?=c3=a4?=\t\t\r\n =?utf-8?q?=c3=a4?= b",
-                "a ää b"
-            ),
-            array(
+                "a ää b",
+            ],
+            [
                 "a =?utf-8?q?=c3=a4?=  x  =?utf-8?q?=c3=a4?= b",
-                "a ä  x  ä b"
-            ),
-            array(
+                "a ä  x  ä b",
+            ],
+            [
                 "a =?utf-8?b?w6TDpCDDpA==?= b",
-                "a ää ä b"
-            ), array(
+                "a ää ä b",
+            ], [
                 "=?utf-8?b?w6Qgw6Q=?=",
-                "ä ä"
-            ),
+                "ä ä",
+            ],
 
             /* Not MIME encoded. */
-            array(
+            [
                 '=? required=?',
-                '=? required=?'
-            )
-        );
+                '=? required=?',
+            ],
+        ];
     }
 
     /**
@@ -121,99 +125,99 @@ class MimeTest extends TestCase
 
     public function encodeProvider()
     {
-        return array(
+        return [
             /* Adapted from Dovecot's
              * src/lib-mail/test-message-header-encode.c. */
-            array(
+            [
                 'a b',
                 'utf-8',
-                'a b'
-            ),
-            array(
+                'a b',
+            ],
+            [
                 'a bcäde f',
                 'utf-8',
-                'a =?utf-8?b?YmPDpGRl?= f'
-            ),
-            array(
+                'a =?utf-8?b?YmPDpGRl?= f',
+            ],
+            [
                 'a ää ä b',
                 'utf-8',
-                'a =?utf-8?b?w6TDpCDDpA==?= b'
-            ),
-            array(
+                'a =?utf-8?b?w6TDpCDDpA==?= b',
+            ],
+            [
                 'ä a ä',
                 'utf-8',
-                '=?utf-8?b?w6Q=?= a =?utf-8?b?w6Q=?='
-            ),
-            array(
+                '=?utf-8?b?w6Q=?= a =?utf-8?b?w6Q=?=',
+            ],
+            [
                 'ää a ä',
                 'utf-8',
                 // Dovecot: '=?utf-8?b?w6TDpCBhIMOk?='
-                '=?utf-8?b?w6TDpA==?= a =?utf-8?b?w6Q=?='
-            ),
-            array(
+                '=?utf-8?b?w6TDpA==?= a =?utf-8?b?w6Q=?=',
+            ],
+            [
                 '=',
                 'utf-8',
-                '='
-            ),
-            array(
+                '=',
+            ],
+            [
                 '?',
                 'utf-8',
-                '?'
-            ),
-            array(
+                '?',
+            ],
+            [
                 'a=?',
                 'utf-8',
-                'a=?'
-            ),
-            array(
+                'a=?',
+            ],
+            [
                 '=?',
                 'utf-8',
                 // Dovecot: '=?utf-8?q?=3D=3F?='
-                '=?utf-8?b?PT8=?='
-            ),
-            array(
+                '=?utf-8?b?PT8=?=',
+            ],
+            [
                 '=?x',
                 'utf-8',
                 // Dovecot: '=?utf-8?q?=3D=3Fx?='
-                '=?utf-8?b?PT94?='
-            ),
-            array(
+                '=?utf-8?b?PT94?=',
+            ],
+            [
                 "a\n=?",
                 'utf-8',
                 // Dovecot: "a\n\t=?utf-8?q?=3D=3F?="
-                "a\n=?utf-8?b?PT8=?="
-            ),
-            array(
+                "a\n=?utf-8?b?PT8=?=",
+            ],
+            [
                 "a\t=?",
                 'utf-8',
                 // Dovecot: "a\t=?utf-8?q?=3D=3F?="
-                "a\t=?utf-8?b?PT8=?="
-            ),
-            array(
+                "a\t=?utf-8?b?PT8=?=",
+            ],
+            [
                 "a =?",
                 'utf-8',
                 // Dovecot: "a =?utf-8?q?=3D=3F?="
-                'a =?utf-8?b?PT8=?='
-            ),
-            array(
+                'a =?utf-8?b?PT8=?=',
+            ],
+            [
                 "foo\001bar",
                 'utf-8',
                 // Dovecot: "=?utf-8?q?foo=01bar?="
-                '=?utf-8?b?Zm9vAWJhcg==?='
-            ),
-            array(
+                '=?utf-8?b?Zm9vAWJhcg==?=',
+            ],
+            [
                 "\x01\x02\x03\x04\x05\x06\x07\x08",
                 'utf-8',
-                "=?utf-8?b?AQIDBAUGBwg=?="
-            ),
+                "=?utf-8?b?AQIDBAUGBwg=?=",
+            ],
 
             /* Null character in encode output. */
-            array(
+            [
                 "\x00",
                 'UTF-16LE',
-                '=?utf-16le?b?AAA=?='
-            )
-        );
+                '=?utf-16le?b?AAA=?=',
+            ],
+        ];
     }
 
 }

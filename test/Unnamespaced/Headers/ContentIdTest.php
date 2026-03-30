@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2015-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Headers;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers_ContentId;
+use Horde_Mime_Headers_ContentId;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentId class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Headers_ContentId;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class ContentIdTest extends TestCase
 {
@@ -42,20 +46,20 @@ class ContentIdTest extends TestCase
 
     public function valueProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'foo',
-                '<foo>'
-            ),
-            array(
                 '<foo>',
-                '<foo>'
-            ),
-            array(
+            ],
+            [
+                '<foo>',
+                '<foo>',
+            ],
+            [
                 '<<foo',
-                '<foo>'
-            )
-        );
+                '<foo>',
+            ],
+        ];
     }
 
     public function testClone()

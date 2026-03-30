@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2015-2016 Horde LLC
@@ -8,9 +9,11 @@
  * @package    Mime
  * @subpackage UnitTests
  */
+
 namespace Horde\Mime\Test\Unnamespaced\Headers;
+
 use PHPUnit\Framework\TestCase;
-use \Horde_Mime_Headers_ContentParam_ContentDisposition;
+use Horde_Mime_Headers_ContentParam_ContentDisposition;
 
 /**
  * Tests for the Horde_Mime_Headers_ContentParam_ContentDisposition class.
@@ -22,6 +25,7 @@ use \Horde_Mime_Headers_ContentParam_ContentDisposition;
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class ContentDispositionTest extends TestCase
 {
@@ -51,51 +55,51 @@ class ContentDispositionTest extends TestCase
 
     public function parsingOfInputProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'inline',
                 'inline',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 '    INLINE',
                 'inline',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 'attachment',
                 'attachment',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 ' AtTaChMeNt   ',
                 'attachment',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 'bogus',
                 '',
-                array()
-            ),
-            array(
+                [],
+            ],
+            [
                 " iNLINe   ;   filename=\"foo\";\n bar=33;    size = 22",
                 'inline',
-                array(
+                [
                     'bar' => '33',
                     'filename' => 'foo',
-                    'size' => 22
-                )
-            ),
-            array(
+                    'size' => 22,
+                ],
+            ],
+            [
                 "attachMENT;Filename=\"foo\";bar=33;SIZE=\"22\"",
                 'attachment',
-                array(
+                [
                     'bar' => '33',
                     'filename' => 'foo',
-                    'size' => 22
-                )
-            )
-        );
+                    'size' => 22,
+                ],
+            ],
+        ];
     }
 
     /**
@@ -121,33 +125,33 @@ class ContentDispositionTest extends TestCase
 
     public function fullValueProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'attachment',
-                array('foo' => 'bar'),
-                'attachment; foo=bar'
-            ),
-            array(
+                ['foo' => 'bar'],
+                'attachment; foo=bar',
+            ],
+            [
                 'inline',
-                array(
+                [
                     'Foo' => 'BAR',
-                    'BAZ' => 345
-                ),
-                'inline; Foo=BAR; BAZ=345'
-            ),
-            array(
+                    'BAZ' => 345,
+                ],
+                'inline; Foo=BAR; BAZ=345',
+            ],
+            [
                 '',
-                array(
-                    'Foo' => 'BAR'
-                ),
-                'attachment; Foo=BAR'
-            ),
-            array(
+                [
+                    'Foo' => 'BAR',
+                ],
+                'attachment; Foo=BAR',
+            ],
+            [
                 'inline; foo=bar',
-                array(),
-                'inline'
-            )
-        );
+                [],
+                'inline',
+            ],
+        ];
     }
 
     public function testSerialize()
@@ -164,7 +168,7 @@ class ContentDispositionTest extends TestCase
             $ob2->value
         );
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $ob2->params
         );
     }
@@ -186,7 +190,7 @@ class ContentDispositionTest extends TestCase
             $ob2->value
         );
         $this->assertEquals(
-            array('foo' => 'bar'),
+            ['foo' => 'bar'],
             $ob2->params
         );
     }
@@ -210,28 +214,28 @@ class ContentDispositionTest extends TestCase
 
     public function isDefaultProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 '',
-                true
-            ),
-            array(
+                true,
+            ],
+            [
                 'attachment',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'attachment; foo=bar',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'inline',
-                false
-            ),
-            array(
+                false,
+            ],
+            [
                 'inline; foo=bar',
-                false
-            )
-        );
+                false,
+            ],
+        ];
     }
 
 }

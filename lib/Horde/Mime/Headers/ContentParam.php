@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -105,14 +105,14 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
             $out .= '; ' . $key . '=' . $val;
         }
 
-        return array($out);
+        return [$out];
     }
 
     /**
      */
     public static function getHandles()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -132,13 +132,13 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
      *
      * @return array  The encoded parameter string (US-ASCII).
      */
-    public function encode(array $opts = array())
+    public function encode(array $opts = [])
     {
-        $opts = array_merge(array(
+        $opts = array_merge([
             'charset' => 'UTF-8',
-        ), $opts);
+        ], $opts);
 
-        $out = array();
+        $out = [];
 
         foreach ($this->params as $key => $val) {
             $out = array_merge($out, $this->_encode($key, $val, $opts));
@@ -154,7 +154,7 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
     {
         $curr = 0;
         $encode = $wrap = false;
-        $out = array();
+        $out = [];
         $lines = [];
 
         // 2 = '=', ';'
@@ -202,7 +202,7 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
                 ++$curr;
             }
         } else {
-            $lines = array($string);
+            $lines = [$string];
         }
 
         foreach ($lines as $i => $line) {
@@ -210,9 +210,9 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
         }
 
         if (!empty($opts['broken_rfc2231']) && !isset($out[$name])) {
-            $out = array_merge(array(
-                $name => Horde_Mime::encode($val, $opts['charset'])
-            ), $out);
+            $out = array_merge([
+                $name => Horde_Mime::encode($val, $opts['charset']),
+            ], $out);
         }
 
         /* Escape characters in params (See RFC 2045 [Appendix A]).
@@ -255,7 +255,7 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
             $data = substr($data, 0, $pos);
         }
 
-        $this->_values = array($data);
+        $this->_values = [$data];
     }
 
     /**
@@ -268,7 +268,7 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
      */
     public function decode($data)
     {
-        $add = $convert = $parts = array();
+        $add = $convert = $parts = [];
 
         if (is_array($data)) {
             $params = $data;
@@ -276,20 +276,20 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
             $parts = explode(';', $data, 2);
             if (isset($parts[0]) && (strpos($parts[0], '=') === false)) {
                 $this->setContentParamValue($parts[0]);
-                $param = isset($parts[1]) ? $parts[1] : null;
+                $param = $parts[1] ?? null;
             } else {
                 $param = $data;
             }
 
             if (empty($param)) {
-                $params = array();
+                $params = [];
             } else {
                 $decode = new Horde_Mime_ContentParam_Decode();
                 $params = $decode->decode($param);
             }
         }
 
-        $to_add = array();
+        $to_add = [];
 
         foreach ($params as $name => $val) {
             /* Asterisk at end indicates encoded value. */
@@ -301,12 +301,12 @@ class Horde_Mime_Headers_ContentParam extends Horde_Mime_Headers_Element_Single 
             }
 
             /* This asterisk indicates continuation parameter. */
-            if ((($pos = strrpos($name, '*')) !== false) &&
-                is_numeric($order = substr($name, $pos + 1))) {
+            if ((($pos = strrpos($name, '*')) !== false)
+                && is_numeric($order = substr($name, $pos + 1))) {
                 $name = substr($name, 0, $pos);
                 $to_add[Horde_String::lower($name)][$order] = $val;
             } else {
-                $to_add[$name] = array($val);
+                $to_add[$name] = [$val];
             }
 
             if ($encoded) {

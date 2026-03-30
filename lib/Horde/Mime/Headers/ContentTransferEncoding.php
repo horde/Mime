@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -85,10 +85,10 @@ class Horde_Mime_Headers_ContentTransferEncoding extends Horde_Mime_Headers_Elem
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // MIME: RFC 2045
-            'content-transfer-encoding'
-        );
+            'content-transfer-encoding',
+        ];
     }
 
 }

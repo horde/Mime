@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -122,7 +122,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *
      * @var array
      */
-    protected $_metadata = array();
+    protected $_metadata = [];
 
     /**
      * The MIME ID of this part.
@@ -136,7 +136,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *
      * @var array
      */
-    protected $_parts = array();
+    protected $_parts = [];
 
     /**
      * Status mask for this part.
@@ -150,7 +150,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *
      * @var array
      */
-    protected $_temp = array();
+    protected $_temp = [];
 
     /**
      * The desired transfer encoding of this part.
@@ -242,8 +242,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             if (strcasecmp($label, 'size') === 0) {
                 // RFC 2183 [2.7] - size parameter
                 $this->_bytes = $cd[$label];
-            } elseif ((strcasecmp($label, 'filename') === 0) &&
-                      !strlen($cd->value)) {
+            } elseif ((strcasecmp($label, 'filename') === 0)
+                      && !strlen($cd->value)) {
                 /* Set part to attachment if not already explicitly set to
                  * 'inline'. */
                 $cd->setContentParamValue('attachment');
@@ -298,9 +298,9 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      */
     public function getName($default = false)
     {
-        if (!($name = $this->getDispositionParameter('filename')) &&
-            !($name = $this->getContentTypeParameter('name')) &&
-            $default) {
+        if (!($name = $this->getDispositionParameter('filename'))
+            && !($name = $this->getContentTypeParameter('name'))
+            && $default) {
             $name = preg_replace('|\W|', '_', $this->getDescription(false));
         }
 
@@ -319,7 +319,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *                use that stream?
      *                DEFAULT: $contents copied to a new stream.
      */
-    public function setContents($contents, $options = array())
+    public function setContents($contents, $options = [])
     {
         if (is_resource($contents) && ($contents === $this->_contents)) {
             return;
@@ -351,7 +351,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *                use that stream?
      *                DEFAULT: $contents copied to a new stream.
      */
-    public function appendContents($contents, $options = array())
+    public function appendContents($contents, $options = [])
     {
         if (empty($this->_contents)) {
             $this->setContents($contents, $options);
@@ -360,7 +360,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
                 ? $this->_writeStream($contents)
                 : $contents;
 
-            $this->_writeStream((empty($options['encoding']) || ($options['encoding'] == $this->_transferEncoding)) ? $fp : $this->_transferDecode($fp, $options['encoding']), array('fp' => $this->_contents));
+            $this->_writeStream((empty($options['encoding']) || ($options['encoding'] == $this->_transferEncoding)) ? $fp : $this->_transferDecode($fp, $options['encoding']), ['fp' => $this->_contents]);
             unset($this->_temp['sendTransferEncoding']);
         }
     }
@@ -391,7 +391,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      * @return mixed  The body text (string) of the part, null if there is no
      *                contents, and a stream resource if 'stream' is true.
      */
-    public function getContents($options = array())
+    public function getContents($options = [])
     {
         return empty($options['canonical'])
             ? (empty($options['stream']) ? $this->_readStream($this->_contents) : $this->_contents)
@@ -414,12 +414,12 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             switch ($encoding) {
                 case 'base64':
                     try {
-                        return $this->_writeStream($fp, array(
+                        return $this->_writeStream($fp, [
                             'error' => true,
-                            'filter' => array(
-                                'convert.base64-decode' => array()
-                            )
-                        ));
+                            'filter' => [
+                                'convert.base64-decode' => [],
+                            ],
+                        ]);
                     } catch (ErrorException $e) {
                     }
 
@@ -428,12 +428,12 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
 
                 case 'quoted-printable':
                     try {
-                        return $this->_writeStream($fp, array(
+                        return $this->_writeStream($fp, [
                             'error' => true,
-                            'filter' => array(
-                                'convert.quoted-printable-decode' => array()
-                            )
-                        ));
+                            'filter' => [
+                                'convert.quoted-printable-decode' => [],
+                            ],
+                        ]);
                     } catch (ErrorException $e) {
                     }
 
@@ -469,36 +469,36 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         switch ($encoding) {
             case 'base64':
                 /* Base64 Encoding: See RFC 2045, section 6.8 */
-                return $this->_writeStream($fp, array(
-                    'filter' => array(
-                        'convert.base64-encode' => array(
+                return $this->_writeStream($fp, [
+                    'filter' => [
+                        'convert.base64-encode' => [
                             'line-break-chars' => $this->getEOL(),
-                            'line-length' => 76
-                        )
-                    )
-                ));
+                            'line-length' => 76,
+                        ],
+                    ],
+                ]);
 
             case 'quoted-printable':
                 // PHP Bug 65776 - Must normalize the EOL characters.
                 stream_filter_register('horde_eol', 'Horde_Stream_Filter_Eol');
-                $stream = new Horde_Stream_Existing(array(
-                    'stream' => $fp
-                ));
-                $stream->stream = $this->_writeStream($stream->stream, array(
-                    'filter' => array(
-                        'horde_eol' => array('eol' => $stream->getEOL()
-                    )
-                )));
+                $stream = new Horde_Stream_Existing([
+                    'stream' => $fp,
+                ]);
+                $stream->stream = $this->_writeStream($stream->stream, [
+                    'filter' => [
+                        'horde_eol' => ['eol' => $stream->getEOL(),
+                        ],
+                    ]]);
 
                 /* Quoted-Printable Encoding: See RFC 2045, section 6.7 */
-                return $this->_writeStream($fp, array(
-                    'filter' => array(
-                        'convert.quoted-printable-encode' => array_filter(array(
+                return $this->_writeStream($fp, [
+                    'filter' => [
+                        'convert.quoted-printable-encode' => array_filter([
                             'line-break-chars' => $stream->getEOL(),
-                            'line-length' => 76
-                        ))
-                    )
-                ));
+                            'line-length' => 76,
+                        ]),
+                    ],
+                ]);
 
             default:
                 $this->_temp['transferEncodeClose'] = false;
@@ -717,8 +717,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      */
     public function getDescription($default = false)
     {
-        if (($ob = $this->_headers['content-description']) &&
-            strlen($ob->value)) {
+        if (($ob = $this->_headers['content-description'])
+            && strlen($ob->value)) {
             return $ob->value;
         }
 
@@ -742,10 +742,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *   - send: (boolean) If true, use $encoding as the sending encoding.
      *           DEFAULT: $encoding is used to change the base encoding.
      */
-    public function setTransferEncoding($encoding, $options = array())
+    public function setTransferEncoding($encoding, $options = [])
     {
-        if (empty($encoding) ||
-            (empty($options['send']) && !empty($this->_contents))) {
+        if (empty($encoding)
+            || (empty($options['send']) && !empty($this->_contents))) {
             return;
         }
 
@@ -865,7 +865,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      *
      * @return Horde_Mime_Headers  A Horde_Mime_Headers object.
      */
-    public function addMimeHeaders($options = array())
+    public function addMimeHeaders($options = [])
     {
         if (empty($options['headers'])) {
             $headers = new Horde_Mime_Headers();
@@ -957,12 +957,12 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      * @return mixed  The MIME string (returned as a resource if $stream is
      *                true).
      */
-    public function toString($options = array())
+    public function toString($options = [])
     {
         $eol = $this->getEOL();
         $isbase = true;
         $oldbaseptr = null;
-        $parts = $parts_close = array();
+        $parts = $parts_close = [];
 
         if (isset($options['id'])) {
             $id = $options['id'];
@@ -972,7 +972,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             unset($options['id']);
             $contents = $part->toString($options);
 
-            $prev_id = Horde_Mime::mimeIdArithmetic($id, 'up', array('norfc822' => true));
+            $prev_id = Horde_Mime::mimeIdArithmetic($id, 'up', ['norfc822' => true]);
             $prev_part = ($prev_id == $this->getMimeId())
                 ? $this
                 : $this[$prev_id];
@@ -981,10 +981,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             }
 
             $boundary = trim($this->getContentTypeParameter('boundary'), '"');
-            $parts = array(
+            $parts = [
                 $eol . '--' . $boundary . $eol,
-                $contents
-            );
+                $contents,
+            ];
 
             if (!isset($this[Horde_Mime::mimeIdArithmetic($id, 'next')])) {
                 $parts[] = $eol . '--' . $boundary . '--' . $eol;
@@ -1074,10 +1074,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             if (is_string($headers)) {
                 array_unshift($parts, $headers);
             } elseif ($headers) {
-                $hdr_ob = $this->addMimeHeaders(array(
+                $hdr_ob = $this->addMimeHeaders([
                     'encode' => $options['encode'],
-                    'headers' => ($headers === true) ? null : $headers
-                ));
+                    'headers' => ($headers === true) ? null : $headers,
+                ]);
                 if (!$isbase && !empty($options['is_digest'])) {
                     unset($hdr_ob['content-type']);
                 }
@@ -1087,11 +1087,11 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
                         $this->_temp['toString']
                     );
                 }
-                array_unshift($parts, $hdr_ob->toString(array(
+                array_unshift($parts, $hdr_ob->toString([
                     'canonical' => ($eol == self::RFC_EOL),
                     'charset' => $this->getHeaderCharset(),
-                    'defserver' => $options['defserver']
-                )));
+                    'defserver' => $options['defserver'],
+                ]));
             }
         }
 
@@ -1231,11 +1231,11 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         }
 
         stream_filter_register('horde_eol', 'Horde_Stream_Filter_Eol');
-        $fp = $this->_writeStream($text, array(
-            'filter' => array(
-                'horde_eol' => array('eol' => $eol)
-            )
-        ));
+        $fp = $this->_writeStream($text, [
+            'filter' => [
+                'horde_eol' => ['eol' => $eol],
+            ],
+        ]);
 
         return $stream ? $fp : $this->_readStream($fp, true);
     }
@@ -1320,8 +1320,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
 
         // TODO: Workaround broken number_format() prior to PHP 5.4.0.
         return str_replace(
-            array('X', 'Y'),
-            array($localeinfo['decimal_point'], $localeinfo['thousands_sep']),
+            ['X', 'Y'],
+            [$localeinfo['decimal_point'], $localeinfo['thousands_sep']],
             number_format(ceil($bytes / 1024), 0, 'X', 'Y')
         );
     }
@@ -1397,8 +1397,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         }
 
         if ($rfc822) {
-            if (empty($this->_parts) &&
-                ($this->getPrimaryType() != 'multipart')) {
+            if (empty($this->_parts)
+                && ($this->getPrimaryType() != 'multipart')) {
                 $this->setMimeId($id . '1');
             } else {
                 if (empty($id) && ($this->getType() == 'message/rfc822')) {
@@ -1490,7 +1490,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
 
         switch ($this->getPrimaryType()) {
             case 'application':
-                if (strlen((string)$this->getName())) {
+                if (strlen((string) $this->getName())) {
                     return true;
                 }
                 break;
@@ -1530,9 +1530,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      */
     public function getMetadata($key)
     {
-        return isset($this->_metadata[$key])
-            ? $this->_metadata[$key]
-            : null;
+        return $this->_metadata[$key]
+            ?? null;
     }
 
     /**
@@ -1561,7 +1560,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         $email,
         $headers,
         Horde_Mail_Transport $mailer,
-        array $opts = array()
+        array $opts = []
     ) {
         $old_status = $this->_status;
         $this->isBasePart(true);
@@ -1583,19 +1582,19 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             $canonical = false;
         }
 
-        $msg = $this->toString(array(
+        $msg = $this->toString([
             'canonical' => $canonical,
             'encode' => $encode,
             'headers' => false,
-            'stream' => true
-        ));
+            'stream' => true,
+        ]);
 
         /* Add MIME Headers if they don't already exist. */
         if (!isset($headers['MIME-Version'])) {
-            $headers = $this->addMimeHeaders(array(
+            $headers = $this->addMimeHeaders([
                 'encode' => $encode,
-                'headers' => $headers
-            ));
+                'headers' => $headers,
+            ]);
         }
 
         if (!empty($this->_temp['toString'])) {
@@ -1608,14 +1607,14 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         $this->_status = $old_status;
         $rfc822 = new Horde_Mail_Rfc822();
         try {
-            $mailer->send($rfc822->parseAddressList($email)->writeAddress(array(
+            $mailer->send($rfc822->parseAddressList($email)->writeAddress([
                 'encode' => $this->getHeaderCharset() ?: true,
-                'idn' => true
-            )), $headers->toArray(array(
+                'idn' => true,
+            ]), $headers->toArray([
                 'broken_rfc2231' => !empty($opts['broken_rfc2231']),
                 'canonical' => $canonical,
-                'charset' => $this->getHeaderCharset()
-            )), $msg);
+                'charset' => $this->getHeaderCharset(),
+            ]), $msg);
         } catch (InvalidArgumentException $e) {
             // Try to rebuild the part in case it was due to
             // an invalid line length in a rfc822/message attachment.
@@ -1650,10 +1649,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         foreach ($this->partIterator() as $val) {
             $id = $val->getMimeId();
 
-            if (($val->getPrimaryType() == 'text') &&
-                ((intval($id) === 1) || !$this->getMimeId()) &&
-                (is_null($subtype) || ($val->getSubType() == $subtype)) &&
-                ($val->getDisposition() !== 'attachment')) {
+            if (($val->getPrimaryType() == 'text')
+                && ((intval($id) === 1) || !$this->getMimeId())
+                && (is_null($subtype) || ($val->getSubType() == $subtype))
+                && ($val->getDisposition() !== 'attachment')) {
                 return $id;
             }
         }
@@ -1702,8 +1701,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
     {
         $id = $this->getMimeId();
 
-        if (($this->_status & self::STATUS_REINDEX) ||
-            ($force && is_null($id))) {
+        if (($this->_status & self::STATUS_REINDEX)
+            || ($force && is_null($id))) {
             $this->buildMimeIds(
                 is_null($id)
                     ? (($this->getPrimaryType() === 'multipart') ? '0' : '1')
@@ -1728,7 +1727,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      * @return resource  The stream resource.
      * @throws ErrorException
      */
-    protected function _writeStream($data, $options = array())
+    protected function _writeStream($data, $options = [])
     {
         $error = null;
         if (empty($options['fp'])) {
@@ -1739,10 +1738,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         }
 
         if (!is_array($data)) {
-            $data = array($data);
+            $data = [$data];
         }
 
-        $append_filter = array();
+        $append_filter = [];
         if (!empty($options['filter'])) {
             foreach ($options['filter'] as $key => $val) {
                 $append_filter[] = stream_filter_append($fp, $key, STREAM_FILTER_WRITE, $val);
@@ -1870,7 +1869,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      * @return Horde_Mime_Part  A MIME Part object.
      * @throws Horde_Mime_Exception
      */
-    public static function parseMessage($text, array $opts = array())
+    public static function parseMessage($text, array $opts = [])
     {
         /* Mini-hack to get a blank Horde_Mime part so we can call
          * replaceEOL(). Convert to EOL, since that is the expected EOL for
@@ -1907,14 +1906,14 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
     protected static function _getStructure(
         $header,
         $body,
-        array $opts = array()
+        array $opts = []
     ) {
-        $opts = array_merge(array(
+        $opts = array_merge([
             'ctype' => 'text/plain',
             'forcemime' => false,
             'level' => 0,
-            'no_body' => false
-        ), $opts);
+            'no_body' => false,
+        ], $opts);
 
         /* Parse headers text into a Horde_Mime_Headers object. */
         $hdrs = Horde_Mime_Headers::parseHeaders($header);
@@ -1990,10 +1989,10 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         switch ($ob->getPrimaryType()) {
             case 'message':
                 if ($ob->getSubType() == 'rfc822') {
-                    $ob[] = self::parseMessage($body, array(
+                    $ob[] = self::parseMessage($body, [
                         'forcemime' => true,
-                        'no_body' => $opts['no_body']
-                    ));
+                        'no_body' => $opts['no_body'],
+                    ]);
                 }
                 break;
 
@@ -2009,12 +2008,12 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
                         $ob[] = self::_getStructure(
                             substr($subpart, 0, $hdr_pos),
                             substr($subpart, $hdr_pos + 2),
-                            array(
+                            [
                                 'ctype' => ($ob->getSubType() == 'digest') ? 'message/rfc822' : 'text/plain',
                                 'forcemime' => true,
                                 'level' => $opts['level'],
-                                'no_body' => $opts['no_body']
-                            )
+                                'no_body' => $opts['no_body'],
+                            ]
                         );
                     }
                 }
@@ -2148,7 +2147,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
         $end = null
     ) {
         $i = 0;
-        $out = array();
+        $out = [];
 
         $search = "--" . $boundary;
         $search_len = strlen($search);
@@ -2174,11 +2173,11 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
                 switch ($text[$pos]) {
                     case "\r":
                         $pos += 2;
-                        $out[++$i] = array('start' => $pos);
+                        $out[++$i] = ['start' => $pos];
                         break;
 
                     case "\n":
-                        $out[++$i] = array('start' => ++$pos);
+                        $out[++$i] = ['start' => ++$pos];
                         break;
 
                     case '-':
@@ -2219,8 +2218,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
     protected function _reEncodeMessageAttachment(Horde_Mime_Part $part)
     {
         $new_part = Horde_Mime_Part::parseMessage($part->getContents());
-        $part->setContents($new_part->getContents(array('stream' => true)), array('encoding' => self::ENCODE_BINARY));
-        $part->setTransferEncoding('base64', array('send' => true));
+        $part->setContents($new_part->getContents(['stream' => true]), ['encoding' => self::ENCODE_BINARY]);
+        $part->setTransferEncoding('base64', ['send' => true]);
     }
 
     /* ArrayAccess methods. */
@@ -2396,7 +2395,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
 
     public function __serialize(): array
     {
-        $data = array(
+        $data = [
             // Serialized data ID.
             self::VERSION,
             $this->_bytes,
@@ -2407,8 +2406,8 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             $this->_mimeid,
             $this->_parts,
             $this->_status,
-            $this->_transferEncoding
-        );
+            $this->_transferEncoding,
+        ];
 
         if (!empty($this->_contents)) {
             $data[] = $this->_readStream($this->_contents);
@@ -2475,19 +2474,19 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
     /**
      * @deprecated
      */
-    public static $encodingTypes = array(
+    public static $encodingTypes = [
         '7bit', '8bit', 'base64', 'binary', 'quoted-printable',
         // Non-RFC types, but old mailers may still use
-        'uuencode', 'x-uuencode', 'x-uue'
-    );
+        'uuencode', 'x-uuencode', 'x-uue',
+    ];
 
     /**
      * @deprecated
      */
-    public static $mimeTypes = array(
+    public static $mimeTypes = [
         'text', 'multipart', 'message', 'application', 'audio', 'image',
-        'video', 'model'
-    );
+        'video', 'model',
+    ];
 
     /**
      * @deprecated  Use setContentTypeParameter with a null $data value.
@@ -2502,7 +2501,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      */
     public function contentTypeMap($sort = true)
     {
-        $map = array();
+        $map = [];
 
         foreach ($this->partIterator() as $val) {
             $map[$val->getMimeId()] = $val->getType();

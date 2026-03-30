@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2014-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -60,7 +60,7 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
     {
         return $first
             ? $this->_values
-            : array($this->_values);
+            : [$this->_values];
     }
 
     /**
@@ -92,8 +92,8 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
             case 'from':
             case 'to':
                 /* Catch malformed undisclosed-recipients entries. */
-                if ((count($addr_list) == 1) &&
-                    preg_match("/^\s*undisclosed-recipients:?\s*$/i", $addr_list[0]->bare_address)) {
+                if ((count($addr_list) == 1)
+                    && preg_match("/^\s*undisclosed-recipients:?\s*$/i", $addr_list[0]->bare_address)) {
                     $addr_list = new Horde_Mail_Rfc822_List(
                         'undisclosed-recipients:;'
                     );
@@ -112,7 +112,7 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
      */
     public static function getHandles()
     {
-        return array(
+        return [
             // Mail: RFC 3798
             'disposition-notification-to',
             // Mail: RFC 5322 (Address)
@@ -121,8 +121,8 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
             'cc',
             'bcc',
             'reply-to',
-            'sender'
-        );
+            'sender',
+        ];
     }
 
     /**
@@ -150,10 +150,10 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
      *   - idn: (boolean)  Encode IDN domain names (RFC 3490) if true.
      *           DEFAULT: true
      */
-    public static function doSendEncode($alist, array $opts = array())
+    public static function doSendEncode($alist, array $opts = [])
     {
-        $out = array();
-        $opts = array_merge(array('idn' => true), $opts);
+        $out = [];
+        $opts = array_merge(['idn' => true], $opts);
         foreach ($alist as $ob) {
             if (!empty($opts['defserver'])) {
                 foreach ($ob->raw_addresses as $ob2) {
@@ -163,10 +163,10 @@ class Horde_Mime_Headers_Addresses extends Horde_Mime_Headers_Element_Single imp
                 }
             }
 
-            $out[] = $ob->writeAddress(array(
+            $out[] = $ob->writeAddress([
                 'encode' => empty($opts['charset']) ? null : $opts['charset'],
-                'idn' => $opts['idn']
-            ));
+                'idn' => $opts['idn'],
+            ]);
         }
 
         return $out;
