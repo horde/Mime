@@ -90,7 +90,7 @@ class Horde_Mime_Headers_Deprecated
                             }
                         }
                     }
-                } catch (Net_DNS2_Exception $e) {
+                } catch (\NetDNS2\Exception $e) {
                 }
             } else {
                 $remote = gethostbyaddr($remote_addr);
@@ -109,7 +109,7 @@ class Horde_Mime_Headers_Deprecated
                                 }
                             }
                         }
-                    } catch (Net_DNS2_Exception $e) {
+                    } catch (\NetDNS2\Exception $e) {
                     }
                 } else {
                     $remote = gethostbyaddr($remote_addr);
