@@ -54,7 +54,7 @@ class UudecodeTest extends TestCase
         }
     }
 
-    public function uudecodeProvider()
+    public static function uudecodeProvider()
     {
         return [
             [

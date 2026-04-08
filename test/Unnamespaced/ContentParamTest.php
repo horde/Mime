@@ -46,7 +46,7 @@ class ContentParamTest extends TestCase
         );
     }
 
-    public function encodeProvider()
+    public static function encodeProvider()
     {
         return [
             [
@@ -140,7 +140,7 @@ class ContentParamTest extends TestCase
         );
     }
 
-    public function decodeProvider()
+    public static function decodeProvider()
     {
         return [
             [

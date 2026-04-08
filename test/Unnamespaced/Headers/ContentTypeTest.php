@@ -53,7 +53,7 @@ class ContentTypeTest extends TestCase
         );
     }
 
-    public function parsingOfInputProvider()
+    public static function parsingOfInputProvider()
     {
         return [
             [
@@ -179,7 +179,7 @@ class ContentTypeTest extends TestCase
         );
     }
 
-    public function parsingContentTypeValueProvider()
+    public static function parsingContentTypeValueProvider()
     {
         return [
             [
@@ -220,7 +220,7 @@ class ContentTypeTest extends TestCase
         );
     }
 
-    public function typeCharsetPropertyProvider()
+    public static function typeCharsetPropertyProvider()
     {
         return [
             [
@@ -256,7 +256,7 @@ class ContentTypeTest extends TestCase
         }
     }
 
-    public function multipartPartsHaveBoundary()
+    public static function multipartPartsHaveBoundary()
     {
         return [
             [
@@ -289,7 +289,7 @@ class ContentTypeTest extends TestCase
         );
     }
 
-    public function charsetIsLowercaseProvider()
+    public static function charsetIsLowercaseProvider()
     {
         return [
             [
@@ -336,7 +336,7 @@ class ContentTypeTest extends TestCase
         }
     }
 
-    public function isDefaultProvider()
+    public static function isDefaultProvider()
     {
         return [
             [

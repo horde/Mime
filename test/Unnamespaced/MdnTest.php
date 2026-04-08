@@ -49,7 +49,7 @@ class MdnTest extends TestCase
         );
     }
 
-    public function getMdnReturnAddrProvider()
+    public static function getMdnReturnAddrProvider()
     {
         $email = 'foo1@example.com, Test <foo2@example.com>';
 
@@ -77,7 +77,7 @@ class MdnTest extends TestCase
         }
     }
 
-    public function userConfirmationNeededProvider()
+    public static function userConfirmationNeededProvider()
     {
         $out = [];
 
@@ -90,12 +90,14 @@ class MdnTest extends TestCase
         $h->addHeader('Return-Path', 'foo2@example.com');
         $out[] = [clone $h, true];
 
-        $h->replaceHeader('Return-Path', 'foo@example.com');
+        $h->removeHeader('Return-Path');
+        $h->addHeader('Return-Path', 'foo@example.com');
 
         $h->addHeader(Horde_Mime_Mdn::MDN_HEADER, 'FOO@example.com');
         $out[] = [clone $h, true];
 
-        $h->replaceHeader(Horde_Mime_Mdn::MDN_HEADER, 'foo@EXAMPLE.com');
+        $h->removeHeader(Horde_Mime_Mdn::MDN_HEADER);
+        $h->addHeader(Horde_Mime_Mdn::MDN_HEADER, 'foo@EXAMPLE.com');
         $out[] = [clone $h, false];
 
         return $out;

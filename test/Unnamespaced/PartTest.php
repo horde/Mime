@@ -263,7 +263,7 @@ class PartTest extends TestCase
         );
     }
 
-    public function contentsTransferDecodingProvider()
+    public static function contentsTransferDecodingProvider()
     {
         return [
             [
@@ -306,7 +306,7 @@ class PartTest extends TestCase
         }
     }
 
-    public function setTypeProvider()
+    public static function setTypeProvider()
     {
         return [
             [
@@ -400,7 +400,7 @@ class PartTest extends TestCase
         );
     }
 
-    public function setDispositionProvider()
+    public static function setDispositionProvider()
     {
         return [
             ['attachment'],
@@ -701,7 +701,7 @@ C
         );
     }
 
-    public function setCharsetProvider()
+    public static function setCharsetProvider()
     {
         return [
             ['utf-8', 'text/plain; charset=utf-8'],

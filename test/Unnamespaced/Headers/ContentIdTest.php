@@ -44,7 +44,7 @@ class ContentIdTest extends TestCase
         $this->assertFalse($ob->isDefault());
     }
 
-    public function valueProvider()
+    public static function valueProvider()
     {
         return [
             [

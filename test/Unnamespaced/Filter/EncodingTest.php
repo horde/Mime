@@ -57,7 +57,7 @@ class EncodingTest extends Horde_Test_Case
         );
     }
 
-    public function bodyFilterProvider()
+    public static function bodyFilterProvider()
     {
         return [
             [

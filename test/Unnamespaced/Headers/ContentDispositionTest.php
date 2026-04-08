@@ -53,7 +53,7 @@ class ContentDispositionTest extends TestCase
         );
     }
 
-    public function parsingOfInputProvider()
+    public static function parsingOfInputProvider()
     {
         return [
             [
@@ -123,7 +123,7 @@ class ContentDispositionTest extends TestCase
         );
     }
 
-    public function fullValueProvider()
+    public static function fullValueProvider()
     {
         return [
             [
@@ -212,7 +212,7 @@ class ContentDispositionTest extends TestCase
         }
     }
 
-    public function isDefaultProvider()
+    public static function isDefaultProvider()
     {
         return [
             [

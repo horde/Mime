@@ -45,7 +45,7 @@ class DecodeTest extends TestCase
         );
     }
 
-    public function decodeProvider()
+    public static function decodeProvider()
     {
         return [
             [
