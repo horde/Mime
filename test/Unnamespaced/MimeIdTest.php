@@ -53,7 +53,7 @@ class MimeIdTest extends TestCase
         );
     }
 
-    public function idArithmeticProvider()
+    public static function idArithmeticProvider()
     {
         return [
             [
@@ -145,7 +145,7 @@ class MimeIdTest extends TestCase
         }
     }
 
-    public function isChildProvider()
+    public static function isChildProvider()
     {
         return [
             ['1', '1.0', true],

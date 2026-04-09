@@ -101,7 +101,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function serializeProvider()
+    public static function serializeProvider()
     {
         return [
             [
@@ -142,7 +142,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function normalHeaderDecodeProvider()
+    public static function normalHeaderDecodeProvider()
     {
         return [
             [
@@ -195,7 +195,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function contentParamHeaderDecodeProvider()
+    public static function contentParamHeaderDecodeProvider()
     {
         return [
             [
@@ -237,7 +237,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function headerAutoDetectCharsetProvider()
+    public static function headerAutoDetectCharsetProvider()
     {
         return [
             [
@@ -282,7 +282,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function headerEncodeProvider()
+    public static function headerEncodeProvider()
     {
         return [
             /* Single address header */
@@ -358,7 +358,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function multivalueHeadersProvider()
+    public static function multivalueHeadersProvider()
     {
         $expected = 'recipient1@example.com, recipient2@example.com';
 
@@ -399,7 +399,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function addHeaderWithGroupProvider()
+    public static function addHeaderWithGroupProvider()
     {
         return [
             [
@@ -428,7 +428,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function unencodeMimeHeaderProvider()
+    public static function unencodeMimeHeaderProvider()
     {
         return [
             [
@@ -467,7 +467,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function parseContentDispositionHeaderWithUtf8DataProvider()
+    public static function parseContentDispositionHeaderWithUtf8DataProvider()
     {
         return [
             [
@@ -570,7 +570,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    public function undisclosedHeaderParsingProvider()
+    public static function undisclosedHeaderParsingProvider()
     {
         return [
             ['To', 'undisclosed-recipients'],
@@ -665,7 +665,7 @@ class HeadersTest extends TestCase
 
     }
 
-    public function multiplePriorityHeadersProvider()
+    public static function multiplePriorityHeadersProvider()
     {
         return [
             [
@@ -713,7 +713,7 @@ class HeadersTest extends TestCase
         }
     }
 
-    public function addHeaderObProvider()
+    public static function addHeaderObProvider()
     {
         return [
             [
@@ -744,7 +744,7 @@ class HeadersTest extends TestCase
         $this->assertInstanceOf($class, $ob);
     }
 
-    public function headerGenerationProvider()
+    public static function headerGenerationProvider()
     {
         return [
             [

@@ -48,7 +48,7 @@ class ContentTransferEncodingTest extends TestCase
         }
     }
 
-    public function valuesProvider()
+    public static function valuesProvider()
     {
         return [
             [

@@ -41,7 +41,7 @@ class RelatedTest extends TestCase
         );
     }
 
-    public function startProvider()
+    public static function startProvider()
     {
         return [
             [
@@ -70,7 +70,7 @@ class RelatedTest extends TestCase
         );
     }
 
-    public function searchProvider()
+    public static function searchProvider()
     {
         return [
             [
@@ -101,7 +101,7 @@ class RelatedTest extends TestCase
         );
     }
 
-    public function iteratorProvider()
+    public static function iteratorProvider()
     {
         return [
             [

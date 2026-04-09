@@ -55,6 +55,13 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     protected $_headers;
 
     /**
+     * The EOL string to use for output.
+     *
+     * @var string
+     */
+    protected $_eol = "\n";
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -512,50 +519,85 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
         return new ArrayIterator($this->_headers);
     }
 
-    /* Deprecated functions */
+    /* Header value access */
 
-    /**
-     * Handle deprecated methods.
-     */
-    public function __call($name, $arguments)
-    {
-        $d = new Horde_Mime_Headers_Deprecated($this);
-        return call_user_func_array([$d, $name], $arguments);
-    }
-
-    /**
-     * Handle deprecated static methods.
-     */
-    public static function __callStatic($name, $arguments)
-    {
-        $d = new Horde_Mime_Headers_Deprecated(new Horde_Mime_Headers());
-        return call_user_func_array([$d, $name], $arguments);
-    }
-
-    /**
-     * @deprecated
-     */
-    protected $_eol = "\n";
-
-    /**
-     * @deprecated
-     */
-    public function setEOL($eol)
-    {
-        $this->_eol = $eol;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function getEOL()
-    {
-        return $this->_eol;
-    }
-
-    /* Constants for getValue(). @deprecated */
+    /* Constants for getValue(). */
     public const VALUE_STRING = 1;
     public const VALUE_BASE = 2;
     public const VALUE_PARAMS = 3;
 
+    /**
+     * Get a header value in a specific format.
+     *
+     * @param string $header  Header name.
+     * @param int $type       VALUE_STRING (full value), VALUE_BASE (base
+     *                        value), or VALUE_PARAMS (parameters only).
+     *
+     * @return mixed  Header value, or null if not found.
+     */
+    public function getValue($header, $type = self::VALUE_STRING)
+    {
+        if (!($ob = $this[$header])) {
+            return null;
+        }
+
+        switch ($type) {
+            case self::VALUE_BASE:
+                $tmp = $ob->value;
+                break;
+
+            case self::VALUE_PARAMS:
+                return array_change_key_case($ob->params, CASE_LOWER);
+
+            case self::VALUE_STRING:
+                $tmp = $ob->full_value;
+                break;
+        }
+
+        return (is_array($tmp) && (count($tmp) === 1))
+            ? reset($tmp)
+            : $tmp;
+    }
+
+    /**
+     * Replace a header value.
+     *
+     * @param string $header  Header name.
+     * @param string $value   Header value.
+     * @param array $opts     Additional options passed to addHeader().
+     */
+    public function replaceHeader($header, $value, array $opts = [])
+    {
+        $this->removeHeader($header);
+        $this->addHeader($header, $value, $opts);
+    }
+
+    /**
+     * Return the list of single-value header fields.
+     *
+     * @param bool $list  Include list header fields?
+     *
+     * @return array  List of single-value header field names (lowercase).
+     */
+    public function singleFields($list = true)
+    {
+        $fields = [
+            'to', 'from', 'cc', 'bcc', 'date', 'sender', 'reply-to',
+            'message-id', 'in-reply-to', 'references', 'subject',
+            'content-md5', 'mime-version', 'content-type',
+            'content-transfer-encoding', 'content-id', 'content-description',
+            'content-base', 'content-disposition', 'content-duration',
+            'content-location', 'content-features', 'content-language',
+            'content-alternative', 'importance', 'x-priority',
+        ];
+
+        $list_fields = [
+            'list-help', 'list-unsubscribe', 'list-subscribe', 'list-owner',
+            'list-post', 'list-archive', 'list-id',
+        ];
+
+        return $list
+            ? array_merge($fields, $list_fields)
+            : $fields;
+    }
 }

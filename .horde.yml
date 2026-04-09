@@ -35,7 +35,6 @@ dependencies:
     php: ^7.4 || ^8
     composer:
       horde/exception: ^3
-      horde/listheaders: ^2
       horde/mail: ^3
       horde/stream: ^2
       horde/stream_filter: ^3

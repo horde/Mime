@@ -47,7 +47,7 @@ class ContentLanguageTest extends TestCase
         );
     }
 
-    public function parsingOfInputProvider()
+    public static function parsingOfInputProvider()
     {
         return [
             [

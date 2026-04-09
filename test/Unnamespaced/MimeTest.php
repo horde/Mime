@@ -40,7 +40,7 @@ class MimeTest extends TestCase
         );
     }
 
-    public function is8bitProvider()
+    public static function is8bitProvider()
     {
         return [
             ['A', false],
@@ -70,7 +70,7 @@ class MimeTest extends TestCase
         );
     }
 
-    public function decodeProvider()
+    public static function decodeProvider()
     {
         return [
             [
@@ -123,7 +123,7 @@ class MimeTest extends TestCase
         );
     }
 
-    public function encodeProvider()
+    public static function encodeProvider()
     {
         return [
             /* Adapted from Dovecot's
