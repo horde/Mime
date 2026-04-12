@@ -130,6 +130,8 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
             $tmp = [];
 
             foreach ($ob->sendEncode(array_filter($sopts)) as $val) {
+                $val = $val ?? '';
+
                 if (empty($opts['nowrap'])) {
                     /* Remove any existing linebreaks and wrap the line. */
                     $htext = $ob->name . ': ';
@@ -509,7 +511,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
     #[ReturnTypeWillChange]
     public function getIterator()
     {
-        return new ArrayIterator($this->_headers);
+        return new ArrayIterator((array) $this->_headers);
     }
 
     /* Deprecated functions */
