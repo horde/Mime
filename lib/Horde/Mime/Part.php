@@ -1126,7 +1126,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
      * Get the transfer encoding for the part based on the user requested
      * transfer encoding and the current contents of the part.
      *
-     * @param integer $encode  A mask of allowable encodings.
+     * @param int|null $encode  A mask of allowable encodings.
      *
      * @return string  The transfer-encoding of this part.
      */
