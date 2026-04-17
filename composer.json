@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/mime",
     "description": "MIME library",
     "type": "library",
@@ -17,7 +16,7 @@
             "role": "lead"
         }
     ],
-    "time": "2026-04-01",
+    "time": "2026-04-17",
     "repositories": [],
     "require": {
         "php": "^7.4 || ^8",
