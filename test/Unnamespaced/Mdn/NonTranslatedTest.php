@@ -34,7 +34,7 @@ class NonTranslatedTest extends TestCase
 
     public function setUp(): void
     {
-        $this->oldlocale = setlocale(LC_MESSAGES, 0);
+        $this->oldlocale = setlocale(LC_MESSAGES, '0');
         setlocale(LC_MESSAGES, 'C');
     }
 
