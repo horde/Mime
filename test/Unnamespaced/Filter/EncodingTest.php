@@ -15,6 +15,7 @@
 
 namespace Horde\Mime\Test\Unnamespaced\Filter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Test_Case;
 use stdClass;
 
@@ -35,6 +36,7 @@ class EncodingTest extends Horde_Test_Case
     /**
      * @dataProvider bodyFilterProvider()
      */
+    #[DataProvider('bodyFilterProvider')]
     public function testBodyFilter($data, $result)
     {
         $params = new stdClass();

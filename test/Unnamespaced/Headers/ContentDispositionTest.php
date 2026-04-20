@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\Headers;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentParam_ContentDisposition;
 
 /**
@@ -32,6 +33,7 @@ class ContentDispositionTest extends TestCase
     /**
      * @dataProvider parsingOfInputProvider
      */
+    #[DataProvider('parsingOfInputProvider')]
     public function testParsingOfInput($input, $expected_val, $expected_params)
     {
         $ob = new Horde_Mime_Headers_ContentParam_ContentDisposition(
@@ -105,6 +107,7 @@ class ContentDispositionTest extends TestCase
     /**
      * @dataProvider fullValueProvider
      */
+    #[DataProvider('fullValueProvider')]
     public function testFullValue($value, $params, $expected)
     {
         $ob = new Horde_Mime_Headers_ContentParam_ContentDisposition(
@@ -198,6 +201,7 @@ class ContentDispositionTest extends TestCase
     /**
      * @dataProvider isDefaultProvider
      */
+    #[DataProvider('isDefaultProvider')]
     public function testIsDefault($value, $is_default)
     {
         $ob = new Horde_Mime_Headers_ContentParam_ContentDisposition(

@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\Headers;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentLanguage;
 
 /**
@@ -32,6 +33,7 @@ class ContentLanguageTest extends TestCase
     /**
      * @dataProvider parsingOfInputProvider
      */
+    #[DataProvider('parsingOfInputProvider')]
     public function testParsingOfInput($input, $expected_val, $expected_langs)
     {
         $ob = new Horde_Mime_Headers_ContentLanguage(null, $input);

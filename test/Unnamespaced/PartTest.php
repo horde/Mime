@@ -15,6 +15,7 @@ namespace Horde\Mime\Test\Unnamespaced;
 use PHPUnit\Framework\TestCase;
 use Horde_Mime_Headers;
 use Horde_Mime_Part;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Tests for the Horde_Mime_Part class.
@@ -250,6 +251,7 @@ class PartTest extends TestCase
     /**
      * @dataProvider contentsTransferDecodingProvider
      */
+    #[DataProvider('contentsTransferDecodingProvider')]
     public function testContentsTransferDecoding($data, $encoding, $text)
     {
         $part = new Horde_Mime_Part();
@@ -287,6 +289,7 @@ class PartTest extends TestCase
     /**
      * @dataProvider setTypeProvider
      */
+    #[DataProvider('setTypeProvider')]
     public function testSetType($data, $type, $boundary)
     {
         $part = new Horde_Mime_Part();
@@ -389,6 +392,7 @@ class PartTest extends TestCase
     /**
      * @dataProvider setDispositionProvider
      */
+    #[DataProvider('setDispositionProvider')]
     public function testSetDisposition($disp)
     {
         $part = new Horde_Mime_Part();
@@ -689,6 +693,7 @@ C
     /**
      * @dataProvider setCharsetProvider
      */
+    #[DataProvider('setCharsetProvider')]
     public function testSetCharset($charset, $expected)
     {
         $part = new Horde_Mime_Part();

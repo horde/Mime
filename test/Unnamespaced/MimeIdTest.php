@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Id;
 
 /**
@@ -43,6 +44,7 @@ class MimeIdTest extends TestCase
     /**
      * @dataProvider idArithmeticProvider
      */
+    #[DataProvider('idArithmeticProvider')]
     public function testIdArithmetic($id, $action, $opts, $expected)
     {
         $id_ob = new Horde_Mime_Id($id);
@@ -134,6 +136,7 @@ class MimeIdTest extends TestCase
     /**
      * @dataProvider isChildProvider
      */
+    #[DataProvider('isChildProvider')]
     public function testIsChild($base, $id, $expected)
     {
         $id_ob = new Horde_Mime_Id($base);

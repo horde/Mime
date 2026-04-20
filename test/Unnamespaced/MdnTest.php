@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mail_Rfc822;
 use Horde_Mime_Headers;
 use Horde_Mime_Mdn;
@@ -34,6 +35,7 @@ class MdnTest extends TestCase
     /**
      * @dataProvider getMdnReturnAddrProvider
      */
+    #[DataProvider('getMdnReturnAddrProvider')]
     public function testGetMdnReturnAddr($email)
     {
         $h = new Horde_Mime_Headers();
@@ -67,6 +69,7 @@ class MdnTest extends TestCase
     /**
      * @dataProvider UserConfirmationNeededProvider
      */
+    #[DataProvider('UserConfirmationNeededProvider')]
     public function testUserConfirmationNeeded($h, $expected)
     {
         $ob = new Horde_Mime_Mdn($h);
