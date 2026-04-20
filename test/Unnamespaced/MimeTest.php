@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime;
 
 /**
@@ -32,6 +33,7 @@ class MimeTest extends TestCase
     /**
      * @dataProvider is8bitProvider
      */
+    #[DataProvider('is8bitProvider')]
     public function testIs8bit($data, $expected)
     {
         $this->assertEquals(
@@ -62,6 +64,7 @@ class MimeTest extends TestCase
     /**
      * @dataProvider decodeProvider
      */
+    #[DataProvider('decodeProvider')]
     public function testDecode($data, $expected)
     {
         $this->assertEquals(
@@ -115,6 +118,7 @@ class MimeTest extends TestCase
     /**
      * @dataProvider encodeProvider
      */
+    #[DataProvider('encodeProvider')]
     public function testEncode($data, $charset, $expected)
     {
         $this->assertEquals(

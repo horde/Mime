@@ -15,6 +15,7 @@ namespace Horde\Mime\Test\Unnamespaced;
 use PHPUnit\Framework\TestCase;
 use Horde_Mime_Related;
 use Horde_Mime_Part;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Tests for the Horde_Mime_Related class.
@@ -33,6 +34,7 @@ class RelatedTest extends TestCase
     /**
      * @dataProvider startProvider
      */
+    #[DataProvider('startProvider')]
     public function testStart($ob, $id)
     {
         $this->assertEquals(
@@ -62,6 +64,7 @@ class RelatedTest extends TestCase
     /**
      * @dataProvider searchProvider
      */
+    #[DataProvider('searchProvider')]
     public function testSearch($ob, $search, $id)
     {
         $this->assertEquals(
@@ -93,6 +96,7 @@ class RelatedTest extends TestCase
     /**
      * @dataProvider iteratorProvider
      */
+    #[DataProvider('iteratorProvider')]
     public function testIterator($ob, $ids)
     {
         $this->assertEquals(

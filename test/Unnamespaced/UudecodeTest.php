@@ -14,6 +14,7 @@ namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
 use Horde_Mime_Uudecode;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Tests for the Horde_Mime_Uudecode class.
@@ -32,6 +33,7 @@ class UudecodeTest extends TestCase
     /**
      * @dataProvider uudecodeProvider
      */
+    #[DataProvider('uudecodeProvider')]
     public function testUudecode($data, $expected)
     {
         $uudecode = new Horde_Mime_Uudecode($data);

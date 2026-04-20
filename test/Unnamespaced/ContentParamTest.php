@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentParam;
 
 /**
@@ -32,6 +33,7 @@ class ContentParamTest extends TestCase
     /**
      * @dataProvider encodeProvider
      */
+    #[DataProvider('encodeProvider')]
     public function testEncode($params, $opts, $expected)
     {
         $cp = new Horde_Mime_Headers_ContentParam('NOT_USED', $params);
@@ -120,6 +122,7 @@ class ContentParamTest extends TestCase
     /**
      * @dataProvider decodeProvider
      */
+    #[DataProvider('decodeProvider')]
     public function testDecode($in, $val_expected, $params_expected)
     {
         $cp = new Horde_Mime_Headers_ContentParam('NOT_USED', $in);

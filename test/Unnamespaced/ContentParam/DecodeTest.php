@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\ContentParam;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_ContentParam_Decode;
 
 /**
@@ -32,6 +33,7 @@ class DecodeTest extends TestCase
     /**
      * @dataProvider decodeProvider
      */
+    #[DataProvider('decodeProvider')]
     public function testDecode($string, $expected)
     {
         $decode = new Horde_Mime_ContentParam_Decode();

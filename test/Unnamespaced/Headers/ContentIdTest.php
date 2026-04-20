@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\Headers;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentId;
 
 /**
@@ -32,6 +33,7 @@ class ContentIdTest extends TestCase
     /**
      * @dataProvider valueProvider
      */
+    #[DataProvider('valueProvider')]
     public function testValue($input, $expected_val)
     {
         $ob = new Horde_Mime_Headers_ContentId(null, $input);

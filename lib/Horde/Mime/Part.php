@@ -1134,7 +1134,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
     {
         if (!empty($this->_temp['sendEncoding'])) {
             return $this->_temp['sendEncoding'];
-        } elseif (!empty($this->_temp['sendTransferEncoding'][$encode])) {
+	} elseif (isset($this->_temp['sendTransferEncoding']['encode']) && $this->_temp['sendTransferEncoding']['encode'] !== '') {
             return $this->_temp['sendTransferEncoding'][$encode];
         }
 
@@ -1204,7 +1204,9 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             }
         }
 
-        $this->_temp['sendTransferEncoding'][$encode] = $encoding;
+	if (isset($this->_temp['sendTransferEncoding']['encode']) && $this->_temp['sendTransferEncoding']['encode'] !== '') {
+        	$this->_temp['sendTransferEncoding'][$encode] = $encoding;
+	}
 
         return $encoding;
     }

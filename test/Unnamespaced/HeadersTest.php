@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers;
 use Horde_Mime_Headers_ContentParam_ContentType;
 use Horde_Mime_Headers_ContentParam_ContentDisposition;
@@ -82,6 +83,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider serializeProvider
      */
+    #[DataProvider('serializeProvider')]
     public function testSerialize($header, $value)
     {
         $hdrs = new Horde_Mime_Headers();
@@ -125,6 +127,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider normalHeaderDecodeProvider
      */
+    #[DataProvider('normalHeaderDecodeProvider')]
     public function testNormalHeaderDecode($header, $value, $decoded)
     {
         $hdrs = new Horde_Mime_Headers();
@@ -171,6 +174,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider contentParamHeaderDecodeProvider
      */
+    #[DataProvider('contentParamHeaderDecodeProvider')]
     public function testContentParamHeaderDecode(
         $header,
         $value,
@@ -221,6 +225,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider headerAutoDetectCharsetProvider
      */
+    #[DataProvider('headerAutoDetectCharsetProvider')]
     public function testHeaderAutoDetectCharset($header, $value, $decoded)
     {
         $hdrs = Horde_Mime_Headers::parseHeaders($value);
@@ -252,6 +257,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider headerEncodeProvider
      */
+    #[DataProvider('headerEncodeProvider')]
     public function testHeaderEncode(
         $header,
         $values,
@@ -342,6 +348,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider multivalueHeadersProvider
      */
+    #[DataProvider('multivalueHeadersProvider')]
     public function testMultivalueHeaders($header, $in, $expected)
     {
         $hdrs = Horde_Mime_Headers::parseHeaders($in);
@@ -379,6 +386,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider addHeaderWithGroupProvider
      */
+    #[DataProvider('addHeaderWithGroupProvider')]
     public function testAddHeaderWithGroup($header, $email)
     {
         $rfc822 = new Horde_Mail_Rfc822();
@@ -412,6 +420,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider unencodeMimeHeaderProvider
      */
+    #[DataProvider('unencodeMimeHeaderProvider')]
     public function testUnencodedMimeHeader($header, $in, $decoded)
     {
         $hdrs = Horde_Mime_Headers::parseHeaders($in);
@@ -443,6 +452,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider parseContentDispositionHeaderWithUtf8DataProvider
      */
+    #[DataProvider('parseContentDispositionHeaderWithUtf8DataProvider')]
     public function testParseContentDispositionHeaderWithUtf8Data(
         $header,
         $parameter,
@@ -553,6 +563,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider undisclosedHeaderParsingProvider
      */
+    #[DataProvider('undisclosedHeaderParsingProvider')]
     public function testUndisclosedHeaderParsing($header, $value)
     {
         $hdrs = new Horde_Mime_Headers();
@@ -642,6 +653,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider multiplePriorityHeadersProvider
      */
+    #[DataProvider('multiplePriorityHeadersProvider')]
     public function testMultiplePriorityHeaders($header, $data, $value)
     {
         $hdrs = Horde_Mime_Headers::parseHeaders($data);
@@ -698,6 +710,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider addHeaderObProvider
      */
+    #[DataProvider('addHeaderObProvider')]
     public function testAddHeaderOb($ob, $valid)
     {
         $hdrs = new Horde_Mime_Headers();
@@ -730,6 +743,7 @@ class HeadersTest extends TestCase
     /**
      * @dataProvider headerGenerationProvider
      */
+    #[DataProvider('headerGenerationProvider')]
     public function testHeaderGeneration($label, $data, $class)
     {
         $hdrs = new Horde_Mime_Headers();

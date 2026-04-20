@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\Headers;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentParam_ContentType;
 
 /**
@@ -32,6 +33,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider parsingOfInputProvider
      */
+    #[DataProvider('parsingOfInputProvider')]
     public function testParsingOfInput($input, $expected_val, $expected_params)
     {
         $ob = new Horde_Mime_Headers_ContentParam_ContentType(
@@ -164,6 +166,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider parsingContentTypeValueProvider
      */
+    #[DataProvider('parsingContentTypeValueProvider')]
     public function testParsingContentTypeValue($value, $primary, $sub)
     {
         $ob = Horde_Mime_Headers_ContentParam_ContentType::create();
@@ -208,6 +211,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider typeCharsetPropertyProvider
      */
+    #[DataProvider('typeCharsetPropertyProvider')]
     public function testTypeCharsetProperty($value, $charset, $expected)
     {
         $ob = Horde_Mime_Headers_ContentParam_ContentType::create();
@@ -244,6 +248,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider multipartPartsHaveBoundary
      */
+    #[DataProvider('multipartPartsHaveBoundary')]
     public function testMultipartPartsHaveBoundary($value, $has_boundary)
     {
         $ob = Horde_Mime_Headers_ContentParam_ContentType::create();
@@ -277,6 +282,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider charsetIsLowercaseProvider
      */
+    #[DataProvider('charsetIsLowercaseProvider')]
     public function testCharsetIsLowercase($charset, $expected)
     {
         $ob = Horde_Mime_Headers_ContentParam_ContentType::create();
@@ -322,6 +328,7 @@ class ContentTypeTest extends TestCase
     /**
      * @dataProvider isDefaultProvider
      */
+    #[DataProvider('isDefaultProvider')]
     public function testIsDefault($value, $is_default)
     {
         $ob = new Horde_Mime_Headers_ContentParam_ContentType(

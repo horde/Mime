@@ -13,6 +13,7 @@
 namespace Horde\Mime\Test\Unnamespaced\Headers;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Horde_Mime_Headers_ContentTransferEncoding;
 
 /**
@@ -32,6 +33,7 @@ class ContentTransferEncodingTest extends TestCase
     /**
      * @dataProvider valuesProvider
      */
+    #[DataProvider('valuesProvider')]
     public function testValues($input, $expected_val, $is_default)
     {
         $ob = new Horde_Mime_Headers_ContentTransferEncoding(null, $input);
