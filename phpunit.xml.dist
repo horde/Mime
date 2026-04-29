@@ -15,12 +15,16 @@
          displayDetailsOnTestsThatTriggerNotices="true">
     <testsuites>
         <testsuite name="horde/mime">
-            <directory>test</directory>
+            <directory>test/Unnamespaced</directory>
+        </testsuite>
+        <testsuite name="unit">
+            <directory>test/unit</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>lib</directory>
+            <directory>src</directory>
         </include>
     </source>
 </phpunit>
