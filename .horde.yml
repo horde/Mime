@@ -57,4 +57,9 @@ dependencies:
     ext:
       intl: '*'
 vendor: horde
-keywords: []
+keywords:
+  - headers
+  - mail
+quality:
+  phpstan:
+    level: 3

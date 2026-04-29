@@ -45,6 +45,9 @@
     "autoload": {
         "psr-0": {
             "Horde_Mime": "lib/"
+        },
+        "psr-4": {
+            "Horde\\Mime\\": "src/"
         }
     },
     "autoload-dev": {
@@ -59,5 +62,6 @@
         "branch-alias": {
             "dev-FRAMEWORK_6_0": "3.x-dev"
         }
-    }
+    },
+    "minimum-stability": "beta"
 }
