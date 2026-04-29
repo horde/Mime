@@ -9,6 +9,9 @@ use Horde\Mime\Encoding\TransferEncoder;
 use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class TransferEncoderTest extends TestCase
 {
     public function testBase64(): void

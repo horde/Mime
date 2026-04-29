@@ -12,7 +12,11 @@ use Horde\Mime\Headers\HeaderElement;
 use Horde\Mime\Headers\Subject;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
+/**
+ * @coversNothing
+ */
 class HeaderRegistryTest extends TestCase
 {
     public function testBuiltInHeaders(): void
@@ -48,7 +52,7 @@ class HeaderRegistryTest extends TestCase
         $registry = new HeaderRegistry();
 
         $this->expectException(InvalidArgumentException::class);
-        $registry->register('x-bad', \stdClass::class);
+        $registry->register('x-bad', stdClass::class);
     }
 
     public function testAllReturnsMap(): void

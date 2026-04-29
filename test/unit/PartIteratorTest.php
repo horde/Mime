@@ -11,6 +11,9 @@ use Horde\Mime\PartBuilder;
 use Horde\Mime\PartIterator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PartIteratorTest extends TestCase
 {
     private function collectKeys(PartIterator $iter): array
@@ -54,7 +57,8 @@ class PartIteratorTest extends TestCase
 
     public function testMultipartIncludeSelf(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
             PartBuilder::text('two'),
             PartBuilder::text('three'),
@@ -72,7 +76,8 @@ class PartIteratorTest extends TestCase
 
     public function testMultipartExcludeSelf(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
             PartBuilder::text('two'),
         )->build();
@@ -87,8 +92,10 @@ class PartIteratorTest extends TestCase
 
     public function testNestedMultipart(): void
     {
-        $part = PartBuilder::multipart('mixed',
-            PartBuilder::multipart('alternative',
+        $part = PartBuilder::multipart(
+            'mixed',
+            PartBuilder::multipart(
+                'alternative',
                 PartBuilder::text('plain'),
                 PartBuilder::html('<p>html</p>'),
             ),
@@ -107,7 +114,8 @@ class PartIteratorTest extends TestCase
 
     public function testCountMatchesIteration(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
             PartBuilder::text('two'),
             PartBuilder::text('three'),
@@ -119,7 +127,8 @@ class PartIteratorTest extends TestCase
 
     public function testCountExcludingSelf(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
             PartBuilder::text('two'),
         )->build();
@@ -152,7 +161,8 @@ class PartIteratorTest extends TestCase
 
     public function testRewindResetsState(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
             PartBuilder::text('two'),
         )->build();
@@ -168,8 +178,10 @@ class PartIteratorTest extends TestCase
 
     public function testDepthFirstOrder(): void
     {
-        $part = PartBuilder::multipart('mixed',
-            PartBuilder::multipart('alternative',
+        $part = PartBuilder::multipart(
+            'mixed',
+            PartBuilder::multipart(
+                'alternative',
                 PartBuilder::text('plain'),
                 PartBuilder::html('<p>html</p>'),
             ),
@@ -191,7 +203,8 @@ class PartIteratorTest extends TestCase
 
     public function testPartIterateMethod(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('one'),
         )->build();
 
@@ -202,8 +215,10 @@ class PartIteratorTest extends TestCase
 
     public function testNestedIds(): void
     {
-        $part = PartBuilder::multipart('mixed',
-            PartBuilder::multipart('alternative',
+        $part = PartBuilder::multipart(
+            'mixed',
+            PartBuilder::multipart(
+                'alternative',
                 PartBuilder::text('plain'),
                 PartBuilder::html('<p>html</p>'),
             ),

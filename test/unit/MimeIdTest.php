@@ -8,6 +8,9 @@ use Horde\Mime\MimeId;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
+/**
+ * @coversNothing
+ */
 class MimeIdTest extends TestCase
 {
     public function testStringable(): void

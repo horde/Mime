@@ -8,6 +8,9 @@ use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 use ValueError;
 
+/**
+ * @coversNothing
+ */
 class TransferEncodingTest extends TestCase
 {
     public function testAllCases(): void

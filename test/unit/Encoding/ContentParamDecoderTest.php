@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Encoding;
 use Horde\Mime\Encoding\ContentParamDecoder;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ContentParamDecoderTest extends TestCase
 {
     public function testSimpleParams(): void

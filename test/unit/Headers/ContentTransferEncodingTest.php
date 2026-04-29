@@ -8,6 +8,9 @@ use Horde\Mime\Headers\ContentTransferEncoding;
 use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ContentTransferEncodingTest extends TestCase
 {
     public function testSevenBit(): void

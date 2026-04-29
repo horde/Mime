@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Headers;
 use Horde\Mime\Headers\ContentType;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ContentTypeTest extends TestCase
 {
     public function testBasicConstruction(): void

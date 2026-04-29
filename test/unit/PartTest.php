@@ -12,6 +12,9 @@ use Horde\Mime\PartIterator;
 use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PartTest extends TestCase
 {
     public function testDefaultConstruction(): void

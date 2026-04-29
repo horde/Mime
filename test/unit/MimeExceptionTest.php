@@ -8,6 +8,9 @@ use Horde\Mime\MimeException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/**
+ * @coversNothing
+ */
 class MimeExceptionTest extends TestCase
 {
     public function testExtendsRuntimeException(): void

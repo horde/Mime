@@ -12,6 +12,9 @@ use Horde\Mime\PartBuilder;
 use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PartBuilderTest extends TestCase
 {
     public function testBasicBuild(): void
@@ -166,7 +169,8 @@ class PartBuilderTest extends TestCase
 
     public function testMultipartBuild(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('Hello'),
             PartBuilder::text('<b>Hello</b>', 'html'),
         )->build();
@@ -178,7 +182,8 @@ class PartBuilderTest extends TestCase
 
     public function testMultipartBoundaryAutoGeneration(): void
     {
-        $part = PartBuilder::multipart('mixed',
+        $part = PartBuilder::multipart(
+            'mixed',
             PartBuilder::text('test'),
         )->build();
 
@@ -221,8 +226,10 @@ class PartBuilderTest extends TestCase
 
     public function testNestedMultipart(): void
     {
-        $part = PartBuilder::multipart('mixed',
-            PartBuilder::multipart('alternative',
+        $part = PartBuilder::multipart(
+            'mixed',
+            PartBuilder::multipart(
+                'alternative',
                 PartBuilder::text('Plain text'),
                 PartBuilder::html('<p>HTML</p>'),
             ),

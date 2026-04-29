@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Headers;
 use Horde\Mime\Headers\MessageId;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class MessageIdTest extends TestCase
 {
     public function testCreate(): void

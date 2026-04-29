@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Headers;
 use Horde\Mime\Headers\Received;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ReceivedTest extends TestCase
 {
     public function testMultipleValues(): void
