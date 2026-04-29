@@ -22,10 +22,21 @@ declare(strict_types=1);
 
 namespace Horde\Mime\Encoding;
 
-use Horde_Mail_Rfc822;
+use Horde\Mail\Rfc822\ParseException;
+use Horde\Mail\Rfc822\Rfc822CharacterRules;
+use Horde\Mail\Rfc822\ValidationMode;
 
-final class ContentParamDecoder extends Horde_Mail_Rfc822
+final class ContentParamDecoder
 {
+    use Rfc822CharacterRules;
+
+    private array $activeComments = [];
+
+    private function validationMode(): ValidationMode
+    {
+        return ValidationMode::Lenient;
+    }
+
     /**
      * @return array<string, string>
      */
@@ -33,45 +44,46 @@ final class ContentParamDecoder extends Horde_Mail_Rfc822
     {
         $out = [];
 
-        $this->_data = $data;
-        $this->_datalen = strlen($data);
-        $this->_ptr = 0;
+        $this->data = $data;
+        $this->dataLen = strlen($data);
+        $this->ptr = 0;
 
-        while ($this->_curr() !== false) {
-            $this->_rfc822SkipLwsp();
+        while ($this->curr() !== false) {
+            $this->skipLwsp();
 
-            $this->_rfc822ParseMimeToken($param);
+            $param = null;
+            $this->parseMimeToken($param);
 
-            if (is_null($param) || ($this->_curr() !== '=')) {
+            if ($param === null || $this->curr() !== '=') {
                 break;
             }
 
-            ++$this->_ptr;
-            $this->_rfc822SkipLwsp();
+            ++$this->ptr;
+            $this->skipLwsp();
 
             $value = '';
 
-            if ($this->_curr() === '"') {
+            if ($this->curr() === '"') {
                 try {
-                    $this->_rfc822ParseQuotedString($value);
-                } catch (\Horde_Mail_Exception $e) {
+                    $this->traitParseQuotedString($value);
+                } catch (ParseException) {
                     break;
                 }
             } else {
-                $this->_rfc822ParseMimeToken($value);
-                if (is_null($value)) {
+                $this->parseMimeToken($value);
+                if ($value === null) {
                     break;
                 }
             }
 
             $out[$param] = $value;
 
-            $this->_rfc822SkipLwsp();
-            if ($this->_curr() !== ';') {
+            $this->skipLwsp();
+            if ($this->curr() !== ';') {
                 break;
             }
 
-            ++$this->_ptr;
+            ++$this->ptr;
         }
 
         return $out;
@@ -87,20 +99,20 @@ final class ContentParamDecoder extends Horde_Mail_Rfc822
         };
     }
 
-    protected function _rfc822ParseMimeToken(?string &$str): void
+    private function parseMimeToken(?string &$str): void
     {
-        for ($i = $this->_ptr, $size = strlen($this->_data); $i < $size; ++$i) {
-            if (!self::isAtextNonTspecial($this->_data[$i])) {
+        for ($i = $this->ptr, $size = strlen($this->data); $i < $size; ++$i) {
+            if (!self::isAtextNonTspecial($this->data[$i])) {
                 break;
             }
         }
 
-        if ($i === $this->_ptr) {
+        if ($i === $this->ptr) {
             $str = null;
         } else {
-            $str = substr($this->_data, $this->_ptr, $i - $this->_ptr);
-            $this->_ptr += ($i - $this->_ptr);
-            $this->_rfc822SkipLwsp();
+            $str = substr($this->data, $this->ptr, $i - $this->ptr);
+            $this->ptr += ($i - $this->ptr);
+            $this->skipLwsp();
         }
     }
 }

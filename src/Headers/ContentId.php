@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Horde\Mime\Headers;
 
-use Horde_Support_Guid;
+use Horde\Support\Guid;
 
 final readonly class ContentId implements HeaderElement
 {
@@ -45,7 +45,7 @@ final readonly class ContentId implements HeaderElement
 
     public static function create(): self
     {
-        $guid = new Horde_Support_Guid();
+        $guid = new Guid();
 
         return new self('Content-ID', '<' . $guid . '@' . (gethostname() ?: 'localhost') . '>');
     }

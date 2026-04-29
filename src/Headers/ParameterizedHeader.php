@@ -31,6 +31,31 @@ trait ParameterizedHeader
         return implode('; ', $parts);
     }
 
+    /**
+     * Encode parameters per RFC 2231 for wire transmission.
+     * Handles non-ASCII values (charset encoding) and long values (continuation).
+     *
+     * @return string The base value followed by encoded parameters.
+     */
+    public function encodedValue(string $charset = 'UTF-8'): string
+    {
+        if (empty($this->params)) {
+            return $this->baseValue;
+        }
+
+        $encoded = [];
+        foreach ($this->params as $name => $val) {
+            $encoded = array_merge($encoded, self::encodeRfc2231Param($name, $val, $charset));
+        }
+
+        $parts = [$this->baseValue];
+        foreach ($encoded as $key => $val) {
+            $parts[] = $key . '=' . $val;
+        }
+
+        return implode('; ', $parts);
+    }
+
     public function __toString(): string
     {
         return $this->value();
@@ -67,6 +92,65 @@ trait ParameterizedHeader
         }
 
         return '"' . addcslashes($value, '"\\') . '"';
+    }
+
+    /**
+     * Encode a single parameter per RFC 2231.
+     *
+     * @return array<string, string> Encoded key => value pairs.
+     */
+    private static function encodeRfc2231Param(string $name, string $val, string $charset): array
+    {
+        $needsEncoding = false;
+        for ($i = 0, $len = strlen($val); $i < $len; $i++) {
+            $ord = ord($val[$i]);
+            if ($ord > 127) {
+                $needsEncoding = true;
+                break;
+            }
+        }
+
+        if (!$needsEncoding) {
+            return [$name => self::quoteParamValue($val)];
+        }
+
+        $encoded = strtolower($charset) . "''" . rawurlencode($val);
+
+        $preLen = strlen($name) + 3;
+
+        if (($preLen + strlen($encoded)) <= 75 || $name === 'boundary') {
+            return [$name . '*' => $encoded];
+        }
+
+        $lines = [];
+        $curr = 0;
+        while ($encoded !== '') {
+            $chunk = 75 - $preLen - strlen((string) $curr);
+            $pos = min($chunk, strlen($encoded));
+
+            if ($pos < strlen($encoded) && $pos > 2) {
+                for ($i = 0; $i <= 2; $i++) {
+                    if ($encoded[$pos - 1 - $i] === '%') {
+                        $pos = $pos - 1 - $i;
+                        break;
+                    }
+                }
+            }
+
+            $lines[] = substr($encoded, 0, $pos);
+            $encoded = substr($encoded, $pos);
+            if ($encoded === false) {
+                $encoded = '';
+            }
+            $curr++;
+        }
+
+        $out = [];
+        foreach ($lines as $i => $line) {
+            $out[$name . '*' . $i . '*'] = $line;
+        }
+
+        return $out;
     }
 
     /**
