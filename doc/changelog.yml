@@ -1,4 +1,21 @@
 ---
+3.0.0-beta4:
+  api: 3.0.0-beta4
+  state:
+    release: beta
+    api: beta
+  date: 2026-04-29
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    chore: Metadata
+    style: php-cs-fixer
+    docs: README and UPGRADING documents
+    feat: PSR-4 Horde Mime classes
+    test: Cover PSR-4 port
+    feat: Consolidated PSR-4 port of the mime library
+    Fix php deprecations and move tests to phpunit12+
 3.0.0-beta3:
   api: 3.0.0-beta3
   state:

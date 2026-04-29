@@ -16,7 +16,11 @@
             "role": "lead"
         }
     ],
-    "time": "2026-04-17",
+    "keywords": [
+        "headers",
+        "mail"
+    ],
+    "time": "2026-04-29",
     "repositories": [],
     "require": {
         "php": "^7.4 || ^8",
@@ -62,6 +66,5 @@
         "branch-alias": {
             "dev-FRAMEWORK_6_0": "3.x-dev"
         }
-    },
-    "minimum-stability": "beta"
+    }
 }
