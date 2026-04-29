@@ -137,7 +137,7 @@ class Horde_Mime_Headers implements ArrayAccess, IteratorAggregate, Serializable
             $tmp = [];
 
             foreach ($ob->sendEncode(array_filter($sopts)) as $val) {
-                $val = $val ?? '';
+                $val ??= '';
 
                 if (empty($opts['nowrap'])) {
                     /* Remove any existing linebreaks and wrap the line. */

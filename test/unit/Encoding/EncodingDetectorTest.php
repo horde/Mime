@@ -8,6 +8,9 @@ use Horde\Mime\Encoding\EncodingDetector;
 use Horde\Mime\TransferEncoding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class EncodingDetectorTest extends TestCase
 {
     public function testEmptyIsSevenBit(): void

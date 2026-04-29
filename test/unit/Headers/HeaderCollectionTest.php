@@ -16,6 +16,9 @@ use Horde\Mime\Headers\Received;
 use Horde\Mime\Headers\Subject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class HeaderCollectionTest extends TestCase
 {
     public function testEmptyCollection(): void

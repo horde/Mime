@@ -1,5 +1,7 @@
 <?php
 
+use Horde\Util\Util;
+
 /**
  * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
@@ -161,7 +163,7 @@ class Horde_Mime_Magic
         $magic_db = null,
         $opts = []
     ) {
-        if (Horde_Util::extensionExists('fileinfo')) {
+        if (Util::extensionExists('fileinfo')) {
             $res = empty($magic_db)
                 ? finfo_open(FILEINFO_MIME)
                 : finfo_open(FILEINFO_MIME, $magic_db);
@@ -208,7 +210,7 @@ class Horde_Mime_Magic
         $opts = []
     ) {
         /* If the PHP Mimetype extension is available, use that. */
-        if (Horde_Util::extensionExists('fileinfo')) {
+        if (Util::extensionExists('fileinfo')) {
             $res = empty($magic_db)
                 ? @finfo_open(FILEINFO_MIME)
                 : @finfo_open(FILEINFO_MIME, $magic_db);

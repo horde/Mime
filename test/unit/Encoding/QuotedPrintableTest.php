@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Encoding;
 use Horde\Mime\Encoding\QuotedPrintable;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class QuotedPrintableTest extends TestCase
 {
     public function testDecodeSimple(): void

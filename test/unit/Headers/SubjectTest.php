@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Headers;
 use Horde\Mime\Headers\Subject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class SubjectTest extends TestCase
 {
     public function testBasic(): void

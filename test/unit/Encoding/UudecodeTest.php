@@ -8,6 +8,9 @@ use Horde\Mime\Encoding\Uudecode;
 use Horde\Mime\Encoding\UudecodeEntry;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class UudecodeTest extends TestCase
 {
     private const SAMPLE = "begin 644 test.txt\n#0V%T\n`\nend";

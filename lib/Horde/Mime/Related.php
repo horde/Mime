@@ -113,11 +113,11 @@ class Horde_Mime_Related implements IteratorAggregate
      *                            return value of URL to display the data.
      * @param string $charset     HTML data charset.
      *
-     * @return Horde_Domhtml|\Horde\Util\Domhtml  A Domhtml object.
+     * @return Horde_Domhtml|Horde\Util\Domhtml  A Domhtml object.
      */
     public function cidReplace($text, $callback, $charset = 'UTF-8')
     {
-        $dom = ($text instanceof Horde_Domhtml || $text instanceof \Horde\Util\Domhtml)
+        $dom = ($text instanceof Horde_Domhtml || $text instanceof Horde\Util\Domhtml)
             ? $text
             : new Horde_Domhtml($text, $charset);
 

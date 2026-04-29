@@ -7,6 +7,9 @@ namespace Horde\Mime\Test\Headers;
 use Horde\Mime\Headers\ContentDisposition;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ContentDispositionTest extends TestCase
 {
     public function testAttachment(): void
