@@ -16,6 +16,6 @@ declare(strict_types=1);
 
 namespace Horde\Mime;
 
-use RuntimeException;
+use Horde\Exception\HordeRuntimeException;
 
-class MimeException extends RuntimeException {}
+class MimeException extends HordeRuntimeException {}

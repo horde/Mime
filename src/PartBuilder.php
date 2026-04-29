@@ -23,12 +23,13 @@ use Horde\Mime\Headers\ContentLanguage;
 use Horde\Mime\Headers\ContentTransferEncoding;
 use Horde\Mime\Headers\ContentType;
 use Horde\Mime\Headers\HeaderCollection;
+use Horde\Stream\StreamInterface;
 
 final class PartBuilder
 {
     private HeaderCollection $headers;
 
-    /** @var string|resource */
+    /** @var string|resource|StreamInterface */
     private mixed $body = '';
 
     private ?TransferEncoding $bodyEncoding = null;
@@ -158,7 +159,7 @@ final class PartBuilder
     }
 
     /**
-     * @param string|resource $body
+     * @param string|resource|StreamInterface $body
      */
     public function setBody(mixed $body, ?TransferEncoding $encoding = null): self
     {
@@ -245,9 +246,17 @@ final class PartBuilder
         return $builder;
     }
 
-    private function resolveBody(): string
+    private function resolveBody(): string|StreamInterface
     {
         $data = $this->body;
+
+        if ($data instanceof StreamInterface) {
+            if ($this->bodyEncoding === null) {
+                return $data;
+            }
+            $data->rewind();
+            $data = $data->substring();
+        }
 
         if (is_resource($data)) {
             rewind($data);

@@ -20,19 +20,20 @@ namespace Horde\Mime;
 use Horde\Mime\Headers\ContentDisposition;
 use Horde\Mime\Headers\ContentType;
 use Horde\Mime\Headers\HeaderCollection;
+use Horde\Stream\StreamInterface;
 
 final readonly class Part
 {
     /**
-     * @param HeaderCollection    $headers   MIME headers.
-     * @param string              $body      Decoded (binary) body content.
-     * @param list<Part>          $children  Child parts for multipart.
-     * @param int|null            $sizeHint  External size hint in bytes.
-     * @param array<string,mixed> $metadata  Arbitrary metadata.
+     * @param HeaderCollection         $headers   MIME headers.
+     * @param string|StreamInterface   $body      Decoded (binary) body content.
+     * @param list<Part>               $children  Child parts for multipart.
+     * @param int|null                 $sizeHint  External size hint in bytes.
+     * @param array<string,mixed>      $metadata  Arbitrary metadata.
      */
     public function __construct(
         public HeaderCollection $headers = new HeaderCollection(),
-        public string $body = '',
+        public string|StreamInterface $body = '',
         public array $children = [],
         public ?int $sizeHint = null,
         public array $metadata = [],
@@ -127,16 +128,47 @@ final readonly class Part
 
     public function hasBody(): bool
     {
+        if ($this->body instanceof StreamInterface) {
+            return $this->body->length() !== 0;
+        }
+
         return $this->body !== '';
+    }
+
+    /**
+     * Get body content as a string.
+     * If body is a stream, reads and returns its full contents.
+     */
+    public function bodyString(): string
+    {
+        if ($this->body instanceof StreamInterface) {
+            $this->body->rewind();
+
+            return $this->body->substring();
+        }
+
+        return $this->body;
     }
 
     public function bodySize(): int
     {
+        if ($this->body instanceof StreamInterface) {
+            return $this->body->length();
+        }
+
         if ($this->body !== '') {
             return strlen($this->body);
         }
 
         return $this->sizeHint ?? 0;
+    }
+
+    /**
+     * Whether the body is a stream.
+     */
+    public function isStream(): bool
+    {
+        return $this->body instanceof StreamInterface;
     }
 
     public function childCount(): int
@@ -164,7 +196,7 @@ final readonly class Part
         return new self($headers, $this->body, $this->children, $this->sizeHint, $this->metadata);
     }
 
-    public function withBody(string $body): self
+    public function withBody(string|StreamInterface $body): self
     {
         return new self($this->headers, $body, $this->children, $this->sizeHint, $this->metadata);
     }

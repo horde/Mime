@@ -50,7 +50,7 @@ final readonly class ContentType implements HeaderElement
 
     public function sendEncode(string $charset = 'UTF-8'): array
     {
-        return [$this->headerName . ': ' . $this->value()];
+        return [$this->headerName . ': ' . $this->encodedValue($charset)];
     }
 
     public static function handles(): array

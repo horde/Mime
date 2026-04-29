@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Horde\Mime\Headers;
 
-use Horde_Support_Guid;
+use Horde\Support\Guid;
 
 final readonly class MessageId implements HeaderElement
 {
@@ -44,7 +44,7 @@ final readonly class MessageId implements HeaderElement
 
     public static function create(string $prefix = 'Horde'): self
     {
-        $guid = new Horde_Support_Guid(['prefix' => $prefix]);
+        $guid = new Guid(['prefix' => $prefix]);
 
         return new self('Message-ID', '<' . $guid . '@' . (gethostname() ?: 'localhost') . '>');
     }
