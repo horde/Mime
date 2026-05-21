@@ -93,6 +93,7 @@ final class MimeParser
         string $body,
         MimeParserConfig $config,
         int $level,
+        ?string $defaultType = null,
     ): Part {
         $headers = HeaderCollection::parse($headerText);
 
@@ -112,7 +113,7 @@ final class MimeParser
             return self::parseMessageRfc822($headers, $body, $config, $level);
         }
 
-        return self::buildLeafPart($headers, $body, $config);
+        return self::buildLeafPart($headers, $body, $config, $defaultType);
     }
 
     private static function parseMultipart(
@@ -140,20 +141,10 @@ final class MimeParser
 
         foreach ($segments as $segment) {
             $segText = substr($body, $segment['start'], $segment['length']);
-            $segHeaderEnd = self::findHeaderEnd($segText);
-            $segHeader = substr($segText, 0, $segHeaderEnd);
-            $segBody = ($segHeaderEnd < strlen($segText))
-                ? substr($segText, $segHeaderEnd + 2)
-                : '';
-
-            $childHeaders = HeaderCollection::parse($segHeader);
-
-            if (!$childHeaders->has('content-type')) {
-                $childHeaders = $childHeaders->withRaw('Content-Type', $defaultType);
-            }
+            [$segHeader, $segBody] = self::splitHeaderBody($segText);
 
             $childConfig = new MimeParserConfig(forceMime: true, noBody: $config->noBody);
-            $children[] = self::getStructure($segHeader, $segBody, $childConfig, $level + 1);
+            $children[] = self::getStructure($segHeader, $segBody, $childConfig, $level + 1, $defaultType);
         }
 
         return new Part(
@@ -277,12 +268,32 @@ final class MimeParser
 
     private static function findHeaderEnd(string $text): int
     {
+        if ($text === '' || $text[0] === "\n") {
+            return 0;
+        }
+
         $pos = strpos($text, "\n\n");
         if ($pos !== false) {
             return $pos;
         }
 
         return strlen($text);
+    }
+
+    private static function splitHeaderBody(string $text): array
+    {
+        $headerEnd = self::findHeaderEnd($text);
+        $header = substr($text, 0, $headerEnd);
+
+        if ($headerEnd === 0) {
+            $bodyStart = ($text !== '' && $text[0] === "\n") ? 1 : 0;
+        } else {
+            $bodyStart = $headerEnd + 2;
+        }
+
+        $body = ($bodyStart < strlen($text)) ? substr($text, $bodyStart) : '';
+
+        return [$header, $body];
     }
 
     private static function normalizeEol(string $text): string
@@ -318,23 +329,15 @@ final class MimeParser
         $segText = substr($body, $segments[$index]['start'], $segments[$index]['length']);
 
         if ($remainingId === '') {
-            $headerEnd = self::findHeaderEnd($segText);
+            [$segHeader, $segBody] = self::splitHeaderBody($segText);
             if ($type === 'header') {
-                return self::restoreEol(substr($segText, 0, $headerEnd));
+                return self::restoreEol($segHeader);
             }
 
-            return self::restoreEol(
-                ($headerEnd < strlen($segText))
-                    ? substr($segText, $headerEnd + 2)
-                    : '',
-            );
+            return self::restoreEol($segBody);
         }
 
-        $headerEnd = self::findHeaderEnd($segText);
-        $segHeader = substr($segText, 0, $headerEnd);
-        $segBody = ($headerEnd < strlen($segText))
-            ? substr($segText, $headerEnd + 2)
-            : '';
+        [$segHeader, $segBody] = self::splitHeaderBody($segText);
 
         $headers = HeaderCollection::parse($segHeader);
         $ct = $headers->contentType();
