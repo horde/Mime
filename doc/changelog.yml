@@ -141,6 +141,17 @@
   date: 2021-02-24
   notes: |
     Original version string was 3.0.0alpha1
+3.0.0-RC1:
+  api: 3.0.0-RC1
+  state:
+    release: RC
+    api: RC
+  date: 2026-05-21
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    fix: Test suite for RFC compliance uncovered a case defaulting to application/octet-stream rather than text
 2.11.4:
   api: 2.11.0
   state:
