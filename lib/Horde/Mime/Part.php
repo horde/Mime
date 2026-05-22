@@ -1318,7 +1318,7 @@ class Horde_Mime_Part implements ArrayAccess, Countable, RecursiveIterator, Seri
             return 0;
         }
 
-        $localeinfo = Horde_Nls::getLocaleInfo();
+        $localeinfo = (new Horde\Nls\Nls())->getLocaleInfo();
 
         // TODO: Workaround broken number_format() prior to PHP 5.4.0.
         return str_replace(
