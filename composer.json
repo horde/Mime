@@ -28,7 +28,7 @@
         "horde/mail": "^3 || dev-FRAMEWORK_6_0",
         "horde/stream": "^2 || dev-FRAMEWORK_6_0",
         "horde/stream_filter": "^3 || dev-FRAMEWORK_6_0",
-        "horde/support": "^3 || dev-FRAMEWORK_6_0",
+        "horde/support": "^3.0.1 || dev-FRAMEWORK_6_0",
         "horde/text_flowed": "^3 || dev-FRAMEWORK_6_0",
         "horde/text_filter": "^3 || dev-FRAMEWORK_6_0",
         "horde/translation": "^3 || dev-FRAMEWORK_6_0",

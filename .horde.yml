@@ -30,13 +30,13 @@ license:
   uri: http://www.horde.org/licenses/lgpl21
 dependencies:
   required:
-    php: ^7.4 || ^8
+    php: ^8.1
     composer:
       horde/exception: ^3
       horde/mail: ^3
       horde/stream: ^2
       horde/stream_filter: ^3
-      horde/support: ^3
+      horde/support: ^3.0.1
       horde/text_flowed: ^3
       horde/text_filter: ^3
       horde/translation: ^3
