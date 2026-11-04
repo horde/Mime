@@ -45,6 +45,14 @@ final readonly class ContentDisposition implements HeaderElement
         return ['content-disposition'];
     }
 
+    /**
+     * The lowercase disposition type without parameters (RFC 2183 section 2).
+     */
+    public function dispositionType(): string
+    {
+        return strtolower($this->baseValue);
+    }
+
     public function isInline(): bool
     {
         return strtolower($this->baseValue) === 'inline';

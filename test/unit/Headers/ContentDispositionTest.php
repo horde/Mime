@@ -41,6 +41,29 @@ class ContentDispositionTest extends TestCase
         $this->assertSame('12345', $cd->param('size'));
     }
 
+    public function testDispositionTypeExcludesParametersWithoutChangingValue(): void
+    {
+        $cd = ContentDisposition::fromRaw('Content-Disposition', 'ATTACHMENT; filename=report.pdf');
+
+        $this->assertSame('attachment', $cd->dispositionType());
+        $this->assertSame('ATTACHMENT; filename=report.pdf', $cd->value());
+        $this->assertSame('report.pdf', $cd->filename());
+    }
+
+    public function testDispositionTypeWithoutParameters(): void
+    {
+        $cd = ContentDisposition::fromRaw('Content-Disposition', 'Inline');
+
+        $this->assertSame('inline', $cd->dispositionType());
+    }
+
+    public function testDispositionTypePreservesExtensionTypes(): void
+    {
+        $cd = ContentDisposition::fromRaw('Content-Disposition', 'X-Custom; filename=report.pdf');
+
+        $this->assertSame('x-custom', $cd->dispositionType());
+    }
+
     public function testSendEncode(): void
     {
         $cd = new ContentDisposition('Content-Disposition', 'attachment', ['filename' => 'test.txt']);
