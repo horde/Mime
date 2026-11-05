@@ -126,7 +126,11 @@ final class PartIterator implements Iterator, Countable
 
     private function pushRegularChildren(Part $parent, string $parentId): void
     {
-        $prefix = ($parentId === '' || $parentId === '0') ? '' : $parentId . '.';
+        $prefix = match (true) {
+            $parentId === '' || $parentId === '0' => '',
+            str_ends_with($parentId, '.0') => substr($parentId, 0, -1),
+            default => $parentId . '.',
+        };
 
         $this->stack[] = [$parent, 0, $prefix];
     }
@@ -138,17 +142,10 @@ final class PartIterator implements Iterator, Countable
             return;
         }
 
-        $child = $children[0];
-        $baseId = rtrim($parentId, '0');
-        if ($baseId !== '' && str_ends_with($baseId, '.')) {
-            $baseId = substr($baseId, 0, -1);
-        }
-
-        if (empty($child->children) && $child->primaryType() !== 'multipart') {
-            $this->stack[] = [$parent, 0, $baseId . ($baseId !== '' ? '.' : '')];
-        } else {
-            $this->stack[] = [$parent, 0, $baseId . ($baseId !== '' ? '.' : '')];
-        }
+        $baseId = str_ends_with($parentId, '.0')
+            ? substr($parentId, 0, -2)
+            : $parentId;
+        $this->stack[] = [$parent, 0, $baseId . ($baseId !== '' ? '.' : '')];
     }
 
     private function advance(): void
@@ -163,6 +160,11 @@ final class PartIterator implements Iterator, Countable
                 $top[1]++;
                 $child = $parent->child($index);
                 $childId = $prefix . ($index + 1);
+                if ($parent->fullType() === 'message/rfc822' && $child->isMultipart()) {
+                    $childId = ($parent === $this->root)
+                        ? '1'
+                        : $prefix . '0';
+                }
 
                 if ($child->primaryType() === 'message' && $child->subType() === 'rfc822' && !$child->isLeaf()) {
                     $this->current = $child;
